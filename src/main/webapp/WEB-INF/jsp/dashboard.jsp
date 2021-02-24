@@ -1,86 +1,98 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 body {
   margin: 0;
-  font-family: "Lato", sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.sidebar {
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
+.topnav {
+  overflow: hidden;
+  background-color: #333;
 }
 
-.sidebar a {
+.topnav a {
+  float: left;
   display: block;
-  color: black;
-  padding: 16px;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: none;
+  font-size: 17px;
 }
- 
-.sidebar a.active {
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
   background-color: #4CAF50;
   color: white;
 }
 
-.sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
+.topnav .icon {
+  display: none;
 }
 
-div.content {
-  margin-left: 200px;
-  padding: 1px 16px;
-  height: 1000px;
-}
-
-@media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
   }
-  .sidebar a {float: left;}
-  div.content {margin-left: 0;}
 }
 
-@media screen and (max-width: 400px) {
-  .sidebar a {
-    text-align: center;
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
     float: none;
+    display: block;
+    text-align: left;
   }
 }
 </style>
 </head>
 <body>
 
-<div class="sidebar">
-  <a class="active" href="/userLogin">Home</a>
+<div class="topnav" id="myTopnav">
+ <a class="active" href="/userLogin">Home</a>
   <a href="#news">Personal Details</a>
   <a href="#contact">Educational Details</a>
   <a href="#about">Work Experience</a>
   <a href="#about">Project Details</a>
   <a href="#about">Work Experience</a>
-   <a href="#about">Achievements</a>
-    <a href="#about">Reference Details</a>
+   <a href="AchievementsForm">Achievements</a>
+    <a href="refers">Reference Details</a>
     <a href="#about">Download Your resume</a>
       <a href="logout">Log Out</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>
 
-<div class="content">
-  
-  Hii ${username}  You are login succesfully login....
-</div>
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
 
 </body>
 </html>
