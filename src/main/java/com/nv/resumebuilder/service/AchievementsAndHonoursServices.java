@@ -10,5 +10,5 @@ import com.nv.resumebuilder.entity.AchievementsAndHonoursEntity;
 
 public interface AchievementsAndHonoursServices 
 {
-	public void AchievementsAndHonoursStore(AchievementsAndHonoursEntity achievemnetsandhonours);
+	public AchievementsAndHonoursEntity addAchievementsAndHonours(AchievementsAndHonoursEntity achievemnetsandhonours);
 }

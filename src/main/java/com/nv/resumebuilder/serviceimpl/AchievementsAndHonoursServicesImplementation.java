@@ -18,8 +18,9 @@ public class AchievementsAndHonoursServicesImplementation implements Achievement
 
 
 	@Override
-	public void AchievementsAndHonoursStore(AchievementsAndHonoursEntity achievemnetsandhonours) 
+	public AchievementsAndHonoursEntity addAchievementsAndHonours(AchievementsAndHonoursEntity achievemnetsandhonours) 
 	{
 		achievementsAndHonoursRepository.save(achievemnetsandhonours); // saving our data in h2 database
+		return achievemnetsandhonours;
 	}
 }

@@ -40,7 +40,7 @@ public class AchievementsFormController
 	    }
 		else
 		{
-			achievementsAndHonoursServices.AchievementsAndHonoursStore(achievemnetsandhonours);
+			achievementsAndHonoursServices.addAchievementsAndHonours(achievemnetsandhonours);
 			model.addAttribute("achievemnetsandhonours1",achievemnetsandhonours);
 	        return "AchievementsFormProcessing";
 		}
