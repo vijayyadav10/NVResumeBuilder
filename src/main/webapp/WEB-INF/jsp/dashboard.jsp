@@ -67,14 +67,14 @@ body {
 
 <div class="topnav" id="myTopnav">
  <a class="active" href="/userLogin">Home</a>
-  <a href="#news">Personal Details</a>
-  <a href="#contact">Educational Details</a>
-  <a href="#about">Work Experience</a>
-  <a href="#about">Project Details</a>
-  <a href="#about">Work Experience</a>
-   <a href="#about">Achievements</a>
-    <a href="refers">Reference Details</a>
-    <a href="#about">Download Your resume</a>
+  <a href="personalDetails">Personal Details</a>
+  <a href="education">Educational Details</a>
+  <a href="saveExperienceDetail">Work Experience Details</a>
+ 
+  <a href="organizationaldetailsform">Current Organizational Details</a>
+   <a href="AchievementsForm">Achievements</a>
+    <a href="refernceDetails">Reference Details</a>
+    <a href="download">Download Your resume</a>
       <a href="logout">Log Out</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
@@ -96,5 +96,3 @@ function myFunction() {
 
 </body>
 </html>
-
-
