@@ -17,7 +17,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
    	.authorizeRequests()
 		.antMatchers("/")
        .permitAll()
-       // allow anonymous access to the root page
+       
        .antMatchers("/h2-console/**").permitAll()
       .anyRequest().authenticated()
      .and().logout().logoutSuccessUrl("/");
