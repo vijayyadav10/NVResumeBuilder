@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%-- <jsp:include page = "dashboard.jsp" flush = "true" /> --%>
 
 <p>${personaldetails1}</p>
 

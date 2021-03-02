@@ -4,5 +4,5 @@ import com.nv.resumebuilder.entity.PersonalDetailsEntity;
 
 public interface PersonalDetailsServices 
 {
-	public void personalDetailsStore(PersonalDetailsEntity personalDetailsEntity);
+	public PersonalDetailsEntity savePersonalDetails(PersonalDetailsEntity personalDetailsEntity);
 }

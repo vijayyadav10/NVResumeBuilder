@@ -15,9 +15,10 @@ public class PersonalDetailServiceImpl implements PersonalDetailsServices
 	private PersonalDetailsRepository personalDetailsRepository;
 	
 	@Override
-	public void personalDetailsStore(PersonalDetailsEntity personalDetailsEntity) 
+	public PersonalDetailsEntity savePersonalDetails(PersonalDetailsEntity personalDetailsEntity) 
 	{
-		personalDetailsRepository.save(personalDetailsEntity);// saving our data in h2 database
+		return personalDetailsRepository.save(personalDetailsEntity);// saving our data in h2 database
+		
 		
 	}
 	

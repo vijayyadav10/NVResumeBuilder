@@ -1,5 +1,6 @@
 package com.nv.resumebuilder.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,14 +12,14 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
-@Component
 @Entity
 @Table(name ="personaldetails")
 public class PersonalDetailsEntity 
@@ -43,37 +44,13 @@ public class PersonalDetailsEntity
 	@Size(min = 1, max = 10, message = "size upto 10 Characters..")
 	private String userLastName;
 	
-	/*
-	@Column
-	@NotEmpty
-	private String fatherFirstName;
-	
-	@Column
-	@NotEmpty
-	private String fatherMiddleName;
-	
-	@Column
-	@NotEmpty
-	private String fatherLastName;
-
-	@Column
-	@NotEmpty
-	private String motherFirstName;
-	
-	@Column
-	@NotEmpty
-	private String motherMiddleName;
-	
-	@Column
-	@NotEmpty
-	private String motherLastName;
-	*/
 	@Column
 	//@DateTimeFormat(pattern ="dd/mm/yyyy")
 	@Temporal(TemporalType.DATE)
-	@CreationTimestamp
+	//@CreationTimestamp
 	@NotNull
-	private Date birthDate;
+	@Past
+	private LocalDate birthDate;
 	
 	@Column
 	@NotEmpty
@@ -177,11 +154,11 @@ public class PersonalDetailsEntity
 
 	
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 
@@ -264,19 +241,20 @@ public class PersonalDetailsEntity
 		// TODO Auto-generated constructor stub
 	}
 
-	public PersonalDetailsEntity(long id,
+	
+	public PersonalDetailsEntity(
 			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userFirstName,
 			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userMiddleName,
 			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userLastName,
-			@NotNull Date birthDate, @NotEmpty String nationality, @NotNull(message = "Select gender") String gender,
-			@NotEmpty String maritialStatus,
+			@NotNull LocalDate birthDate, @NotEmpty String nationality,
+			@NotNull(message = "Select gender") @NotEmpty String gender, @NotEmpty String maritialStatus,
 			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String emailId,
 			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String linkedinId,
 			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String skypeId,
-			@NotEmpty @Pattern(regexp = "(^$|[0-9]{10})") String phoneNo, @NotEmpty String currentAddress, @NotEmpty String city, @NotEmpty String country,
+			@NotEmpty @Pattern(regexp = "(^$|[0-9]{10})") String phoneNo, @NotEmpty String currentAddress,
+			@NotEmpty String city, @NotEmpty String country,
 			@NotEmpty(message = "Select at least one language.") String languageKnown) {
 		super();
-		this.id = id;
 		this.userFirstName = userFirstName;
 		this.userMiddleName = userMiddleName;
 		this.userLastName = userLastName;
@@ -306,3 +284,9 @@ public class PersonalDetailsEntity
 
 	
 }
+
+/*PersonalDetailsEntity personalDetailsEntity=new PersonalDetailsEntity
+					("userFirstName","userMiddleName","userLastName","birthDate",
+							"nationality","gender","maritialStatus","emailId","linkedinId",
+							"skypeId","phoneNo","currentAddress","city","country","languageKnown");
+*/
