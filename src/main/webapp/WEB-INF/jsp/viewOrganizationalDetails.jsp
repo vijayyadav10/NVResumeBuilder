@@ -7,8 +7,6 @@
 <title>Current Organizational Details</title>
 </head>
 <body>
-
-<jsp:include page = "dashboard.jsp" flush = "true" />
 <p>${orgDetails}</p>
 </body>
 </html>

@@ -2,12 +2,11 @@ package com.nv.resumebuilder;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
-class ResumebuilderApplicationTests {
-
+public class ResumebuilderApplicationTests {
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 	}
-
 }

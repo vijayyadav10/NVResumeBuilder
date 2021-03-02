@@ -1,5 +1,7 @@
 package com.nv.resumebuilder.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +21,8 @@ public class OrganizationalDetailsServiceImpl implements OrganizationalDetailsSe
 		return organizationdetailsEntity;
 	}
 
+	public List<OrganizationalDetailsEntity> allDetails() {
+		return null;
+
+	}
 }

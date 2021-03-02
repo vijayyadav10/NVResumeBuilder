@@ -35,7 +35,7 @@ public class OrganizationalDetailsEntity {
 	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date date;
 
-	public OrganizationalDetailsEntity() {
+		public OrganizationalDetailsEntity() {
 		super();
 	}
 
