@@ -1,7 +1,6 @@
 package com.nv.resumebuilder.controllers;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,10 +26,14 @@ import com.nv.resumebuilder.service.RefernceDetailsService;
 @Controller
 public class RefernceDetailsController {
 
-	@Autowired
+	
 	private RefernceDetailsService service;
 	
-	
+	@Autowired
+	public RefernceDetailsController(RefernceDetailsService service) {
+		this.service = service;
+		
+	}
 	@GetMapping("/refernceDetails")
 	public String refernceDetailsWelcomePage(Model model)
 

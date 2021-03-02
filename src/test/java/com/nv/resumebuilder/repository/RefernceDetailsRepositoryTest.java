@@ -1,5 +1,6 @@
 package com.nv.resumebuilder.repository;
 import static org.assertj.core.api.Assertions.assertThat;
+
 import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
@@ -11,12 +12,16 @@ import javax.persistence.EntityManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.nv.resumebuilder.entity.ReferenceDetailsEntity;
+@ExtendWith(SpringExtension.class)
 @DataJpaTest
 class RefernceDetailsRepositoryTest {
 	@Autowired
@@ -28,86 +33,70 @@ class RefernceDetailsRepositoryTest {
 	
 	
 	@Test
+	@DisplayName("Saving data into Repository")
 	void testSaveRepository()  {
-		ReferenceDetailsEntity refernceEntity=new ReferenceDetailsEntity();
-		refernceEntity.setPersonName("Rutuja bagade");
-		refernceEntity.setDesignation("Software developer");
-		refernceEntity.setEmailId("rutuja.bagade@newvisionsoftware.in");
-		refernceEntity.setContactNo("9139251151");
-		refernceEntity.setAddress("20,Ramcha got,Satara");
-		refernceEntity.setOrganization("New vision softcom and consultancy,Pune");
-         
-        repository.save(refernceEntity);
+		ReferenceDetailsEntity refernceEntity =repository.save(new ReferenceDetailsEntity("Rutuja bagade","Software developer",
+				"rutuja.bagade@newvisionsoftware.in"
+				,"9139251151","20,Ramcha got,Satara","New vision softcom and consultancy,Pune"));
          
         Assert.assertNotNull(refernceEntity.getId());
+        assertThat(refernceEntity).hasFieldOrPropertyWithValue("personName", "Rutuja bagade");
+        assertThat(refernceEntity).hasFieldOrPropertyWithValue("designation", "Software developer");
+        assertThat(refernceEntity).hasFieldOrPropertyWithValue("contactNo", "9139251151");
+        repository.deleteAll();
 	}
 	@Test
+	@DisplayName("Show all  data from Repository")
 	public void testGetAllRefernceDetails(){
-		ReferenceDetailsEntity refernceEntity=new ReferenceDetailsEntity();
-		refernceEntity.setPersonName("Rutuja bagade");
-		refernceEntity.setDesignation("Software developer");
-		refernceEntity.setEmailId("rutuja.bagade@newvisionsoftware.in");
-		refernceEntity.setContactNo("9139251151");
-		refernceEntity.setAddress("20,Ramcha got,Satara");
-		refernceEntity.setOrganization("New vision softcom and consultancy,Pune");
-         
-		
-		ReferenceDetailsEntity refernceEntity1=new ReferenceDetailsEntity();
-		refernceEntity1.setPersonName("Rutuja bagade");
-		refernceEntity1.setDesignation("Software developer");
-		refernceEntity1.setEmailId("rutuja.bagade@newvisionsoftware.in");
-		refernceEntity1.setContactNo("9139251151");
-		refernceEntity1.setAddress("20,Ramcha got,Satara");
-		refernceEntity1.setOrganization("New vision softcom and consultancy,Pune");
-         
-		
-		//Save both tickets in DB
-		entityManager.persist(refernceEntity);
-		entityManager.persist(refernceEntity1);
-		
 		Iterable<ReferenceDetailsEntity> refernceDetails = repository.findAll();
+
+	    assertThat(refernceDetails).isEmpty();
+	    //Save both data in DB
+	    ReferenceDetailsEntity refernceEntity1 =repository.save(new ReferenceDetailsEntity("Rutuja bagade","Software developer",
+				"rutuja.bagade@newvisionsoftware.in"
+				,"9139251151","20,Ramcha got,Satara","New vision softcom and consultancy,Pune"));
+	    
+		entityManager.persist(refernceEntity1);
+		ReferenceDetailsEntity refernceEntity2 =repository.save(new ReferenceDetailsEntity("Rutuja bagade","Software developer",
+				"rutuja.bagade@newvisionsoftware.in"
+				,"9139251151","20,Ramcha got,Satara","New vision softcom and consultancy,Pune"));
+		entityManager.persist(refernceEntity2);
+		
+		Iterable<ReferenceDetailsEntity> refernceDetails1 = repository.findAll();
 		List<ReferenceDetailsEntity> refernceDetailsList = new ArrayList<>();
 		
-		for (ReferenceDetailsEntity ticket : refernceDetails) {
-			refernceDetailsList.add(ticket);
+		for (ReferenceDetailsEntity refernceData : refernceDetails1) {
+			refernceDetailsList.add(refernceData);
 		}
-		Assert.assertEquals(refernceDetailsList.size(),2);
+		
+		assertThat(refernceDetails1).hasSize(2).contains(refernceEntity1, refernceEntity2);
+		repository.deleteAll();
 	}
 	@Test
+	@DisplayName("Delete data based on id")
 	public void testDeleteRefernceDetailsById(){
-		ReferenceDetailsEntity refernceEntity=new ReferenceDetailsEntity();
-		refernceEntity.setPersonName("Rutuja bagade");
-		refernceEntity.setDesignation("Software developer");
-		refernceEntity.setEmailId("rutuja.bagade@newvisionsoftware.in");
-		refernceEntity.setContactNo("9139251151");
-		refernceEntity.setAddress("20,Ramcha got,Satara");
-		refernceEntity.setOrganization("New vision softcom and consultancy,Pune");
-         
-		
-		ReferenceDetailsEntity refernceEntity1=new ReferenceDetailsEntity();
-		refernceEntity1.setPersonName("Rutuja bagade");
-		refernceEntity1.setDesignation("Software developer");
-		refernceEntity1.setEmailId("rutuja.bagade@newvisionsoftware.in");
-		refernceEntity1.setContactNo("9139251151");
-		refernceEntity1.setAddress("20,Ramcha got,Satara");
-		refernceEntity1.setOrganization("New vision softcom and consultancy,Pune");
-		//Save both tickets in DB
-		ReferenceDetailsEntity persist = entityManager.persist(refernceEntity);
+		//Save both data in DB
+	    ReferenceDetailsEntity refernceEntity1 =repository.save(new ReferenceDetailsEntity("Rutuja bagade","Software developer",
+				"rutuja.bagade@newvisionsoftware.in"
+				,"9139251151","20,Ramcha got,Satara","New vision softcom and consultancy,Pune"));
+	    
 		entityManager.persist(refernceEntity1);
+		ReferenceDetailsEntity refernceEntity2 =repository.save(new ReferenceDetailsEntity("Rutuja bagade","Software developer",
+				"rutuja.bagade@newvisionsoftware.in"
+				,"9139251151","20,Ramcha got,Satara","New vision softcom and consultancy,Pune"));
+		entityManager.persist(refernceEntity2);
+		
+		//Save both tickets in DB
+	    entityManager.persist(refernceEntity1);
+		entityManager.persist(refernceEntity2);
 		
 		//delete one ticket DB
-		entityManager.remove(persist);
+		entityManager.remove(refernceEntity2);
 		
 		Iterable<ReferenceDetailsEntity> refernceDetails = repository.findAll();
-		List<ReferenceDetailsEntity> refernceDetailsList = new ArrayList<>();
 		
-		for (ReferenceDetailsEntity ticket : refernceDetailsList) {
-			refernceDetailsList.add(ticket);
-		}
-		assertThat(refernceDetailsList.size()).isEqualTo(1);
+		assertThat(refernceDetails).hasSize(1).contains(refernceEntity1);
 	}
-	@After
-	public void tearDown() {
-		entityManager.clear();
 	}
-}
+	
+

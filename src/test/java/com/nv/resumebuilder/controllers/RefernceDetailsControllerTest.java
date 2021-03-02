@@ -1,66 +1,105 @@
 package com.nv.resumebuilder.controllers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestContext;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.nv.resumebuilder.entity.ReferenceDetailsEntity;
-import com.nv.resumebuilder.service.RefernceDetailsService;
-import com.nv.resumebuilder.serviceimpl.RefernceDetailsServiceImpl;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-
+import com.nv.resumebuilder.entity.ReferenceDetailsEntity;
+import com.nv.resumebuilder.service.RefernceDetailsService;
 @ExtendWith(SpringExtension.class)
-@AutoConfigureMockMvc
-class RefernceDetailsControllerTest {
 
+class RefernceDetailsControllerTest {
 	private MockMvc mockMvc;
-	@InjectMocks
-	private RefernceDetailsController refernceDetailsController;
-	@Mock
-	private RefernceDetailsService service;
-	
+	 private  ReferenceDetailsEntity refernceEntity;
+	 @InjectMocks
+	 RefernceDetailsController refernceDetailsController;
+	 @Mock
+		private RefernceDetailsService service;
+
+   @BeforeEach
+   void setup() {
+       this.mockMvc = MockMvcBuilders.standaloneSetup(new RefernceDetailsController(service)).build();
+   }
+   @Before
+	  public void init() {
+		refernceEntity =new ReferenceDetailsEntity();
+			refernceEntity.setId(1);
+			refernceEntity.setPersonName("Rutuja bagade");
+			refernceEntity.setDesignation("Software developer");
+			refernceEntity.setEmailId("rutuja.bagade@newvisionsoftware.in");
+			refernceEntity.setContactNo("9139251151");
+			refernceEntity.setAddress("20,Ramcha got,Satara");
+			refernceEntity.setOrganization("New vision softcom and consultancy,Pune");
+	  }
+	@Test
+	@DisplayName("Testing Refernce Details Form Page handler")
+	void testRefernceDetailsWelcomePage() throws Exception {
+		mockMvc.perform(get("/refernceDetails"))
+	     .andExpect(status().isOk())
+	     .andExpect(view().name("RefernceDetailsPage"))
+	     .andDo(MockMvcResultHandlers.print());
+	     
+	     
+	}
+	@DisplayName("Testing  Show all Refernce Details handler")
 	@Test
 	void testShowRefernceDetails() throws Exception {
-		ReferenceDetailsEntity refernceEntity=new ReferenceDetailsEntity();
-		refernceEntity.setId(1);
-		refernceEntity.setPersonName("Rutuja bagade");
-		refernceEntity.setDesignation("Software developer");
-		refernceEntity.setEmailId("rutuja.bagade@newvisionsoftware.in");
-		refernceEntity.setContactNo("9139251151");
-		refernceEntity.setAddress("20,Ramcha got,Satara");
-		refernceEntity.setOrganization("New vision softcom and consultancy,Pune");
-         
+List<ReferenceDetailsEntity> refernceEntityList = Arrays.asList(refernceEntity, refernceEntity);
 		
-	
-		List<ReferenceDetailsEntity> ticketList = new ArrayList<ReferenceDetailsEntity>();
-		ticketList.add(refernceEntity);
-		
-		Mockito.when(service.getAllRefernceDetails()).thenReturn(ticketList);
-		//mockMvc.perform(get("/showRefernceDetails")).andExpect(status().isOk());
-		
+	    Mockito.when(service.getAllRefernceDetails()).thenReturn(refernceEntityList);
+	  //Web test
+			mockMvc.perform(get("/showRefernceDetails"))
+		     .andExpect(status().isOk())
+		     .andExpect(view().name("RefernceDetailsShow"))
+		     .andExpect(MockMvcResultMatchers.model().attribute("referncedetailsList",refernceEntityList ));
+			
+	//verify at a time only one method is runnable
+		     verify(service, times(1)).getAllRefernceDetails();
+		        verifyNoMoreInteractions(service);
+	}
+	@DisplayName("Testing Update Refernce Details handler ")
+	@Test
+	void testUpdateRefernceDetails() throws Exception
+	{
+		 
+			//when
+			 Mockito.when(service.getRefernceDetailsById(1)).thenReturn(refernceEntity);
+			 
+			//web test
+			mockMvc.perform(get("/edit/{id}",1))
+		     .andExpect(status().isOk())
+		     .andExpect(view().name("RefernceDetailsEdit"))
+		     .andExpect(model().attribute("refernceDetails",refernceEntity ))
+			.andDo(MockMvcResultHandlers.print());
+			
+			//verify at a time only one method is runnable
+		     verify(service, times(1)).getRefernceDetailsById(1);
+		        verifyNoMoreInteractions(service);
+	      
 	}
 
 }

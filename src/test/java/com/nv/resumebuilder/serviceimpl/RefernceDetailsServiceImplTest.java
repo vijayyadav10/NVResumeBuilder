@@ -11,6 +11,7 @@ import java.util.List;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -33,9 +34,6 @@ class RefernceDetailsServiceImplTest {
 	@Mock
 	private RefernceDetailsRepository repository;
 	
-	
-	
-	
 	 @Before
 	  public void init() {
 		refernceEntity =new ReferenceDetailsEntity();
@@ -49,6 +47,7 @@ class RefernceDetailsServiceImplTest {
 	  }
 	 
 	@Test
+	@DisplayName("Saving Refernce Details Information")
 	void testSaveRefernceDetails() {
 		 // Verification
 	  
@@ -57,12 +56,17 @@ class RefernceDetailsServiceImplTest {
 		Mockito.verify(repository, Mockito.times(1)).save(refernceEntity);
 	}
 	
-	@SuppressWarnings("deprecation")
+	
 	@Test
+	@DisplayName("Show all Refernce Details Information")
 	void testGetAllRefernceDetails() {
+		//given
 		  List<ReferenceDetailsEntity> refernceEntityList = Arrays.asList(refernceEntity, refernceEntity, refernceEntity);
-		    Mockito.when(repository.findAll()).thenReturn(refernceEntityList);
-		    assertEquals(refernceEntityList, service.getAllRefernceDetails());
+		   //when
+		  Mockito.when(repository.findAll()).
+		  //then
+			  thenReturn(refernceEntityList);
+			    assertEquals(refernceEntityList, service.getAllRefernceDetails());
 		 // Verification
 		    Assert.assertThat(refernceEntityList, Matchers.hasSize(3));
 		    Mockito.verify(repository, Mockito.times(1)).findAll();
