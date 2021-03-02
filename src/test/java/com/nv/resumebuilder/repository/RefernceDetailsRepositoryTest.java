@@ -43,7 +43,7 @@ class RefernceDetailsRepositoryTest {
         assertThat(refernceEntity).hasFieldOrPropertyWithValue("personName", "Rutuja bagade");
         assertThat(refernceEntity).hasFieldOrPropertyWithValue("designation", "Software developer");
         assertThat(refernceEntity).hasFieldOrPropertyWithValue("contactNo", "9139251151");
-        repository.deleteAll();
+       
 	}
 	@Test
 	@DisplayName("Show all  data from Repository")
@@ -70,7 +70,7 @@ class RefernceDetailsRepositoryTest {
 		}
 		
 		assertThat(refernceDetails1).hasSize(2).contains(refernceEntity1, refernceEntity2);
-		repository.deleteAll();
+		
 	}
 	@Test
 	@DisplayName("Delete data based on id")
