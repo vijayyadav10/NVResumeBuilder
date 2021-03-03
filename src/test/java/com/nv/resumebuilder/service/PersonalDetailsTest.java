@@ -1,5 +1,11 @@
-package com.nv.resumebuilder;
+
+package com.nv.resumebuilder.service;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 import org.hamcrest.Matchers;
@@ -31,11 +37,11 @@ public class PersonalDetailsTest
 	private PersonalDetailsEntity personalEntity;
 
 	@Before
-	public void init() 
+	public void init() throws ParseException 
 	{
 		personalEntity = new PersonalDetailsEntity();
 		personalEntity.setId(USER_ONE_ID);
-		personalEntity.setBirthDate("16/03/2020");
+		personalEntity.setBirthDate("16/03/1996");
 		personalEntity.setCity("nagpur");
 		personalEntity.setCountry("india");
 		personalEntity.setCurrentAddress("khamla chowk");
@@ -56,10 +62,10 @@ public class PersonalDetailsTest
 	@Test
 	void testSavePersonalDetails()
 	{
-		 // Verification
-	  
+		// Verification
 		Mockito.when(repository.save(personalEntity)).thenReturn(personalEntity);
 		assertEquals(personalEntity,service.savePersonalDetails(personalEntity)); 
 		Mockito.verify(repository, Mockito.times(1)).save(personalEntity);
 	}
+
 }

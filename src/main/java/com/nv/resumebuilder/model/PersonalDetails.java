@@ -9,14 +9,6 @@ public class PersonalDetails implements Serializable
 	private String userMiddleName;
 	private String userLastName;
 	
-	//private String fatherFirstName;
-	//private String fatherMiddleName;
-	//private String fatherLastName;
-	//private String permanentAddress;
-	//private String motherFirstName;
-	//private String motherMiddleName;
-	//private String motherLastName;
-	
 	private Date birthDate;
 
 	private String nationality;

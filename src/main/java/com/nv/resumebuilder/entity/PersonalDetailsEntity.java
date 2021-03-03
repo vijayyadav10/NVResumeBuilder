@@ -1,29 +1,64 @@
 package com.nv.resumebuilder.entity;
 
-import java.time.LocalDate;
-import java.util.Date;
+
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.*;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
+
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name ="personaldetails")
-public class PersonalDetailsEntity 
+@Table(name = "personaldetails")
+public class PersonalDetailsEntity implements Serializable
 {
+	
+	public PersonalDetailsEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public PersonalDetailsEntity(long id,
+			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userFirstName,
+			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userMiddleName,
+			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userLastName,
+			@NotNull(message = "is required") String birthDate, @NotEmpty String nationality,
+			@NotNull(message = "Select gender") @NotEmpty String gender, @NotEmpty String maritialStatus,
+			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String emailId,
+			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String linkedinId,
+			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String skypeId,
+			@NotEmpty @Pattern(regexp = "(^$|[0-9]{10})") String phoneNo, @NotEmpty String currentAddress,
+			@NotEmpty String city, @NotEmpty String country,
+			@NotEmpty(message = "Select at least one language.") String languageKnown) {
+		super();
+		this.id = id;
+		this.userFirstName = userFirstName;
+		this.userMiddleName = userMiddleName;
+		this.userLastName = userLastName;
+		this.birthDate = birthDate;
+		this.nationality = nationality;
+		this.gender = gender;
+		this.maritialStatus = maritialStatus;
+		this.emailId = emailId;
+		this.linkedinId = linkedinId;
+		this.skypeId = skypeId;
+		this.phoneNo = phoneNo;
+		this.currentAddress = currentAddress;
+		this.city = city;
+		this.country = country;
+		this.languageKnown = languageKnown;
+	}
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,34 +68,41 @@ public class PersonalDetailsEntity
 	@NotEmpty
 	@Size(min = 1, max = 10, message = "size upto 10 Characters..")
 	private String userFirstName;
-	
+
 	@Column
 	@NotEmpty
 	@Size(min = 1, max = 10, message = "size upto 10 Characters..")
 	private String userMiddleName;
-	
+
 	@Column
 	@NotEmpty
 	@Size(min = 1, max = 10, message = "size upto 10 Characters..")
 	private String userLastName;
-	
+
+	@NotNull(message = "is required")
+	//@Temporal(TemporalType.DATE)
 	@Column
-	//@DateTimeFormat(pattern ="dd/mm/yyyy")
-	@Temporal(TemporalType.DATE)
-	//@CreationTimestamp
-	@NotNull
-	@Past
-	private LocalDate birthDate;
-	
+	private String birthDate;
+
+	/*
+	 * @Column //@DateTimeFormat(pattern ="dd/mm/yyyy")
+	 * 
+	 * @Temporal(TemporalType.DATE) //@CreationTimestamp
+	 * 
+	 * @NotNull
+	 * 
+	 * @Past private LocalDate birthDate;
+	 */
+
 	@Column
 	@NotEmpty
 	private String nationality;
-	
+
 	@Column
 	@NotNull(message = "Select gender")
 	@NotEmpty
 	private String gender;
-	
+
 	@Column
 	@NotEmpty
 	private String maritialStatus;
@@ -69,12 +111,12 @@ public class PersonalDetailsEntity
 	@NotNull(message = "is required")
 	@Email(message = "Invalid email! Please enter valid email")
 	private String emailId;
-	
+
 	@Column
 	@NotNull(message = "is required")
 	@Email(message = "Invalid email! Please enter valid email")
 	private String linkedinId;
-	
+
 	@Column
 	@NotNull(message = "is required")
 	@Email(message = "Invalid email! Please enter valid email")
@@ -82,23 +124,20 @@ public class PersonalDetailsEntity
 
 	@Column
 	@NotEmpty
-	@Pattern(regexp="(^$|[0-9]{10})")
+	@Pattern(regexp = "(^$|[0-9]{10})")
 	private String phoneNo;
-	
+
 	@Column
 	@NotEmpty
 	private String currentAddress;
-	
-	
-	
+
 	@Column
 	@NotEmpty
 	private String city;
 	@Column
 	@NotEmpty
 	private String country;
-	
-	
+
 	public String getCity() {
 		return city;
 	}
@@ -119,8 +158,7 @@ public class PersonalDetailsEntity
 	@NotEmpty(message = "Select at least one language.")
 	private String languageKnown;
 
-	public long getId() 
-	{
+	public long getId() {
 		return id;
 	}
 
@@ -152,13 +190,12 @@ public class PersonalDetailsEntity
 		this.userLastName = userLastName;
 	}
 
-	
-
-	public LocalDate getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(LocalDate birthDate) {
+	public void setBirthDate(String birthDate)
+	{
 		this.birthDate = birthDate;
 	}
 
@@ -226,7 +263,6 @@ public class PersonalDetailsEntity
 		this.currentAddress = currentAddress;
 	}
 
-
 	public String getLanguageKnown() {
 		return languageKnown;
 	}
@@ -236,57 +272,20 @@ public class PersonalDetailsEntity
 	}
 
 	
-	public PersonalDetailsEntity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	
-	public PersonalDetailsEntity(
-			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userFirstName,
-			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userMiddleName,
-			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userLastName,
-			@NotNull LocalDate birthDate, @NotEmpty String nationality,
-			@NotNull(message = "Select gender") @NotEmpty String gender, @NotEmpty String maritialStatus,
-			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String emailId,
-			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String linkedinId,
-			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String skypeId,
-			@NotEmpty @Pattern(regexp = "(^$|[0-9]{10})") String phoneNo, @NotEmpty String currentAddress,
-			@NotEmpty String city, @NotEmpty String country,
-			@NotEmpty(message = "Select at least one language.") String languageKnown) {
-		super();
-		this.userFirstName = userFirstName;
-		this.userMiddleName = userMiddleName;
-		this.userLastName = userLastName;
-		this.birthDate = birthDate;
-		this.nationality = nationality;
-		this.gender = gender;
-		this.maritialStatus = maritialStatus;
-		this.emailId = emailId;
-		this.linkedinId = linkedinId;
-		this.skypeId = skypeId;
-		this.phoneNo = phoneNo;
-		this.currentAddress = currentAddress;
-		this.city = city;
-		this.country = country;
-		this.languageKnown = languageKnown;
-	}
-
 	@Override
 	public String toString() {
 		return "PersonalDetailsEntity [id=" + id + ", userFirstName=" + userFirstName + ", userMiddleName="
 				+ userMiddleName + ", userLastName=" + userLastName + ", birthDate=" + birthDate + ", nationality="
 				+ nationality + ", gender=" + gender + ", maritialStatus=" + maritialStatus + ", emailId=" + emailId
 				+ ", linkedinId=" + linkedinId + ", skypeId=" + skypeId + ", phoneNo=" + phoneNo + ", currentAddress="
-				+ currentAddress +  ", city=" + city + ", country=" + country
-				+ ", languageKnown=" + languageKnown + "]";
+				+ currentAddress + ", city=" + city + ", country=" + country + ", languageKnown=" + languageKnown + "]";
 	}
 
-	
 }
 
-/*PersonalDetailsEntity personalDetailsEntity=new PersonalDetailsEntity
-					("userFirstName","userMiddleName","userLastName","birthDate",
-							"nationality","gender","maritialStatus","emailId","linkedinId",
-							"skypeId","phoneNo","currentAddress","city","country","languageKnown");
-*/
+/*
+ * PersonalDetailsEntity personalDetailsEntity=new PersonalDetailsEntity
+ * ("userFirstName","userMiddleName","userLastName","birthDate",
+ * "nationality","gender","maritialStatus","emailId","linkedinId",
+ * "skypeId","phoneNo","currentAddress","city","country","languageKnown");
+ */

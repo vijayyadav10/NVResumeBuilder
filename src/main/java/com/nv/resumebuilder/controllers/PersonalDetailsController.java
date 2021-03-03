@@ -24,7 +24,7 @@ public class PersonalDetailsController
 		return "personalDetails";
 	}
 	
-	@RequestMapping(path="/PersonalDetailsProcessing" , method = RequestMethod.POST)// processing the personal details Form
+	@RequestMapping(path="/PersonalDetailsProcessing", method = RequestMethod.POST)// processing the personal details Form
 	public String personalDetailsProcessing(@ModelAttribute PersonalDetails personalDetails,Model model )
 	{
        // personalDetailsServices.personalDetailsStore(personalDetails);
