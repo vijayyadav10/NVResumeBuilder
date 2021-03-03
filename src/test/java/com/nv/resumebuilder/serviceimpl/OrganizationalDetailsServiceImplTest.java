@@ -38,5 +38,9 @@ public class OrganizationalDetailsServiceImplTest {
 		System.out.println(organizationdetailsEntity);
 		assertEquals(organizationdetailsEntity, service.addorganizationDetailsServices(organizationdetailsEntity));
 		Mockito.verify(orgRepository, Mockito.times(1)).save(organizationdetailsEntity);
+		
+		//when(achievementsAndHonoursRepository.save(achievemnetsAndHonoursEntity)).thenReturn(achievemnetsAndHonoursEntity);           
+	//	assertEquals(achievemnetsAndHonoursEntity,achievementsAndHonoursServices.
+			//	addAchievementsAndHonours(achievemnetsAndHonoursEntity));
 	}
 }

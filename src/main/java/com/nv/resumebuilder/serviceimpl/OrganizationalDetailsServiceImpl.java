@@ -7,7 +7,7 @@ import com.nv.resumebuilder.entity.OrganizationalDetailsEntity;
 import com.nv.resumebuilder.repository.OrganizationalDetailsRepository;
 import com.nv.resumebuilder.service.OrganizationalDetailsService;
 
-@Service
+
 public class OrganizationalDetailsServiceImpl implements OrganizationalDetailsService {
 	@Autowired
 	private OrganizationalDetailsRepository organizationRepository;
@@ -17,7 +17,7 @@ public class OrganizationalDetailsServiceImpl implements OrganizationalDetailsSe
 			OrganizationalDetailsEntity organizationdetailsEntity) {
 		OrganizationalDetailsEntity details = organizationRepository.save(organizationdetailsEntity);
 	
-		return organizationdetailsEntity;
+		return details;
 	}
 
 }
