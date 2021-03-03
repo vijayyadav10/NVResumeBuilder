@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+
+import com.nv.resumebuilder.dto.ReferenceDetailsDto;
 import com.nv.resumebuilder.entity.ReferenceDetailsEntity;
 import com.nv.resumebuilder.service.RefernceDetailsService;
 
@@ -26,8 +29,10 @@ import com.nv.resumebuilder.service.RefernceDetailsService;
 @Controller
 public class RefernceDetailsController {
 
-	
+	private static final ModelMapper modelMapper = new ModelMapper();
 	private RefernceDetailsService service;
+	
+	
 	
 	@Autowired
 	public RefernceDetailsController(RefernceDetailsService service) {
@@ -38,18 +43,18 @@ public class RefernceDetailsController {
 	public String refernceDetailsWelcomePage(Model model)
 
 	{
-		model.addAttribute("refernceDetails",new ReferenceDetailsEntity() );
+		model.addAttribute("refernceDetails",new ReferenceDetailsDto() );
 		return "RefernceDetailsPage";
 	}
 
 	@PostMapping(value = "/handleReferncedetails")
-	public String refernceDetailsProcess(@Valid @ModelAttribute("refernceDetails") ReferenceDetailsEntity refernceDetails,
+	public String refernceDetailsProcess(@Valid @ModelAttribute("refernceDetails") ReferenceDetailsDto refernceDetails,
 			BindingResult result, Model map) {
 		if (result.hasErrors()) {
 			return "RefernceDetailsPage";
 		}
 		
-		service.saveRefernceDetails(refernceDetails);
+		service.saveRefernceDetails(modelMapper.map(refernceDetails,ReferenceDetailsEntity.class));
 		map.addAttribute("message", "Addded Succesfully !!!!");
 		return "redirect:/showRefernceDetails";	
 	}

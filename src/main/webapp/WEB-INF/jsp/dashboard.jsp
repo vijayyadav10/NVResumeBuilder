@@ -73,7 +73,7 @@ body {
   <a href="#about">Project Details</a>
   <a href="#about">Work Experience</a>
    <a href="#about">Achievements</a>
-    <a href="refers">Reference Details</a>
+    <a href="refernceDetails">Reference Details</a>
     <a href="#about">Download Your resume</a>
       <a href="logout">Log Out</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">

@@ -29,8 +29,8 @@ public class RefernceDetailsServiceImpl implements RefernceDetailsService {
 	@Override
 	public ReferenceDetailsEntity getRefernceDetailsById(int i) {
 		
-		 return repository.findById(i).get();
-		
+		ReferenceDetailsEntity refernceEntity=repository.findById(i).orElse(null);
+		return refernceEntity;
 	}
 
 	@Override

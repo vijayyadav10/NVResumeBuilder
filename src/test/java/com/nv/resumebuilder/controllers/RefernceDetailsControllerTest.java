@@ -4,7 +4,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -20,8 +20,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -35,8 +34,10 @@ import com.nv.resumebuilder.service.RefernceDetailsService;
 class RefernceDetailsControllerTest {
 	private MockMvc mockMvc;
 	 private  ReferenceDetailsEntity refernceEntity;
+	 
 	 @InjectMocks
 	 RefernceDetailsController refernceDetailsController;
+	 
 	 @Mock
 		private RefernceDetailsService service;
 
@@ -68,7 +69,7 @@ class RefernceDetailsControllerTest {
 	@DisplayName("Testing  Show all Refernce Details handler")
 	@Test
 	void testShowRefernceDetails() throws Exception {
-List<ReferenceDetailsEntity> refernceEntityList = Arrays.asList(refernceEntity, refernceEntity);
+     List<ReferenceDetailsEntity> refernceEntityList = Arrays.asList(refernceEntity, refernceEntity);
 		
 	    Mockito.when(service.getAllRefernceDetails()).thenReturn(refernceEntityList);
 	  //Web test
@@ -81,6 +82,7 @@ List<ReferenceDetailsEntity> refernceEntityList = Arrays.asList(refernceEntity, 
 		     verify(service, times(1)).getAllRefernceDetails();
 		        verifyNoMoreInteractions(service);
 	}
+	
 	@DisplayName("Testing Update Refernce Details handler ")
 	@Test
 	void testUpdateRefernceDetails() throws Exception
