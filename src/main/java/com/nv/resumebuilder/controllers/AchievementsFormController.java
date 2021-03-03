@@ -23,6 +23,11 @@ public class AchievementsFormController
 	@Autowired
     private AchievementsAndHonoursServices achievementsAndHonoursServices; // calling services to store data
 	
+	public AchievementsFormController(AchievementsAndHonoursServices achievementsAndHonoursServices)
+	{
+		this.achievementsAndHonoursServices=achievementsAndHonoursServices;
+	}
+	
 	@RequestMapping("/AchievementsForm") // form for filling achievements details
 	public String achievementsForm(Model model) 
 	{
