@@ -18,6 +18,12 @@ public class OrganizationalDetailsController {
 
 	@Autowired
 	private OrganizationalDetailsService organizationDetailServiceobj;
+	
+
+	public OrganizationalDetailsController(OrganizationalDetailsService organizationDetailServiceobj) {
+		super();
+		this.organizationDetailServiceobj = organizationDetailServiceobj;
+	}
 
 	@GetMapping(value = "/organizationaldetailsform")
 	public String orgForm(Model model) {
