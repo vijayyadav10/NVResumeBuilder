@@ -11,11 +11,15 @@ import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
+
+
+
 @Entity
 public class ReferenceDetailsEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	 private Integer  id;
+	 private Integer id;
+
 	 
 	 @NotEmpty
 	 @Size(min=10,max=30)
@@ -41,10 +45,7 @@ public class ReferenceDetailsEntity {
 	  @Size(max=40,message="Enter upto 40 characters")
 	  private String organization;
 	  
-	  
-	  
-	  
-	  
+
 	  
 	  
 	public ReferenceDetailsEntity(Integer i, String personName,
@@ -74,6 +75,8 @@ public class ReferenceDetailsEntity {
 		this.address = address;
 		this.organization = organization;
 	}
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -123,6 +126,8 @@ public class ReferenceDetailsEntity {
 				+ ", emailId=" + emailId + ", contactNo=" + contactNo + ", address=" + address + ", organization="
 				+ organization + "]";
 	}
+	
+}
 	  
 
-}
+

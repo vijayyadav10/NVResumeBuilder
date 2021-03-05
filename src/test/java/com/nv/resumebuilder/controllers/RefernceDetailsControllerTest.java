@@ -4,8 +4,10 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -20,32 +22,34 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-
+import org.modelmapper.ModelMapper;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.nv.resumebuilder.dto.ReferenceDetailsDto;
 import com.nv.resumebuilder.entity.ReferenceDetailsEntity;
 import com.nv.resumebuilder.service.RefernceDetailsService;
 @ExtendWith(SpringExtension.class)
-
 class RefernceDetailsControllerTest {
+	private static final ModelMapper modelMapper = new ModelMapper();
+	
 	private MockMvc mockMvc;
 	 private  ReferenceDetailsEntity refernceEntity;
 	 
 	 @InjectMocks
 	 RefernceDetailsController refernceDetailsController;
 	 
-	 @Mock
+	    @Mock
 		private RefernceDetailsService service;
 
    @BeforeEach
    void setup() {
        this.mockMvc = MockMvcBuilders.standaloneSetup(new RefernceDetailsController(service)).build();
    }
-   @Before
+   @BeforeEach
 	  public void init() {
 		refernceEntity =new ReferenceDetailsEntity();
 			refernceEntity.setId(1);
@@ -56,6 +60,7 @@ class RefernceDetailsControllerTest {
 			refernceEntity.setAddress("20,Ramcha got,Satara");
 			refernceEntity.setOrganization("New vision softcom and consultancy,Pune");
 	  }
+   
 	@Test
 	@DisplayName("Testing Refernce Details Form Page handler")
 	void testRefernceDetailsWelcomePage() throws Exception {
@@ -95,6 +100,7 @@ class RefernceDetailsControllerTest {
 			mockMvc.perform(get("/edit/{id}",1))
 		     .andExpect(status().isOk())
 		     .andExpect(view().name("RefernceDetailsEdit"))
+		     .andExpect(forwardedUrl("RefernceDetailsEdit"))
 		     .andExpect(model().attribute("refernceDetails",refernceEntity ))
 			.andDo(MockMvcResultHandlers.print());
 			
@@ -103,5 +109,5 @@ class RefernceDetailsControllerTest {
 		        verifyNoMoreInteractions(service);
 	      
 	}
-
+   
 }
