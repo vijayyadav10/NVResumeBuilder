@@ -25,7 +25,6 @@
   <body>
 
 
-<jsp:include page = "dashboard.jsp" flush = "true" />
 
 
  <div class="container mt-5">   

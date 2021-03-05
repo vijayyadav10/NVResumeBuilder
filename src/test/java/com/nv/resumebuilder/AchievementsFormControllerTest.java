@@ -70,11 +70,11 @@ class AchievementsFormControllerTest
 	void testAchievementsForm() throws Exception 
 	{
 		mockMvc.perform(get("/AchievementsForm"))
-	     .andExpect(status().isOk())
-	     .andExpect(view().name("AchievementsForm"))
-	     .andDo(MockMvcResultHandlers.print());
+		.andExpect(status().isOk())
+		.andExpect(view().name("AchievementsForm"))
+		.andDo(MockMvcResultHandlers.print());
 	}
-	
+
 	
 	@Test
 	@DisplayName("Testing controller for saving model/entity")
@@ -90,40 +90,27 @@ class AchievementsFormControllerTest
 	@Nested // it runs when execution of all other tests is done , here we are using this to provide our tests some different initialization 
     class TestNest
     {
-    
-       @BeforeEach
-       public void init1() 
-       {
-    	   achievementsAndHonoursEntity =new AchievementsAndHonoursEntity();
+		@BeforeEach
+		public void init1() 
+		{
+			achievementsAndHonoursEntity =new AchievementsAndHonoursEntity();
 
-    	   achievementsAndHonoursEntity.setParticationevent1("");
-    	   achievementsAndHonoursEntity.setParticationevent2("Particationevent 2");
-    	   achievementsAndHonoursEntity.setParticationevent3("Particationevent 3");
-    	   achievementsAndHonoursEntity.setParticationevent4("Particationevent 4");
-    	   achievementsAndHonoursEntity.setParticationevent5("Particationevent 5");
+			achievementsAndHonoursEntity.setParticationevent1("");
 
-    	   achievementsAndHonoursEntity.setCertification1("");
-    	   achievementsAndHonoursEntity.setCertification2("Certification 2");
-    	   achievementsAndHonoursEntity.setCertification3("Certification 3");
-    	   achievementsAndHonoursEntity.setCertification4("Certification 4");
-    	   achievementsAndHonoursEntity.setCertification5("Certification 5");
+			achievementsAndHonoursEntity.setCertification1("");
 
-    	   achievementsAndHonoursEntity.setAwardsandhonoursdetails1("Awards and honours details 1");
-    	   achievementsAndHonoursEntity.setAwardsandhonoursdetails2("Awards and honours details 2");
-    	   achievementsAndHonoursEntity.setAwardsandhonoursdetails3("Awards and honours details 3");
-    	   achievementsAndHonoursEntity.setAwardsandhonoursdetails4("Awards and honours details 4");
-    	   achievementsAndHonoursEntity.setAwardsandhonoursdetails5("Awards and honours details 5");
-       }
-	
-       @Test
-       @DisplayName("Testing controller for saving model/entity in case valid data is not provided")
-       void testAchievementsFormProcessingWhenInvalidDataIsProvided() throws Exception 
-       {
-    	   mockMvc.perform(get("/AchievementsFormProcessing"))
-    	   .andExpect(status().isOk())
-    	   .andExpect(view().name("AchievementsFormProcessing"))
-    	   .andDo(MockMvcResultHandlers.print());
-       }
+			achievementsAndHonoursEntity.setAwardsandhonoursdetails1("Awards and honours details 1");
+		}
+
+		@Test
+		@DisplayName("Testing controller for saving model/entity in case valid data is not provided")
+		void testAchievementsFormProcessingWhenInvalidDataIsProvided() throws Exception 
+		{
+			mockMvc.perform(get("/AchievementsFormProcessing"))
+			.andExpect(status().isNotFound())
+			.andExpect(view().name("AchievementsFormProcessing"))
+			.andDo(MockMvcResultHandlers.print());
+		}
     }
 
 }
