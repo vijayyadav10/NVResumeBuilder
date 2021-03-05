@@ -11,6 +11,6 @@ public class ResumebuilderApplication {
 		SpringApplication.run(ResumebuilderApplication.class, args);
 		
 	}
-	 
+
 
 }
