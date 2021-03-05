@@ -34,8 +34,8 @@ public class PersonalDetailsTestController
 	{
 		mockMvc.perform(get("/personalDetails"))
 				.andExpect(status().is2xxSuccessful())
-				.andExpect(view().name("personalDetails"))
-				.andExpect(forwardedUrl(WebConstants.VIEW_PREFIX + "personalDetails"
+				.andExpect(view().name("personalDetail"))
+				.andExpect(forwardedUrl(WebConstants.VIEW_PREFIX + "personalDetail"
 						+ WebConstants.VIEW_SUFFIX));
 	}
 
