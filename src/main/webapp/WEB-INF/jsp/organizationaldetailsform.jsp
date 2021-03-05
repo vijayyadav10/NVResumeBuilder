@@ -25,10 +25,10 @@
 
 </head>
 <body>
-
+<%-- <jsp:include page = "dashboard.jsp" flush = "true" /> --%>
 	<div class="container mt-5">
 
-		<form:form action="adddetails" method="post"
+		<form:form action="adddetails" method="post"  
 			modelAttribute="OrganizationDetailsEntity">
 
 			<span><h1>Current Organization Details</h1></span>

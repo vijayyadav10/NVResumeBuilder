@@ -1,17 +1,17 @@
 package com.nv.resumebuilder.model;
 
-import java.util.Date;
+//import java.sql.Date;
 
 public class OrganizationalDetailsModel {
 	private String comName;
 	private String designation;
-	private Date date;
+	private String date;
 
 	public OrganizationalDetailsModel() {
 		super();
 	}
 
-	public OrganizationalDetailsModel(String comName, String designation, Date date) {
+	public OrganizationalDetailsModel(String comName, String designation, String date) {
 		super();
 		this.comName = comName;
 		this.designation = designation;
@@ -34,11 +34,11 @@ public class OrganizationalDetailsModel {
 		this.designation = designation;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

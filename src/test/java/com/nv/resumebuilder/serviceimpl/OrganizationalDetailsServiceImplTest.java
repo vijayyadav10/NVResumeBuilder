@@ -29,14 +29,15 @@ public class OrganizationalDetailsServiceImplTest {
 
 	private String comName = null;
 	String designation = null;
-	Date date ;
+	String date ;
 
+	
 	@BeforeEach
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 		comName = "NV";
 		designation = "tester";
-		 date = new Date(2021, 22, 11);
+		 date ="05/03/2021";
 	}
 
 	@Test

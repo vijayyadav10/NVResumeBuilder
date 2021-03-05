@@ -34,15 +34,14 @@ public class OrganizationalDetailscontrollerTest {
 
 	private String comName = null;
 	String designation = null;
-	Date date;
+	String date;
 
 	@Before
 	public void init() {
 		
 		comName = "NV";
 		designation = "tester";
-		@SuppressWarnings("deprecation")
-		 Date date = new Date(2021, 22, 11);
+		date = "18/01/2021";
 		
 		organizationalDetailsEntity = new OrganizationalDetailsEntity(comName, designation, date);
 
