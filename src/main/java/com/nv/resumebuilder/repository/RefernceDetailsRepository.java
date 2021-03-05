@@ -9,9 +9,4 @@ import com.nv.resumebuilder.entity.ReferenceDetailsEntity;
 
 @Repository
 public interface RefernceDetailsRepository extends CrudRepository<ReferenceDetailsEntity, Integer> {
-
-
-
-	
-
 }

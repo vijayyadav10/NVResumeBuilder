@@ -1,17 +1,10 @@
 package com.nv.resumebuilder.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.junit.Assert.assertThat;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import javax.persistence.EntityManager;
-
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
