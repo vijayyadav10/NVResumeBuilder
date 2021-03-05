@@ -9,7 +9,7 @@ public class PersonalDetails implements Serializable
 	private String userMiddleName;
 	private String userLastName;
 	
-	private Date birthDate;
+	private String birthDate;
 
 	private String nationality;
 	private String gender;
@@ -32,7 +32,7 @@ public class PersonalDetails implements Serializable
 	
 	
 
-	public PersonalDetails(String userFirstName, String userMiddleName, String userLastName, Date birthDate,
+	public PersonalDetails(String userFirstName, String userMiddleName, String userLastName, String birthDate,
 			String nationality, String gender, String maritialStatus, String emailId, String linkedinId, String skypeId,
 			String phoneNo, String currentAddress, String city, String country, String languageKnown,
 			String personalSkill) {
@@ -93,11 +93,11 @@ public class PersonalDetails implements Serializable
 		this.userLastName = userLastName;
 	}
 
-	public Date getBirthDate() {
+	public	String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 

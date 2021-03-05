@@ -24,10 +24,15 @@ public class PersonalDetailsController
 		return "personalDetails";
 	}
 	
+	public PersonalDetailsController(PersonalDetailsServices personalDetailsServices) {
+		super();
+		this.personalDetailsServices = personalDetailsServices;
+	}
+
 	@RequestMapping(path="/PersonalDetailsProcessing", method = RequestMethod.POST)// processing the personal details Form
-	public String personalDetailsProcessing(@ModelAttribute PersonalDetails personalDetails,Model model )
+	public String personalDetailsProcessing(@ModelAttribute PersonalDetailsEntity personalDetails,Model model )
 	{
-       // personalDetailsServices.personalDetailsStore(personalDetails);
+       personalDetailsServices.savePersonalDetails(personalDetails);
         model.addAttribute("personaldetails1",personalDetails);
         System.out.println(personalDetails);
         return "PersonalDetailsProcessing";
