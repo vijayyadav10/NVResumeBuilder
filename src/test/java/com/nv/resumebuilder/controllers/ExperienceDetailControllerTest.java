@@ -28,8 +28,7 @@ public class ExperienceDetailControllerTest {
 
 	@Test
 	public void experienceDetail() throws Exception {
-		mockMvc.perform(get("/experienceDetailForm"))
-				.andExpect(status().is2xxSuccessful())
+		mockMvc.perform(get("/experienceDetailForm")).andExpect(status().is2xxSuccessful())
 				.andExpect(view().name("experienceDetail"))
 				.andExpect(forwardedUrl(WebConstants.VIEW_PREFIX + "experienceDetail" + WebConstants.VIEW_SUFFIX));
 	}
@@ -37,15 +36,10 @@ public class ExperienceDetailControllerTest {
 	@Test
 	public void saveExperienceDetailMissingParametersBadRequest() throws Exception {
 		mockMvc.perform(post("/saveExperienceDetail")
-				.param("companyName", "Monster Hawk")
-				.param("designation", "UIUX")
-				.param("projectName", "Monster Hawk UI")
-				.param("projectDescription", "Design Monster Hawk UI With ReactJS")
-				.param("joiningDate", "2020-03-03")
-				.param("leavingDate", "2021-03-03"))
-				.andExpect(view().name("experienceDetail"))
-				.andExpect(forwardedUrl(WebConstants.VIEW_PREFIX + "experienceDetail" + WebConstants.VIEW_SUFFIX));
-//				.andExpect(status().isOk());
+//				.param("companyName", "Monster Hawk")
+				.param("designation", "UIUX").param("projectName", "Monster Hawk UI")
+				.param("projectDescription", "Design Monster Hawk UI With ReactJS").param("joiningDate", "2020-03-03")
+				.param("leavingDate", "2021-03-03")).andExpect(status().is4xxClientError());
 	}
 }
 

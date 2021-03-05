@@ -2,6 +2,7 @@ package com.nv.resumebuilder.controllers;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,10 +56,12 @@ public class ExperienceDetailController {
 	@PostMapping("/saveExperienceDetail")
 	public String saveExperienceDetail(
 			@Valid @ModelAttribute("experienceproject") ExperienceProject theExperienceProject,
-			BindingResult theBindingResult) {
+			BindingResult theBindingResult, HttpServletResponse response) {
 
-		if (theBindingResult.hasErrors())
+		if (theBindingResult.hasErrors()) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return "experienceDetail";
+		}
 
 		//entity
 		ExperienceDetail experienceDetail = new ExperienceDetail();
