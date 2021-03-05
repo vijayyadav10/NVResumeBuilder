@@ -18,14 +18,17 @@ class AchievementsAndHonoursServicesTest
 {
 	@InjectMocks
 	private AchievementsAndHonoursServicesImplementation achievementsAndHonoursServices;
-    
+
 	@Mock
 	private AchievementsAndHonoursRepository achievementsAndHonoursRepository;
-	
+
+	@Mock
+	private AchievementsAndHonoursEntity achievemnetsAndHonoursEntity;
+
 	@Test
 	public void addAchievementsAndHonoursTest() 
 	{
-		AchievementsAndHonoursEntity achievemnetsAndHonoursEntity=new AchievementsAndHonoursEntity("particationevent1","particationevent2",
+		achievemnetsAndHonoursEntity=new AchievementsAndHonoursEntity("particationevent1","particationevent2",
 				"particationevent3","particationevent4","particationevent5","certification1","certification2",
 				"certification3","certification4","certification5","awardsandhonoursdetails1",
 				"awardsandhonoursdetails2","awardsandhonoursdetails3","awardsandhonoursdetails4",
