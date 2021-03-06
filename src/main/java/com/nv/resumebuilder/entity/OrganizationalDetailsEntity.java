@@ -1,7 +1,5 @@
 package com.nv.resumebuilder.entity;
 
-//import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,8 +26,8 @@ public class OrganizationalDetailsEntity {
 	@Column(name = "designation")
 	private String designation;
 
-	@Column(name = "date")
 	@NotNull(message = "Joining Date Required")
+	@Column(name = "date")
 	private String date;
 
 	public OrganizationalDetailsEntity() {

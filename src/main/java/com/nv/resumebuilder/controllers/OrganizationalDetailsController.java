@@ -18,7 +18,6 @@ public class OrganizationalDetailsController {
 
 	@Autowired
 	private OrganizationalDetailsService organizationDetailServiceobj;
-	
 
 	public OrganizationalDetailsController(OrganizationalDetailsService organizationDetailServiceobj) {
 		super();
@@ -41,7 +40,7 @@ public class OrganizationalDetailsController {
 			organizationDetailServiceobj.addorganizationDetailsServices(organizationDetails);
 			model.addAttribute("orgDetails", organizationDetails);
 			System.out.println(organizationDetails);
-			return "viewOrganizationalDetails";
+			return "AchForm";
 		}
 	}
 

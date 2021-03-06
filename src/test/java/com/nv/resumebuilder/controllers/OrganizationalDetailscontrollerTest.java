@@ -1,23 +1,21 @@
 package com.nv.resumebuilder.controllers;
 
-import java.util.Date;
-
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.nv.resumebuilder.entity.OrganizationalDetailsEntity;
 import com.nv.resumebuilder.service.OrganizationalDetailsService;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
 public class OrganizationalDetailscontrollerTest {
 
 	private MockMvc mockMvc;
@@ -29,30 +27,30 @@ public class OrganizationalDetailscontrollerTest {
 	void setUp() {
 		this.mockMvc = MockMvcBuilders
 				.standaloneSetup(new OrganizationalDetailsController(organizationDetailServiceobj)).build();
-		
+
 	}
 
 	private String comName = null;
 	String designation = null;
 	String date;
 
-	@Before
+	@BeforeEach
 	public void init() {
-		
+
 		comName = "NV";
 		designation = "tester";
 		date = "18/01/2021";
-		
+
 		organizationalDetailsEntity = new OrganizationalDetailsEntity(comName, designation, date);
 
 	}
 
 	@Test
 	void testOrgForm() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/organizationdetailsform"))//creates the http req
+		mockMvc.perform(MockMvcRequestBuilders.get("/organizationdetailsform"))// creates the http req
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.view().name("organizationaldetailsform"));
-				//.andDo(MockMvcResultHandlers.print());
+		// .andDo(MockMvcResultHandlers.print());
 	}
 
 	/*
