@@ -40,7 +40,7 @@ public class OrganizationalDetailsController {
 			organizationDetailServiceobj.addorganizationDetailsServices(organizationDetails);
 			model.addAttribute("orgDetails", organizationDetails);
 			System.out.println(organizationDetails);
-			return "AchForm";
+			return "redirect:/AchievementsForm";
 		}
 	}
 
