@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.text.ParseException;
 
 import org.junit.Before;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -38,14 +39,14 @@ personalEntity.setBirthDate("16/03/1996");
 personalEntity.setCity("nagpur");
 personalEntity.setCountry("india");
 personalEntity.setCurrentAddress("khamla chowk");
-personalentity.setemailid("khushi.w16@gmail.com");
+personalEntity.setEmailId("khushi.w16@gmail.com");
 personalEntity.setGender("female");
 personalEntity.setLanguageKnown("english,hindi,marathi");
-personalentity.setlinkedinid("khushi.w16@gmail.com");
+personalEntity.setLinkedinId("khushi.w16@gmail.com");
 personalEntity.setMaritialStatus("single");
 personalEntity.setNationality("indian");
 personalEntity.setPhoneNo("7798553408");
-personalentity.setskypeid("khushi.w16@gmail.com");
+personalEntity.setSkypeId("khushi.w16@gmail.com");
 personalEntity.setUserFirstName("khushabu");
 personalEntity.setUserMiddleName("pramod");
 personalEntity.setUserLastName("warade");
@@ -57,7 +58,7 @@ void testSavePersonalDetails()
 {
 // Verification
 Mockito.when(repository.save(personalEntity)).thenReturn(personalEntity);
-assertEquals(personalEntity,service.savePersonalDetails(personalEntity));
+Assertions.assertEquals(personalEntity,service.savePersonalDetails(personalEntity));
 Mockito.verify(repository, Mockito.times(1)).save(personalEntity);
 }
 

@@ -10,51 +10,42 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
 }
-
 html {
   box-sizing: border-box;
 }
-
 *, *:before, *:after {
   box-sizing: inherit;
 }
-
 .column {
   float: left;
   width: 33.3%;
   margin-bottom: 16px;
   padding: 0 8px;
 }
-
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin: 8px;
 }
-
 .about-section {
   padding: 50px;
   text-align: center;
  background-color: #b3cccc; 
   color: black;
 }
-
 .container {
   padding: 0 16px;
   position: relative;
   border-radius: 5px;
   background-color: #f2f2f2;
 }
-
 .container::after, .row::after {
   content: "";
   clear: both;
   display: table;
 }
-
 .title {
   color: grey;
 }
-
 .button {
   border: none;
   outline: 0;
@@ -66,7 +57,6 @@ html {
   cursor: pointer;
   width: 100%;
 }
-
 .button:hover {
   background-color: #555;
 }
@@ -87,19 +77,13 @@ input,
   line-height: 20px;
   text-decoration: none; /* remove underline from anchors */
 }
-
 input:hover,
 .btn:hover {
   opacity: 1;
 }
-
-
-
-
 input[type=submit]:hover {
   background-color: #45a049;
 }
-
 /* Two-column layout */
 .col {
   float: inherit;
@@ -108,17 +92,13 @@ input[type=submit]:hover {
   padding: 0 50px;
   margin-top: 6px;
 }
-
 .about-section.center {
   display: inherit;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
 }
-
-
 /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
-
 @media screen and (max-width: 650px) {
   .column {
     width: 100%;
