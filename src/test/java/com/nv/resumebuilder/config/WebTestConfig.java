@@ -9,19 +9,17 @@ import org.springframework.context.annotation.Profile;
 import com.nv.resumebuilder.repository.PersonalDetailsRepository;
 import com.nv.resumebuilder.service.PersonalDetailsServices;
 
-
 @Profile("web")
 @Configuration
 public class WebTestConfig {
 
 	@Bean
 	@Primary
-	public PersonalDetailsServices service() 
-	{
+	public PersonalDetailsServices service() {
 		return Mockito.mock(PersonalDetailsServices.class);
 	}
 
-		@Bean
+	@Bean
 	@Primary
 	public PersonalDetailsRepository repository() {
 		return Mockito.mock(PersonalDetailsRepository.class);

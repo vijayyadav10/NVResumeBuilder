@@ -1,6 +1,5 @@
 package com.nv.resumebuilder.entity;
 
-
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -9,20 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-
 @Entity
 @Table(name = "personaldetails")
-public class PersonalDetailsEntity implements Serializable
-{
-	
+public class PersonalDetailsEntity implements Serializable {
+
 	public PersonalDetailsEntity() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -59,7 +54,6 @@ public class PersonalDetailsEntity implements Serializable
 		this.languageKnown = languageKnown;
 	}
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -80,7 +74,7 @@ public class PersonalDetailsEntity implements Serializable
 	private String userLastName;
 
 	@NotNull(message = "is required")
-	//@Temporal(TemporalType.DATE)
+	// @Temporal(TemporalType.DATE)
 	@Column
 	private String birthDate;
 
@@ -194,8 +188,7 @@ public class PersonalDetailsEntity implements Serializable
 		return birthDate;
 	}
 
-	public void setBirthDate(String birthDate)
-	{
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 
@@ -271,7 +264,6 @@ public class PersonalDetailsEntity implements Serializable
 		this.languageKnown = languageKnown;
 	}
 
-	
 	@Override
 	public String toString() {
 		return "PersonalDetailsEntity [id=" + id + ", userFirstName=" + userFirstName + ", userMiddleName="

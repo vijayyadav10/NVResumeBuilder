@@ -18,21 +18,19 @@ import com.nv.resumebuilder.repository.PersonalDetailsRepository;
 import com.nv.resumebuilder.serviceimpl.PersonalDetailServiceImpl;
 
 @ExtendWith(SpringExtension.class)
-public class PersonalDetailsTest 
-{
+public class PersonalDetailsTest {
 	@InjectMocks
 	private PersonalDetailServiceImpl service;
 
 	private static final int USER_ONE_ID = 1;
-	
+
 	@Mock
 	private PersonalDetailsRepository repository;
 
 	private PersonalDetailsEntity personalEntity;
 
 	@Before
-	public void init() throws ParseException 
-	{
+	public void init() throws ParseException {
 		personalEntity = new PersonalDetailsEntity();
 		personalEntity.setId(USER_ONE_ID);
 		personalEntity.setBirthDate("16/03/1996");
@@ -50,15 +48,14 @@ public class PersonalDetailsTest
 		personalEntity.setUserFirstName("khushabu");
 		personalEntity.setUserMiddleName("pramod");
 		personalEntity.setUserLastName("warade");
-		
+
 	}
 
 	@Test
-	void testSavePersonalDetails()
-	{
+	void testSavePersonalDetails() {
 		// Verification
 		Mockito.when(repository.save(personalEntity)).thenReturn(personalEntity);
-		assertEquals(personalEntity,service.savePersonalDetails(personalEntity)); 
+		assertEquals(personalEntity, service.savePersonalDetails(personalEntity));
 		Mockito.verify(repository, Mockito.times(1)).save(personalEntity);
 	}
 

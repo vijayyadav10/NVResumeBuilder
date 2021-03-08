@@ -35,29 +35,27 @@ import com.nv.resumebuilder.entity.PersonalDetailsEntity;
 import com.nv.resumebuilder.service.PersonalDetailsServices;
 
 @Controller
-public class PersonalDetailsController
-{
+public class PersonalDetailsController {
 	@Autowired
-    private PersonalDetailsServices  personalDetailsServices;// calling services to store data
-	
+	private PersonalDetailsServices personalDetailsServices;// calling services to store data
+
 	@RequestMapping("/personalDetails")
-	public String personalDetailsForm() 
-	{
-		
+	public String personalDetailsForm() {
+
 		return "personalDetails";
 	}
-	
+
 	public PersonalDetailsController(PersonalDetailsServices personalDetailsServices) {
 		super();
 		this.personalDetailsServices = personalDetailsServices;
 	}
 
-	@RequestMapping(path="/PersonalDetailsProcessing", method = RequestMethod.POST)// processing the personal details Form
-	public String personalDetailsProcessing(@ModelAttribute PersonalDetailsEntity personalDetails,Model model )
-	{
-        personalDetailsServices.savePersonalDetails(personalDetails);
-        model.addAttribute("personaldetails1",personalDetails);
-        System.out.println(personalDetails);
-        return "PersonalDetailsProcessing";
+	@RequestMapping(path = "/PersonalDetailsProcessing", method = RequestMethod.POST) // processing the personal details
+																						// Form
+	public String personalDetailsProcessing(@ModelAttribute PersonalDetailsEntity personalDetails, Model model) {
+		personalDetailsServices.savePersonalDetails(personalDetails);
+		model.addAttribute("personaldetails1", personalDetails);
+		System.out.println(personalDetails);
+		return "PersonalDetailsProcessing";
 	}
 }
