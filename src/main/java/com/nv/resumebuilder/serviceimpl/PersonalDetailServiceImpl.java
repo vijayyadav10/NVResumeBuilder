@@ -1,12 +1,8 @@
 package com.nv.resumebuilder.serviceimpl;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nv.resumebuilder.entity.PersonalDetailsEntity;
 import com.nv.resumebuilder.repository.PersonalDetailsRepository;

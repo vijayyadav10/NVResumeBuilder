@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<%-- <jsp:include page = "dashboard.jsp" flush = "true" /> --%>
+<jsp:include page = "dashboard.jsp" flush = "true" /> 
 	<form action="PersonalDetailsProcessing" method="post">
 		<table align="center" width="700" height="800">
 
