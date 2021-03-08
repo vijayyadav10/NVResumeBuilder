@@ -21,7 +21,7 @@ public class WebTestConfig {
 		return Mockito.mock(PersonalDetailsServices.class);
 	}
 
-		@Bean
+	@Bean
 	@Primary
 	public PersonalDetailsRepository repository() {
 		return Mockito.mock(PersonalDetailsRepository.class);
