@@ -21,7 +21,7 @@ public class LoginController {
 	      return "dashboard";
 	   }
 
-	 @GetMapping("/logout")
+	 @GetMapping("***/logout")
 		public String logOut()
 		{
 			return "index";
