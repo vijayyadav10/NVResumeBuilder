@@ -7,12 +7,12 @@ import javax.validation.constraints.Size;
 
 import com.nv.resumebuilder.validation.PastDate;
 
-public class ExperienceProject {
-	
+public class ExperienceModel {
+
 	@NotNull(message = "is required")
 	@Size(min = 1, message = "is required")
 	private String companyName;
-	
+
 	@NotNull(message = "is required")
 	@Size(min = 1, message = "is required")
 	private String designation;
@@ -20,17 +20,17 @@ public class ExperienceProject {
 	@PastDate
 	private Date joiningDate;
 
-    private Date leavingDate;
+	private Date leavingDate;
 
-    @NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
-	private String projectName;
-	
-    @NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
-	private String projectDescription;
+//    @NotNull(message = "is required")
+//	@Size(min = 1, message = "is required")
+//	private String projectName;
+//	
+//    @NotNull(message = "is required")
+//	@Size(min = 1, message = "is required")
+//	private String projectDescription;
 
-	public ExperienceProject() {
+	public ExperienceModel() {
 	}
 
 	public String getCompanyName() {
@@ -56,8 +56,8 @@ public class ExperienceProject {
 	public void setJoiningDate(Date joiningDate) {
 		this.joiningDate = joiningDate;
 	}
-
-	public Date getLeavingDate() {
+ 
+	public Date getLeavingDate() { 
 		return leavingDate;
 	}
 
@@ -65,27 +65,33 @@ public class ExperienceProject {
 		this.leavingDate = leavingDate;
 	}
 
-	public String getProjectName() {
-		return projectName;
-	}
-
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
-	}
-
-	public String getProjectDescription() {
-		return projectDescription;
-	}
-
-	public void setProjectDescription(String projectDescription) {
-		this.projectDescription = projectDescription;
-	}
-
 	@Override
 	public String toString() {
 		return "ExperienceProject [companyName=" + companyName + ", designation=" + designation + ", joiningDate="
-				+ joiningDate + ", leavingDate=" + leavingDate + ", projectName=" + projectName
-				+ ", projectDescription=" + projectDescription + "]";
+				+ joiningDate + ", leavingDate=" + leavingDate + "]";
 	}
+
+//	public String getProjectName() {
+//		return projectName;
+//	}
+//
+//	public void setProjectName(String projectName) {
+//		this.projectName = projectName;
+//	}
+
+//	public String getProjectDescription() {
+//		return projectDescription;
+//	}
+//
+//	public void setProjectDescription(String projectDescription) {
+//		this.projectDescription = projectDescription;
+//	}
+
+//	@Override
+//	public String toString() {
+//		return "ExperienceProject [companyName=" + companyName + ", designation=" + designation + ", joiningDate="
+//				+ joiningDate + ", leavingDate=" + leavingDate + ", projectName=" + projectName
+//				+ ", projectDescription=" + projectDescription + "]";
+//	}
 
 }

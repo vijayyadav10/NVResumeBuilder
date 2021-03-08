@@ -7,20 +7,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 //@Table(name = "projects")
 public class Project {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int projectId;
 	@Column(name = "project_name")
 	private String projectName;
 	@Column(name = "project_description")
 	private String projectDescription;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "experience_id")
 	private ExperienceDetail experienceDetail;

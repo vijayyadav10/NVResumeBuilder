@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nv.resumebuilder.validation.PastDate;
 
 @Entity
@@ -22,7 +23,7 @@ import com.nv.resumebuilder.validation.PastDate;
 public class ExperienceDetail {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int experienceId;
 
 	@NotNull(message = "is required")
@@ -42,6 +43,7 @@ public class ExperienceDetail {
     @Column(name = "leaving_date")
 	private Date leavingDate;
 
+    @JsonIgnore
 	@OneToMany(mappedBy = "experienceDetail", cascade = CascadeType.ALL)
 	private List<Project> project;
 

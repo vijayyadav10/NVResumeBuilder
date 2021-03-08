@@ -2,6 +2,7 @@ package com.nv.resumebuilder.controllers;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.nv.resumebuilder.entity.ExperienceDetail;
 import com.nv.resumebuilder.entity.Project;
-import com.nv.resumebuilder.model.ExperienceProject;
+import com.nv.resumebuilder.model.ExperienceModel;
 import com.nv.resumebuilder.service.ExperienceDetailService;
 import com.nv.resumebuilder.service.ProjectService;
 
@@ -46,7 +47,7 @@ public class ExperienceDetailController {
 	public String experienceDetail(Model theModel) {
 
 		//model
-		ExperienceProject theExperienceProject = new ExperienceProject();
+		ExperienceModel theExperienceProject = new ExperienceModel();
 
 		theModel.addAttribute("experienceproject", theExperienceProject);
 
@@ -55,37 +56,40 @@ public class ExperienceDetailController {
 
 	@PostMapping("/saveExperienceDetail")
 	public String saveExperienceDetail(
-			@Valid @ModelAttribute("experienceproject") ExperienceProject theExperienceProject,
-			BindingResult theBindingResult, HttpServletResponse response) {
+			@Valid @ModelAttribute("experienceproject") ExperienceModel theExperienceProject,
+			BindingResult theBindingResult,HttpServletRequest request, HttpServletResponse response) {
 
 		if (theBindingResult.hasErrors()) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return "experienceDetail";
 		}
 
-		//entity
 		ExperienceDetail experienceDetail = new ExperienceDetail();
 		experienceDetail.setcompanyName(theExperienceProject.getCompanyName());
 		experienceDetail.setDesignation(theExperienceProject.getDesignation());
 		experienceDetail.setJoiningDate(theExperienceProject.getJoiningDate());
 		experienceDetail.setLeavingDate(theExperienceProject.getLeavingDate());
-		ArrayList<Project> projects = new ArrayList();
+		
+		//copied
+//		ArrayList<Project> projects = new ArrayList();
+		
+//		Project project1 = new Project();
+		//NO NEED
+//		project1.setProjectName(theExperienceProject.getProjectName());
+//		project1.setProjectDescription(theExperienceProject.getProjectDescription());
+		
+//		copied
+//		project1.setExperienceDetail(experienceDetail);
 
-		//entity
-		Project project1 = new Project();
+//		projects.add(project1);
 
-		project1.setProjectName(theExperienceProject.getProjectName());
-		project1.setProjectDescription(theExperienceProject.getProjectDescription());
-		project1.setExperienceDetail(experienceDetail);
-
-		projects.add(project1);
-
-		experienceDetail.setProjects(projects);
+//		experienceDetail.setProjects(projects);
 
 		this.experienceDetailService.save(experienceDetail);
-		this.projectService.save(project1);
+//		copied
+//		this.projectService.save(project1);
 
-		return "redirect:/experienceDetailForm";
+		return "redirect:/view/projectDetails.html?id="+experienceDetail.getExperienceId();
 	}
 
 }
