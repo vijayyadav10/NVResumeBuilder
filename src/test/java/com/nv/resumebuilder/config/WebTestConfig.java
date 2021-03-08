@@ -9,20 +9,13 @@ import org.springframework.context.annotation.Profile;
 import com.nv.resumebuilder.repository.PersonalDetailsRepository;
 import com.nv.resumebuilder.service.PersonalDetailsServices;
 
-import com.nv.resumebuilder.repository.ExperienceDetailRepository;
-import com.nv.resumebuilder.repository.ProjectRepository;
-import com.nv.resumebuilder.service.ExperienceDetailService;
-import com.nv.resumebuilder.service.ProjectService;
-import com.nv.resumebuilder.validation.PastDateConstraintValidator;
-
 @Profile("web")
 @Configuration
 public class WebTestConfig {
 
 	@Bean
 	@Primary
-	public PersonalDetailsServices service() 
-	{
+	public PersonalDetailsServices service() {
 		return Mockito.mock(PersonalDetailsServices.class);
 	}
 

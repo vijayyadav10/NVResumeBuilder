@@ -3,8 +3,9 @@ package com.nv.resumebuilder.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.nv.resumebuilder.entity.ReferenceDetailsEntity;
+import com.nv.resumebuilder.entity.EducationalDetailsEntity;
 
 @Repository
-public interface RefernceDetailsRepository extends CrudRepository<ReferenceDetailsEntity, Integer> {
+public interface EducationalDetailsRepository extends CrudRepository<EducationalDetailsEntity, Long> {
+
 }

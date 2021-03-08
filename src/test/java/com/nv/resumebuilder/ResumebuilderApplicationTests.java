@@ -23,6 +23,7 @@ class ResumebuilderApplicationTests
 	public void savePersonalDetails()
 	{
 		//PersonalDetailsEntity personalDetailsEntity=new PersonalDetailsEntity(1,"khushabu", "pramod","warade", null, null, null, null, null, null, null, null, null, null, null, null)
-	}
 
+	}
 }
+
