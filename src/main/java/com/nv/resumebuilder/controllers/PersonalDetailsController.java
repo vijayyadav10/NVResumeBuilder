@@ -32,7 +32,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nv.resumebuilder.entity.PersonalDetailsEntity;
-import com.nv.resumebuilder.model.PersonalDetails;
 import com.nv.resumebuilder.service.PersonalDetailsServices;
 
 @Controller
