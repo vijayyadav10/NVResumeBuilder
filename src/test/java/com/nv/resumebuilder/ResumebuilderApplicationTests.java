@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+<<<<<<< HEAD
 import com.nv.resumebuilder.entity.PersonalDetailsEntity;
 import com.nv.resumebuilder.repository.PersonalDetailsRepository;
 import com.nv.resumebuilder.service.PersonalDetailsServices;
@@ -23,6 +24,12 @@ class ResumebuilderApplicationTests
 	public void savePersonalDetails()
 	{
 		//PersonalDetailsEntity personalDetailsEntity=new PersonalDetailsEntity(1,"khushabu", "pramod","warade", null, null, null, null, null, null, null, null, null, null, null, null)
-	}
+=======
 
+@SpringBootTest
+public class ResumebuilderApplicationTests {
+	@Test
+	public void contextLoads() {
+>>>>>>> feature/NRB-4-currentorganizationaldetailsfunctinality
+	}
 }
