@@ -1,22 +1,26 @@
 package com.nv.resumebuilder.controllers;
 
+import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.nv.resumebuilder.entity.OrganizationalDetailsEntity;
 import com.nv.resumebuilder.service.OrganizationalDetailsService;
 
-@ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)
 public class OrganizationalDetailscontrollerTest {
+
+	@InjectMocks
+	private OrganizationalDetailsController organizationalDetailsController;
 
 	private MockMvc mockMvc;
 	OrganizationalDetailsEntity organizationalDetailsEntity;
@@ -24,57 +28,38 @@ public class OrganizationalDetailscontrollerTest {
 	@Mock
 	OrganizationalDetailsService organizationDetailServiceobj;
 
-	void setUp() {
+	@BeforeEach
+	void setup() {
 		this.mockMvc = MockMvcBuilders
 				.standaloneSetup(new OrganizationalDetailsController(organizationDetailServiceobj)).build();
-
 	}
 
 	private String comName = null;
 	String designation = null;
-	String date;
+	String date = null;
 
-	@BeforeEach
+	@Before(value = "")
 	public void init() {
-
-		comName = "NV";
-		designation = "tester";
-		date = "18/01/2021";
-
+		organizationalDetailsEntity.setComName("NV");
+		organizationalDetailsEntity.setDesignation("tester");
+		organizationalDetailsEntity.setDate("18/01/2021");
 		organizationalDetailsEntity = new OrganizationalDetailsEntity(comName, designation, date);
-
 	}
 
 	@Test
 	void testOrgForm() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/organizationdetailsform"))// creates the http req
 				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.view().name("organizationaldetailsform"));
-		// .andDo(MockMvcResultHandlers.print());
+				.andExpect(MockMvcResultMatchers.view().name("organizationaldetailsform"))
+				.andDo(MockMvcResultHandlers.print());
 	}
 
 	/*
-	 * @Test public void giventUrl_whenGetRequest_thenFindGetResponse() throws
-	 * Exception { MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
-	 * .get("/organizationaldetailsform");
-	 * 
-	 * ResultMatcher contentMatcher = MockMvcResultMatchers.content()
-	 * .string("organizationaldetailsform");
-	 * 
-	 * this.mockMvc.perform(builder).andExpect(contentMatcher)
-	 * .andExpect(MockMvcResultMatchers.status().isOk()); }
-	 */
-	/*
-	 * @Autowired private MockMvc mockMvc;
-	 * 
-	 * 
-	 * 
-	 * 
-	 * @Test public void testOrgForm() throws Exception {
-	 * System.out.println(mockMvc);
-	 * mockMvc.perform(MockMvcRequestBuilders.get("/organizationaldetailsform"))
+	 * @Test void testOrganizationalDetailsFormProcessing() throws Exception {
+	 * mockMvc.perform(MockMvcRequestBuilders.get("/viewOrganizationalDetails"))
 	 * .andExpect(MockMvcResultMatchers.status().isOk())
-	 * .andExpect(MockMvcResultMatchers.content().string("organizationaldetailsform"
-	 * )); }
+	 * .andExpect(MockMvcResultMatchers.view().name("viewOrganizationalDetails"))
+	 * .andDo(MockMvcResultHandlers.print()); }
 	 */
+
 }
