@@ -1,7 +1,5 @@
 package com.nv.resumebuilder.controllers;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.nv.resumebuilder.entity.ExperienceDetail;
-import com.nv.resumebuilder.entity.Project;
 import com.nv.resumebuilder.model.ExperienceModel;
 import com.nv.resumebuilder.service.ExperienceDetailService;
 import com.nv.resumebuilder.service.ProjectService;
@@ -89,7 +86,7 @@ public class ExperienceDetailController {
 //		copied
 //		this.projectService.save(project1);
 
-		return "redirect:/view/projectDetails.html?id="+experienceDetail.getExperienceId();
+		return "redirect:/projectDetails.html?id="+experienceDetail.getExperienceId();
 	}
 
 }
