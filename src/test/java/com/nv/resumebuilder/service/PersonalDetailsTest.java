@@ -1,22 +1,15 @@
 
 package com.nv.resumebuilder.service;
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import static org.junit.Assert.assertEquals;
 
-import org.hamcrest.Matchers;
-import org.junit.Assert;
+import java.text.ParseException;
+
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.nv.resumebuilder.entity.PersonalDetailsEntity;
