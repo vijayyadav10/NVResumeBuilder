@@ -16,8 +16,6 @@ public class OrganizationalDetailsServiceImpl implements OrganizationalDetailsSe
 	public OrganizationalDetailsEntity addorganizationDetailsServices(
 			OrganizationalDetailsEntity organizationdetailsEntity) {
 		organizationRepository.save(organizationdetailsEntity);
-	
 		return organizationdetailsEntity;
 	}
-
 }

@@ -24,9 +24,9 @@ import com.nv.resumebuilder.repository.RefernceDetailsRepository;
 @ExtendWith(SpringExtension.class)
 class RefernceDetailsServiceImplTest {
 	private static final int USER_ONE_ID = 1;
-	
+
 	private ReferenceDetailsEntity refernceEntity;
-	
+
 	@InjectMocks
 	private RefernceDetailsServiceImpl service;
 

@@ -1,6 +1,5 @@
 package com.nv.resumebuilder.entity;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,189 +10,150 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
-
-
 @Entity
-@Table(name="details")
+@Table(name = "details")
 public class EducationalDetailsEntity {
 
-	
-	 @Id
-	  @GeneratedValue(strategy=GenerationType.AUTO)
-     private Long id; 
-	
-	 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
 	@NotNull
-	@Size(min=5,max=50,message="please enter full college name")
-	@Column(name="nameOfCollege")
+	@Size(min = 5, max = 50, message = "please enter full college name")
+	@Column(name = "nameOfCollege")
 	private String nameOfCollege;
-	
+
 	@NotEmpty(message = "is required")
-	@Column(name="degree")
+	@Column(name = "degree")
 	private String degree;
-	
-	
+
 	@NotEmpty(message = " is required")
-	@Column(name="university")
+	@Column(name = "university")
 	private String university;
-	
-	
+
 	@NotEmpty(message = "is required")
-	@Column(name="yearOfPassing")
+	@Column(name = "yearOfPassing")
 	private String yearOfPassing;
-	
+
 	@NotEmpty(message = "is required")
-	@Column(name="percentage")
+	@Column(name = "percentage")
 	private String percentage;
-	
-	@Column(name="Masters_degree")
+
+	@Column(name = "Masters_degree")
 	private String degreeM;
-	
-	
-	@Column(name="Masters_college_name")
-    private String collegeNameM;
-	
-	
-	@Column(name="Masters_university")
+
+	@Column(name = "Masters_college_name")
+	private String collegeNameM;
+
+	@Column(name = "Masters_university")
 	private String universityM;
-	
-	
-	@Column(name="Masters_yearOfPassing")
+
+	@Column(name = "Masters_yearOfPassing")
 	private String yearOfPassingM;
-	
-	
-	@Column(name="technicalSkills")
+
+	@Column(name = "technicalSkills")
 	private String technicalSkills;
-	
-	
-	
-	public EducationalDetailsEntity()
-	{
-		
+
+	public EducationalDetailsEntity() {
+
 	}
-	
-	
-	public EducationalDetailsEntity( String nameOfCollege, String degree, String university,
-			String yearOfPassing, String percentage ,String degreeM, String collegeNameM, String universityM, String yearOfPassingM,
-			String technicalSkills) 
-	{
+
+	public EducationalDetailsEntity(String nameOfCollege, String degree, String university, String yearOfPassing,
+			String percentage, String degreeM, String collegeNameM, String universityM, String yearOfPassingM,
+			String technicalSkills) {
 		super();
-		
+
 		this.nameOfCollege = nameOfCollege;
 		this.degree = degree;
 		this.university = university;
 		this.yearOfPassing = yearOfPassing;
-		this.percentage= percentage;
+		this.percentage = percentage;
 		this.degreeM = degreeM;
 		this.collegeNameM = collegeNameM;
 		this.universityM = universityM;
 		this.yearOfPassingM = yearOfPassingM;
 		this.technicalSkills = technicalSkills;
 	}
-
 
 	public String getNameOfCollege() {
 		return nameOfCollege;
 	}
 
-
 	public void setNameOfCollege(String nameOfCollege) {
 		this.nameOfCollege = nameOfCollege;
 	}
-
 
 	public String getDegree() {
 		return degree;
 	}
 
-
 	public void setDegree(String degree) {
 		this.degree = degree;
 	}
-
 
 	public String getUniversity() {
 		return university;
 	}
 
-
 	public void setUniversity(String university) {
 		this.university = university;
 	}
-
 
 	public String getYearOfPassing() {
 		return yearOfPassing;
 	}
 
-
 	public void setYearOfPassing(String yearOfPassing) {
 		this.yearOfPassing = yearOfPassing;
 	}
-
-	
-	
 
 	public String getPercentage() {
 		return percentage;
 	}
 
-
 	public void setPercentage(String percentage) {
 		this.percentage = percentage;
 	}
-
 
 	public String getDegreeM() {
 		return degreeM;
 	}
 
-
 	public void setDegreeM(String degreeM) {
 		this.degreeM = degreeM;
 	}
-
 
 	public String getCollegeNameM() {
 		return collegeNameM;
 	}
 
-
 	public void setCollegeNameM(String collegeNameM) {
 		this.collegeNameM = collegeNameM;
 	}
-
 
 	public String getUniversityM() {
 		return universityM;
 	}
 
-
 	public void setUniversityM(String universityM) {
 		this.universityM = universityM;
 	}
-
 
 	public String getYearOfPassingM() {
 		return yearOfPassingM;
 	}
 
-
 	public void setYearOfPassingM(String yearOfPassingM) {
 		this.yearOfPassingM = yearOfPassingM;
 	}
-
 
 	public String getTechnicalSkills() {
 		return technicalSkills;
 	}
 
-
 	public void setTechnicalSkills(String technicalSkills) {
 		this.technicalSkills = technicalSkills;
 	}
-
 
 	@Override
 	public String toString() {
@@ -203,18 +163,4 @@ public class EducationalDetailsEntity {
 				+ yearOfPassingM + ", technicalSkills=" + technicalSkills + "]";
 	}
 
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	   
-	
 }

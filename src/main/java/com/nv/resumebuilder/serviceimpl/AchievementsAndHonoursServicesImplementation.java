@@ -8,15 +8,12 @@ import com.nv.resumebuilder.repository.AchievementsAndHonoursRepository;
 import com.nv.resumebuilder.service.AchievementsAndHonoursServices;
 
 @Service
-public class AchievementsAndHonoursServicesImplementation implements AchievementsAndHonoursServices
-{
+public class AchievementsAndHonoursServicesImplementation implements AchievementsAndHonoursServices {
 	@Autowired
 	private AchievementsAndHonoursRepository achievementsAndHonoursRepository;
 
-
 	@Override
-	public AchievementsAndHonoursEntity addAchievementsAndHonours(AchievementsAndHonoursEntity achievemnetsandhonours) 
-	{
+	public AchievementsAndHonoursEntity addAchievementsAndHonours(AchievementsAndHonoursEntity achievemnetsandhonours) {
 		achievementsAndHonoursRepository.save(achievemnetsandhonours); // saving our data in h2 database
 		return achievemnetsandhonours;
 	}
