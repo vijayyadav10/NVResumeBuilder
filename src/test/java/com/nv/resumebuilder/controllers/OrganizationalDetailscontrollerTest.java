@@ -34,23 +34,20 @@ public class OrganizationalDetailscontrollerTest {
 				.standaloneSetup(new OrganizationalDetailsController(organizationDetailServiceobj)).build();
 	}
 
-	private String comName = null;
-	String designation = null;
-	String date = null;
-
 	@Before(value = "")
 	public void init() {
+		organizationalDetailsEntity = new OrganizationalDetailsEntity();
+		
 		organizationalDetailsEntity.setComName("NV");
 		organizationalDetailsEntity.setDesignation("tester");
 		organizationalDetailsEntity.setDate("18/01/2021");
-		organizationalDetailsEntity = new OrganizationalDetailsEntity(comName, designation, date);
-	}
+		}
 
 	@Test
 	void testOrgForm() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/organizationdetailsform"))// creates the http req
+		mockMvc.perform(MockMvcRequestBuilders.get("/organizationaldetailsform"))// creates the http req
 				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.view().name("organizationaldetailsform"))
+				.andExpect(MockMvcResultMatchers.view().name("currentorganizationaldetailsform"))
 				.andDo(MockMvcResultHandlers.print());
 	}
 

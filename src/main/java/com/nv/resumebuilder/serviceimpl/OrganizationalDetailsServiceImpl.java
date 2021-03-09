@@ -15,9 +15,9 @@ public class OrganizationalDetailsServiceImpl implements OrganizationalDetailsSe
 	@Override
 	public OrganizationalDetailsEntity addorganizationDetailsServices(
 			OrganizationalDetailsEntity organizationdetailsEntity) {
-		OrganizationalDetailsEntity details = organizationRepository.save(organizationdetailsEntity);
+		organizationRepository.save(organizationdetailsEntity);
 	
-		return details;
+		return organizationdetailsEntity;
 	}
 
 }
