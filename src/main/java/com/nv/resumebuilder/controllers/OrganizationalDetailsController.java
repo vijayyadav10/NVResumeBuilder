@@ -27,7 +27,7 @@ public class OrganizationalDetailsController {
 	@GetMapping(value = "/organizationaldetailsform")
 	public String orgForm(Model model) {
 		model.addAttribute("OrganizationDetailsEntity", new OrganizationalDetailsEntity());
-		return "currentorganizationaldetailsform";
+		return "organizationaldetailsform";
 	}
 
 	@PostMapping(path = "/adddetails")
@@ -35,12 +35,13 @@ public class OrganizationalDetailsController {
 			@Valid @ModelAttribute("OrganizationDetailsEntity") OrganizationalDetailsEntity organizationDetails,
 			BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return "currentorganizationaldetailsform";
+			return "organizationaldetailsform";
 		} else {
 			organizationDetailServiceobj.addorganizationDetailsServices(organizationDetails);
 			model.addAttribute("orgDetails", organizationDetails);
 			System.out.println(organizationDetails);
-			return "AchievementsForm";
+			return "redirect:/AchievementsForm";
 		}
 	}
+
 }

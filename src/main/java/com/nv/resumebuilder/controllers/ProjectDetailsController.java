@@ -1,7 +1,10 @@
 package com.nv.resumebuilder.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,7 +32,7 @@ public class ProjectDetailsController {
 	}
 
 	@PostMapping("/newprojectDetails")
-	public ArrayList<Project> login(@RequestBody HashMap<String, String> theExperienceProject) {
+	public void login(@RequestBody HashMap<String, String> theExperienceProject, HttpServletResponse response) {
 
 		/*
 		 * These Constant Variable(DETECT_PROJECTDETAILS & DETECT_PROJECTNAME) are going
@@ -72,6 +75,5 @@ public class ProjectDetailsController {
 			this.projectService.save(projects.get(i));
 		}
 
-		return projects;
 	}
 }

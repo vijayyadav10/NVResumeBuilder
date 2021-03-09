@@ -75,7 +75,7 @@
 
 			<tr>
 				<th>Skype Id</th>
-				<td><input type="email" name="skypeId" style="color: black"
+				<td><input type="text" name="skypeId" style="color: black"
 					;
 		placeholder="Skype Id" required></td>
 			</tr>
