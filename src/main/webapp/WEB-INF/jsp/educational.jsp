@@ -7,35 +7,43 @@
   
   <head>
 
-   <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" 
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous">
      
     <title>Educational details</title>
    
     <style type="text/css">
             .errormsg {
-                color: red;
+                color: Teal;
             }
         </style>
+ </head>
     
-  </head>
-  <body>
+ <body>
    
- <jsp:include page = "dashboard.jsp" flush = "true" />
-     <div class="container mt-5"> 
-   
-     <form:form action ="processform" method="post" modelAttribute="EducationalDetailsEntity" >
+      <jsp:include page = "dashboard.jsp" flush = "true" />
+      <div class="container mt-3">
+
+		<div class="row">
+       <h4 class="text-center mb-3">
+          ${message}</h4>
+		<div class="col-md-offset-3 col-md-6 offset-md-3">
+			
+
+       <form:form action ="processform" method="post" modelAttribute="EducationalDetailsEntity" >
     
-    <section id="top">
-    <h2>Educational Details</h2><br>
-    </section>
+   
+        <center>
+		<b><span style="font-size: 35px; color: #008080"><label>Educational Details</label></span></b>
+		</center>
    
    
-    <section id="left">
     
     <div class="form-group">
     <label for="nameOfCollege">Name Of College</label>
@@ -108,21 +116,21 @@
    
     <div class="form-group">
     <label for="university">University</label>
-    <input type="text" name="universityM" placeholder="Enter here">
+    <input type="text" name="universityM" cssClass="form-control" placeholder="Enter here">
     </div>
    
    
    
     <div class="form-group">
     <label for="yearOfPassing">Year Of Passing</label>
-    <input type="text" name="yearOfPassingM" patteren="[0-9]{4}" >
+    <input type="text" name="yearOfPassingM" cssClass="form-control" patteren="[0-9]{4}" >
     </div>
     
     
     
     <div class="form-group">
     <label for="skills">Technical Skills</label>
-    <select name="technicalSkills" multiple>
+    <select name="technicalSkills"  multiple>
         <option value ="sql"> SQL</option>
         <option value ="c"> C</option>
         <option value ="c++"> C++</option>
@@ -130,25 +138,27 @@
         <option value =".net"> .NET</option>
     
      </select>
+     <br>
+     <br>
+                <div class="text-center mb-3">
+                <button type="reset" class="btn btn-primary"
+					style="background-color: #008080">Reset</button>
+    
+				<button type="submit" class="btn btn-primary"
+					style="background-color: #008080">Submit</button>
+              </div>
+    
      </div>
     
-     </section>
     
-    
-    
-    <input type="submit"  Value ="Submit">
-    <input type="reset"  Value ="Reset">
-    <br>
-    <br>
-    
-    
-     </table>
     </form:form>
 
-  </div>
+ </div>
+ 
+ </div>
+ 
+ </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
