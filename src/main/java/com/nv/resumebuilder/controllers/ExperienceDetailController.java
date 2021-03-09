@@ -66,25 +66,8 @@ public class ExperienceDetailController {
 		experienceDetail.setDesignation(theExperienceProject.getDesignation());
 		experienceDetail.setJoiningDate(theExperienceProject.getJoiningDate());
 		experienceDetail.setLeavingDate(theExperienceProject.getLeavingDate());
-		
-		//copied
-//		ArrayList<Project> projects = new ArrayList();
-		
-//		Project project1 = new Project();
-		//NO NEED
-//		project1.setProjectName(theExperienceProject.getProjectName());
-//		project1.setProjectDescription(theExperienceProject.getProjectDescription());
-		
-//		copied
-//		project1.setExperienceDetail(experienceDetail);
-
-//		projects.add(project1);
-
-//		experienceDetail.setProjects(projects);
 
 		this.experienceDetailService.save(experienceDetail);
-//		copied
-//		this.projectService.save(project1);
 
 		return "redirect:/projectDetails.html?id="+experienceDetail.getExperienceId();
 	}

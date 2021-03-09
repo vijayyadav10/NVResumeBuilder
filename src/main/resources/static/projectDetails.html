@@ -196,7 +196,9 @@
 	
 	//get id from url.
 	
-
+function myFunctionRedirect() {
+  location.replace("http://localhost:8090/organizationaldetailsform")
+}
 	
 </script>
 </head>
@@ -212,6 +214,7 @@
 			<i class="fa fa-bars"></i>
 		</a>
 	</div>
+	
 	<div class="container mt-3">
 		<div class="shadow p-3 mb-5 bg-white rounded">
 			<div class="container__header shadow rounded p-3 mb-5">
@@ -220,8 +223,9 @@
 			<p>
 				<button onclick="removeElement();" class="btn-danger shadow rounded">Remove</button>
 				<button onclick="addElement();" class="btn-success shadow rounded"
-					data-toggle="tooltip" data-placement="right" title="Click here to add projects">Add
-					Project</button>
+				data-toggle="tooltip" data-placement="right" title="Click here to add projects">Add
+				Project</button>
+				<span class="text-danger h4">*</span>Please do add atleast one project.
 			</p>
 			<div class="container__body shadow rounded p-3 mb-2">
 				<form id="form1">
@@ -232,7 +236,7 @@
 					<div class="container__action mt-5">
 						<input type="reset" value="reset"
 							class="btn-danger shadow rounded" />
-						<button type="button" class="btn-primary shadow rounded" id="btn">Submit</button>
+						<button type="button" class="btn-primary shadow rounded" onclick="myFunctionRedirect()" id="btn">Submit</button>
 					</div>
 				</form>
 			</div>

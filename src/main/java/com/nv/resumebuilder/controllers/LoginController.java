@@ -12,7 +12,6 @@ public class LoginController {
 	@GetMapping("/")
 	public String welcomePage() {
 		return "index";
-
 	}
 
 	@RequestMapping(value = "/userLogin")
@@ -22,7 +21,7 @@ public class LoginController {
 		return "dashboard";
 	}
 
-	@GetMapping("***/logout")
+	@GetMapping("/logout")
 	public String logOut() {
 		return "index";
 
