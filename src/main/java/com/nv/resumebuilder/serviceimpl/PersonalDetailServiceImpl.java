@@ -1,6 +1,8 @@
 package com.nv.resumebuilder.serviceimpl;
 
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +21,12 @@ public class PersonalDetailServiceImpl implements PersonalDetailsServices
 	public PersonalDetailsEntity savePersonalDetails(PersonalDetailsEntity personalDetailsEntity) 
 	{
 		return personalDetailsRepository.save(personalDetailsEntity);// saving our data in h2 database
-		
-		
+	}
+
+	@Override
+	public Optional<PersonalDetailsEntity> findById(Long id) 
+	{
+		return personalDetailsRepository.findById(id);
 	}
 	
 

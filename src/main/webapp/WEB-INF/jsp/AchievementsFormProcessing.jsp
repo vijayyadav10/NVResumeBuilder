@@ -10,7 +10,7 @@
 
 <jsp:include page = "dashboard.jsp" flush = "true" />
 
-<p>${achievemnetsandhonours1}</p>
+<p>hi</p>
 
 
 </body>

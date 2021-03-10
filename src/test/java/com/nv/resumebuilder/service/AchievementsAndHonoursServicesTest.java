@@ -1,4 +1,4 @@
-package com.nv.resumebuilder;
+package com.nv.resumebuilder.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -28,12 +28,7 @@ class AchievementsAndHonoursServicesTest
 	@Test
 	public void addAchievementsAndHonoursTest() 
 	{
-		achievemnetsAndHonoursEntity=new AchievementsAndHonoursEntity("particationevent1","particationevent2",
-				"particationevent3","particationevent4","particationevent5","certification1","certification2",
-				"certification3","certification4","certification5","awardsandhonoursdetails1",
-				"awardsandhonoursdetails2","awardsandhonoursdetails3","awardsandhonoursdetails4",
-				"awardsandhonoursdetails5");
-		when(achievementsAndHonoursRepository.save(achievemnetsAndHonoursEntity)).thenReturn(achievemnetsAndHonoursEntity);           
+		achievemnetsAndHonoursEntity=new AchievementsAndHonoursEntity("particationevent1","certification1","awardsandhonoursdetails1");when(achievementsAndHonoursRepository.save(achievemnetsAndHonoursEntity)).thenReturn(achievemnetsAndHonoursEntity);           
 		assertEquals(achievemnetsAndHonoursEntity,achievementsAndHonoursServices.addAchievementsAndHonours(achievemnetsAndHonoursEntity));
 	}
 }
