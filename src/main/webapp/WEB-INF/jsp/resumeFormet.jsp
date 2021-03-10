@@ -311,15 +311,7 @@ justify-content: space-between;
               
              </div>
          </li>
-              <li>
-             <div class="icon">
-               <i class="fab fa-facebook-square"></i>
-             </div>
-             <div class="data">
-               <p class="semi-bold">Facebook</p>
-               
-             </div>
-             </li>
+           
          </ul>
        </div>
        
