@@ -32,14 +32,14 @@ public class OrganizationalDetailsController {
 
 	@PostMapping(path = "/adddetails")
 	public String orgDetailsAdding(
-			@Valid @ModelAttribute("OrganizationDetailsEntity") OrganizationalDetailsEntity organizationDetails,
+			@Valid @ModelAttribute("OrganizationDetailsEntity") OrganizationalDetailsEntity organizationalDetailsEntity,
 			BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "organizationaldetailsform";
 		} else {
-			organizationDetailServiceobj.addorganizationDetailsServices(organizationDetails);
-			model.addAttribute("orgDetails", organizationDetails);
-			System.out.println(organizationDetails);
+			 organizationDetailServiceobj.addorganizationDetailsServices(organizationalDetailsEntity);
+			model.addAttribute("orgDetails", organizationalDetailsEntity);
+			System.out.println(organizationalDetailsEntity);
 			return "redirect:/AchievementsForm";
 		}
 	}

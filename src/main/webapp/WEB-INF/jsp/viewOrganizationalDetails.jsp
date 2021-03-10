@@ -8,6 +8,6 @@
 </head>
 <body>
 <jsp:include page="dashboard.jsp" flush="true" />
-<p>${orgDetails}</p>
+<h1><p>${orgDetails}</p></h1>
 </body>
 </html>

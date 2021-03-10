@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -23,6 +24,10 @@ public class PersonalDetailsEntity implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	//Person has Experience 
+		@OneToOne(mappedBy = "personalDetailsEntity")
+		private OrganizationalDetailsEntity organizationalDetailsEntity;
+	
 	public PersonalDetailsEntity(long id,
 			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userFirstName,
 			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userMiddleName,
@@ -262,6 +267,14 @@ public class PersonalDetailsEntity implements Serializable {
 
 	public void setLanguageKnown(String languageKnown) {
 		this.languageKnown = languageKnown;
+	}
+
+	public OrganizationalDetailsEntity getOrganizationalDetailsEntity() {
+		return organizationalDetailsEntity;
+	}
+
+	public void setOrganizationalDetailsEntity(OrganizationalDetailsEntity organizationalDetailsEntity) {
+		this.organizationalDetailsEntity = organizationalDetailsEntity;
 	}
 
 	@Override

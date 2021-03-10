@@ -1,10 +1,13 @@
 package com.nv.resumebuilder.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -21,13 +24,18 @@ public class OrganizationalDetailsEntity {
 	@NotEmpty(message = "organization name is required")
 	@Size(min = 1, max = 40, message = "organization name must be less then 40")
 	private String comName;
+	
 	@NotNull(message = "designation is required")
 	@Column(name = "designation")
 	private String designation;
 
-	@NotNull(message = "Joining Date Required")
+	@NotEmpty(message = "Joining Date Required")
 	@Column(name = "date")
 	private String date;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id")
+	private PersonalDetailsEntity personalDetailsEntity;
 
 	public OrganizationalDetailsEntity() {
 		super();
@@ -73,6 +81,14 @@ public class OrganizationalDetailsEntity {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public PersonalDetailsEntity getPersonalDetailsEntity() {
+		return personalDetailsEntity;
+	}
+
+	public void setPersonalDetailsEntity(PersonalDetailsEntity personalDetailsEntity) {
+		this.personalDetailsEntity = personalDetailsEntity;
 	}
 
 	@Override
