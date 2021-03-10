@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nv.resumebuilder.entity.ExperienceDetail;
-import com.nv.resumebuilder.entity.Project;
+import com.nv.resumebuilder.entity.ExperienceDetailsEntity;
+import com.nv.resumebuilder.entity.ProjectDetailsEntity;
 import com.nv.resumebuilder.service.ExperienceDetailService;
 import com.nv.resumebuilder.service.ProjectService;
 
@@ -42,18 +42,19 @@ public class ProjectDetailsController {
 		String DETECT_PROJECTNAME = "pn";
 		String DETECT_PROJECTDETAILS = "pd";
 
-		ExperienceDetail experienceDetail = null;
+		ExperienceDetailsEntity experienceDetail = null;
 
 		HashMap<String, String> projectDetails = theExperienceProject;
 
-		ArrayList<Project> projects = new ArrayList<Project>();
+		ArrayList<ProjectDetailsEntity> projects = new ArrayList<ProjectDetailsEntity>();
 
 		if (projectDetails.containsKey("custId")) {
-			int id = Integer.parseInt(projectDetails.get("custId"));
+//			int id = Integer.parseInt(projectDetails.get("custId"));
+			Long id = Long.parseLong(projectDetails.get("custId"));
 			experienceDetail = experienceDetailService.findById(id);
 			for (int i = 1; i <= projectDetails.size() / 2; i++) {
 				String keyName = null;
-				Project project = new Project();
+				ProjectDetailsEntity project = new ProjectDetailsEntity();
 				project.setExperienceDetail(experienceDetail);
 				for (String key : projectDetails.keySet()) {
 					if (key.contains(String.valueOf(i))) {
