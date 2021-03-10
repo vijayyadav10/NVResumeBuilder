@@ -6,8 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nv.resumebuilder.entity.ExperienceDetail;
+import com.nv.resumebuilder.entity.ExperienceDetailsEntity;
 import com.nv.resumebuilder.repository.ExperienceDetailRepository;
+
 
 @Service
 public class ExperienceDetailServiceImpl implements ExperienceDetailService {
@@ -20,15 +21,15 @@ public class ExperienceDetailServiceImpl implements ExperienceDetailService {
 	}
 
 	@Override
-	public List<ExperienceDetail> findAll() {
+	public List<ExperienceDetailsEntity> findAll() {
 		return this.experienceDetailRepository.findAll();
 	}
 
 	@Override
-	public ExperienceDetail findById(int theId) {
-		Optional<ExperienceDetail> result = this.experienceDetailRepository.findById(theId);
+	public ExperienceDetailsEntity findById(Long theId) {
+		Optional<ExperienceDetailsEntity> result = this.experienceDetailRepository.findById(theId);
 
-		ExperienceDetail theExperienceDetail = null;
+		ExperienceDetailsEntity theExperienceDetail = null;
 
 		if (result.isPresent()) {
 			theExperienceDetail = result.get();
@@ -40,12 +41,12 @@ public class ExperienceDetailServiceImpl implements ExperienceDetailService {
 	}
 
 	@Override
-	public ExperienceDetail save(ExperienceDetail theExperienceDetail) {
+	public ExperienceDetailsEntity save(ExperienceDetailsEntity theExperienceDetail) {
 		return this.experienceDetailRepository.save(theExperienceDetail);
 	}
 
 	@Override
-	public void deleteById(int theId) {
+	public void deleteById(Long theId) {
 		this.experienceDetailRepository.deleteById(theId);
 	}
 

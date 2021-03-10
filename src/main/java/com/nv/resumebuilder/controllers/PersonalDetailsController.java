@@ -24,6 +24,8 @@
 
 package com.nv.resumebuilder.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,10 +54,11 @@ public class PersonalDetailsController {
 
 	@RequestMapping(path = "/PersonalDetailsProcessing", method = RequestMethod.POST) // processing the personal details
 																						// Form
-	public String personalDetailsProcessing(@ModelAttribute PersonalDetailsEntity personalDetails, Model model) {
+	public String personalDetailsProcessing(@ModelAttribute PersonalDetailsEntity personalDetails, Model model,HttpSession session) {
 		personalDetailsServices.savePersonalDetails(personalDetails);
 		model.addAttribute("personaldetails1", personalDetails);
 		System.out.println(personalDetails);
+		session.setAttribute("id", personalDetails.getId());
 		return "PersonalDetailsProcessing";
 	}
 }

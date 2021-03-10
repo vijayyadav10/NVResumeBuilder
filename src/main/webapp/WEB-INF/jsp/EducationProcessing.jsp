@@ -10,8 +10,6 @@
 
 
 <jsp:include page="dashboard.jsp" flush="true" />
-
-
 <p> .....you are successfully submitted.... </p>
 <p>${details1}</p>
 
