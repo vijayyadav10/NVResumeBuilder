@@ -12,11 +12,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 //@Table(name = "projects")
-public class Project {
+public class ProjectDetailsEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int projectId;
+	private Long projectId;
 	@Column(name = "project_name")
 	private String projectName;
 	@Column(name = "project_description")
@@ -25,24 +25,24 @@ public class Project {
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "experience_id")
-	private ExperienceDetail experienceDetail;
+	private ExperienceDetailsEntity experienceDetail;
 
-	public ExperienceDetail getExperienceDetail() {
+	public ExperienceDetailsEntity getExperienceDetail() {
 		return experienceDetail;
 	}
 
-	public void setExperienceDetail(ExperienceDetail experienceDetail) {
+	public void setExperienceDetail(ExperienceDetailsEntity experienceDetail) {
 		this.experienceDetail = experienceDetail;
 	}
 
-	public Project() {
+	public ProjectDetailsEntity() {
 	}
 
-	public int getProjectId() {
+	public Long getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(int projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
 
