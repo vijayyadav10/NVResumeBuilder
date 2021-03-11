@@ -61,6 +61,6 @@ public class PersonalDetailsController {
 		
 		session.setAttribute("id", personalDetails.getId());
 		
-		return "PersonalDetailsProcessing";
+		return "redirect:/education";
 	}
 }
