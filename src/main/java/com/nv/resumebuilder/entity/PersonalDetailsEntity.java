@@ -157,6 +157,12 @@ public class PersonalDetailsEntity implements Serializable {
 	@Column
 	@NotEmpty(message = "Select at least one language.")
 	private String languageKnown;
+	
+	
+	
+	//Person has Experience
+	@OneToOne(mappedBy = "personalDetailsEntity")
+	private EducationalDetailsEntity educationalDetailsEntity;
 
 	public long getId() {
 		return id;
@@ -168,6 +174,14 @@ public class PersonalDetailsEntity implements Serializable {
 
 	public String getUserFirstName() {
 		return userFirstName;
+	}
+
+	public EducationalDetailsEntity getEducationalDetailsEntity() {
+		return educationalDetailsEntity;
+	}
+
+	public void setEducationalDetailsEntity(EducationalDetailsEntity educationalDetailsEntity) {
+		this.educationalDetailsEntity = educationalDetailsEntity;
 	}
 
 	public void setUserFirstName(String userFirstName) {
