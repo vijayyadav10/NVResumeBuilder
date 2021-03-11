@@ -22,6 +22,10 @@
 	color: red;
 	font-family: "Times New Roman", Times, serif;
 }
+th, td { 
+     padding:7px 
+              
+            }  
 </style>
 </head>
 <body>
@@ -38,13 +42,15 @@
 				<tr>
 					<div class="form-group">
 						<td><b><label>Organization Name</label></b></td>
-						<td><form:input path="comName" size="50"
+						<td>
+						<form:input path="comName" size="50"
 								cssClass="form-control" placeholder="Enter Organization Name" />
 							<small><b><form:errors path="comName"
-										cssClass="errormsg" /></b></small></td>
+										cssClass="errormsg" /></b></small>
+										</td>
 					</div>
 				</tr>
-				
+
 				<tr>
 					<div class="form-group">
 						<td><b><label> Designation</label></b></td>

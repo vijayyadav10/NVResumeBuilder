@@ -1,7 +1,6 @@
 package com.nv.resumebuilder.controllers;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import com.nv.resumebuilder.entity.OrganizationalDetailsEntity;
 import com.nv.resumebuilder.service.OrganizationalDetailsService;
 
@@ -37,11 +35,10 @@ public class OrganizationalDetailsController {
 		if (result.hasErrors()) {
 			return "organizationaldetailsform";
 		} else {
-			 organizationDetailServiceobj.addorganizationDetailsServices(organizationalDetailsEntity);
+			organizationDetailServiceobj.addorganizationDetailsServices(organizationalDetailsEntity);
 			model.addAttribute("orgDetails", organizationalDetailsEntity);
 			System.out.println(organizationalDetailsEntity);
 			return "redirect:/AchievementsForm";
 		}
 	}
-
 }
