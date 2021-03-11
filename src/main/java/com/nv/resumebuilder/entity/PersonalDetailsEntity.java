@@ -2,6 +2,7 @@ package com.nv.resumebuilder.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -136,6 +137,10 @@ public class PersonalDetailsEntity implements Serializable {
 	@Column
 	@NotEmpty
 	private String country;
+
+	/** Person has Experience */
+	@OneToOne(mappedBy = "personalDetailsEntity")
+	private ExperienceDetailsEntity experienceDetail;
 
 	public String getCity() {
 		return city;

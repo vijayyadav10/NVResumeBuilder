@@ -10,7 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -20,11 +22,11 @@ import com.nv.resumebuilder.validation.PastDate;
 
 @Entity
 @Table(name = "experiences")
-public class ExperienceDetail {
+public class ExperienceDetailsEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int experienceId;
+	private Long experienceId;
 
 	@NotNull(message = "is required")
 	@Size(min=1, message = "is required")
@@ -43,23 +45,35 @@ public class ExperienceDetail {
     @Column(name = "leaving_date")
 	private Date leavingDate;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id")
+	private PersonalDetailsEntity personalDetailsEntity;
+
     @JsonIgnore
 	@OneToMany(mappedBy = "experienceDetail", cascade = CascadeType.ALL)
-	private List<Project> project;
+	private List<ProjectDetailsEntity> project;
 
-	public ExperienceDetail() {
+	public ExperienceDetailsEntity() {
 	}
 
-	public int getExperienceId() {
+	public Long getExperienceId() {
 		return experienceId;
 	}
 
-	public void setExperienceId(int experienceId) {
+	public void setExperienceId(Long experienceId) {
 		this.experienceId = experienceId;
 	}
 
 	public String getcompanyName() {
 		return companyName;
+	}
+
+	public PersonalDetailsEntity getPersonalDetailsEntity() {
+		return personalDetailsEntity;
+	}
+
+	public void setPersonalDetailsEntity(PersonalDetailsEntity personalDetailsEntity) {
+		this.personalDetailsEntity = personalDetailsEntity;
 	}
 
 	public void setcompanyName(String companyName) {
@@ -90,16 +104,16 @@ public class ExperienceDetail {
 		this.leavingDate = leavingDate;
 	}
 
-	public List<Project> getProjects() {
+	public List<ProjectDetailsEntity> getProjects() {
 		return project;
 	}
 
-	public void setProjects(List<Project> projects) {
+	public void setProjects(List<ProjectDetailsEntity> projects) {
 		this.project = projects;
 	}
 
 	// add a convenience method
-	public void addProject(Project theProject) {
+	public void addProject(ProjectDetailsEntity theProject) {
 		if (project == null) {
 			project = new ArrayList<>();
 		}

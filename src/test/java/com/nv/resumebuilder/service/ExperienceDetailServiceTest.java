@@ -13,9 +13,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.nv.resumebuilder.entity.ExperienceDetail;
-import com.nv.resumebuilder.entity.Project;
+import com.nv.resumebuilder.entity.ExperienceDetailsEntity;
+import com.nv.resumebuilder.entity.ProjectDetailsEntity;
 import com.nv.resumebuilder.repository.ExperienceDetailRepository;
+import com.nv.resumebuilder.serviceimpl.ExperienceDetailServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ExperienceDetailServiceTest {
@@ -28,21 +29,21 @@ public class ExperienceDetailServiceTest {
 
 	@Test
 	public void testSavingExperienceDetail() {
-		ExperienceDetail theExperienceDetail = new ExperienceDetail();
+		ExperienceDetailsEntity theExperienceDetail = new ExperienceDetailsEntity();
 
 		// GIVEN
-		theExperienceDetail.setExperienceId(1);
+		theExperienceDetail.setExperienceId(Long.valueOf(1));
 		theExperienceDetail.setcompanyName("Nokia");
 		theExperienceDetail.setDesignation("Android Developer");
 		theExperienceDetail.setJoiningDate(Date.valueOf("2015-03-31"));
 		theExperienceDetail.setLeavingDate(Date.valueOf("2020-03-31"));
 
-		Project theProject = new Project();
-		theProject.setProjectId(1);
+		ProjectDetailsEntity theProject = new ProjectDetailsEntity();
+		theProject.setProjectId(Long.valueOf(1));
 		theProject.setProjectName("Nokia app");
 		theProject.setProjectDescription("Nokia app that can handle sensors");
 
-		ArrayList<Project> project = new ArrayList<Project>();
+		ArrayList<ProjectDetailsEntity> project = new ArrayList<ProjectDetailsEntity>();
 		project.add(theProject);
 
 		theExperienceDetail.setProjects(project);
@@ -58,38 +59,38 @@ public class ExperienceDetailServiceTest {
 
 	@Test
 	public void testSavingExperienceDetailWithMissingValues() {
-		ExperienceDetail theExperienceDetailUserGiven = new ExperienceDetail();
-		ExperienceDetail theExperienceDetailSystemWants = new ExperienceDetail();
+		ExperienceDetailsEntity theExperienceDetailUserGiven = new ExperienceDetailsEntity();
+		ExperienceDetailsEntity theExperienceDetailSystemWants = new ExperienceDetailsEntity();
 
-		theExperienceDetailSystemWants.setExperienceId(1);
+		theExperienceDetailSystemWants.setExperienceId(Long.valueOf(1));
 		theExperienceDetailSystemWants.setcompanyName("Nokia");
 		theExperienceDetailSystemWants.setDesignation("");
 		theExperienceDetailSystemWants.setJoiningDate(Date.valueOf("2015-03-31"));
 		theExperienceDetailSystemWants.setLeavingDate(Date.valueOf("2020-03-31"));
 
-		Project theProjectSystemWants = new Project();
-		theProjectSystemWants.setProjectId(1);
+		ProjectDetailsEntity theProjectSystemWants = new ProjectDetailsEntity();
+		theProjectSystemWants.setProjectId(Long.valueOf(1));
 		theProjectSystemWants.setProjectName("Nokia app");
 		theProjectSystemWants.setProjectDescription("Nokia app that can handle sensors");
 
-		ArrayList<Project> projectSystemWants = new ArrayList<Project>();
+		ArrayList<ProjectDetailsEntity> projectSystemWants = new ArrayList<ProjectDetailsEntity>();
 		projectSystemWants.add(theProjectSystemWants);
 
 		theExperienceDetailSystemWants.setProjects(projectSystemWants);
 
 		// GIVEN
-		theExperienceDetailUserGiven.setExperienceId(1);
+		theExperienceDetailUserGiven.setExperienceId(Long.valueOf(1));
 		theExperienceDetailUserGiven.setcompanyName("Nokia");
 		theExperienceDetailUserGiven.setDesignation("Android Developer");
 		theExperienceDetailUserGiven.setJoiningDate(Date.valueOf("2015-03-31"));
 		theExperienceDetailUserGiven.setLeavingDate(Date.valueOf("2020-03-31"));
 
-		Project theProject = new Project();
-		theProject.setProjectId(1);
+		ProjectDetailsEntity theProject = new ProjectDetailsEntity();
+		theProject.setProjectId(Long.valueOf(1));
 		theProject.setProjectName("Nokia app");
 		theProject.setProjectDescription("Nokia app that can handle sensors");
 
-		ArrayList<Project> project = new ArrayList<Project>();
+		ArrayList<ProjectDetailsEntity> project = new ArrayList<ProjectDetailsEntity>();
 		project.add(theProject);
 
 		theExperienceDetailUserGiven.setProjects(project);
