@@ -16,6 +16,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import com.nv.resumebuilder.entity.ExperienceDetailsEntity;
 import com.nv.resumebuilder.entity.ProjectDetailsEntity;
 import com.nv.resumebuilder.repository.ExperienceDetailRepository;
+import com.nv.resumebuilder.serviceimpl.ExperienceDetailServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ExperienceDetailServiceTest {

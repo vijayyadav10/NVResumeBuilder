@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class LoginController {
 
@@ -22,7 +25,10 @@ public class LoginController {
 	}
 
 	@GetMapping("/logout")
-	public String logOut() {
+	public String logOut(HttpServletRequest request) {
+		HttpSession httpSession = request.getSession();
+		httpSession.removeAttribute("id");
+        httpSession.invalidate();
 		return "index";
 
 	}

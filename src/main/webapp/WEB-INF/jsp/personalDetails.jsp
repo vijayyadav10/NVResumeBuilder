@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<jsp:include page = "dashboard.jsp" flush = "true" /> 
+	<jsp:include page="dashboard.jsp" flush="true" />
 	<form action="PersonalDetailsProcessing" method="post">
 		<table align="center" width="700" height="800">
 
@@ -43,8 +43,7 @@
 				<td>Female <input type="radio" id="female" name="gender"
 					value="female"></td>
 				<td>other <input type="radio" id="other" name="gender"
-					value="other">
-				</t>
+					value="other"> </t>
 			</tr>
 
 			<tr>
@@ -99,7 +98,7 @@
 				<td><input type="text" name="country" maxlength="20"
 					placeholder="country" required style="color: black" ;/></td>
 			</tr>
-			
+
 			<tr>
 				<th>City</th>
 				<td><input type="text" name="city" maxlength="20"

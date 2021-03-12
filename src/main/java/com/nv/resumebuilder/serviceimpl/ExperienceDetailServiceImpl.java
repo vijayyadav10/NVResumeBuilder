@@ -1,4 +1,4 @@
-package com.nv.resumebuilder.service;
+package com.nv.resumebuilder.serviceimpl;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.nv.resumebuilder.entity.ExperienceDetailsEntity;
 import com.nv.resumebuilder.repository.ExperienceDetailRepository;
+import com.nv.resumebuilder.service.ExperienceDetailService;
 
 
 @Service

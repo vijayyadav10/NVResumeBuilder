@@ -25,7 +25,7 @@
 </style>
 </head>
 <body>
- <jsp:include page = "dashboard.jsp" flush = "true" />
+	<jsp:include page="dashboard.jsp" flush="true" />
 	<div class="container mt-5">
 		<form:form action="adddetails" method="post"
 			modelAttribute="OrganizationDetailsEntity">
@@ -44,7 +44,7 @@
 										cssClass="errormsg" /></b></small></td>
 					</div>
 				</tr>
-				
+
 				<tr>
 					<div class="form-group">
 						<td><b><label> Designation</label></b></td>

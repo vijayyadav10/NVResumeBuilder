@@ -53,7 +53,7 @@ public class PersonalDetailsController {
 	}
 
 	@RequestMapping(path = "/PersonalDetailsProcessing", method = RequestMethod.POST) // processing the personal details
-																						// Form
+				
 	public String personalDetailsProcessing(@ModelAttribute PersonalDetailsEntity personalDetails, Model model,HttpSession session) {
 		personalDetailsServices.savePersonalDetails(personalDetails);
 		model.addAttribute("personaldetails1", personalDetails);

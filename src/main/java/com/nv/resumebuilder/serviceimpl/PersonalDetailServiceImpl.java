@@ -20,6 +20,7 @@ public class PersonalDetailServiceImpl implements PersonalDetailsServices {
 		return personalDetailsRepository.save(personalDetailsEntity);// saving our data in h2 database
 
 	}
+
 	@Override
 	public PersonalDetailsEntity findById(Long theId) {
 		Optional<PersonalDetailsEntity> result = this.personalDetailsRepository.findById(theId);
