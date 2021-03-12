@@ -10,6 +10,7 @@ public class PersonalDetails implements Serializable {
 	private String userFirstName;
 	private String userMiddleName;
 	private String userLastName;
+	private String about;
 
 	private String birthDate;
 
@@ -33,14 +34,17 @@ public class PersonalDetails implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PersonalDetails(String userFirstName, String userMiddleName, String userLastName, String birthDate,
-			String nationality, String gender, String maritialStatus, String emailId, String linkedinId, String skypeId,
-			String phoneNo, String currentAddress, String city, String country, String languageKnown,
-			String personalSkill) {
+	
+
+	public PersonalDetails(String userFirstName, String userMiddleName, String userLastName, String about,
+			String birthDate, String nationality, String gender, String maritialStatus, String emailId,
+			String linkedinId, String skypeId, String phoneNo, String currentAddress, String city, String country,
+			String languageKnown, String personalSkill) {
 		super();
 		this.userFirstName = userFirstName;
 		this.userMiddleName = userMiddleName;
 		this.userLastName = userLastName;
+		this.about = about;
 		this.birthDate = birthDate;
 		this.nationality = nationality;
 		this.gender = gender;
@@ -55,6 +59,8 @@ public class PersonalDetails implements Serializable {
 		this.languageKnown = languageKnown;
 		this.personalSkill = personalSkill;
 	}
+
+
 
 	public String getPersonalSkill() {
 		return personalSkill;
@@ -184,13 +190,29 @@ public class PersonalDetails implements Serializable {
 		this.languageKnown = languageKnown;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "PersonalDetails [userFirstName=" + userFirstName + ", userMiddleName=" + userMiddleName
-				+ ", userLastName=" + userLastName + ", birthDate=" + birthDate + ", nationality=" + nationality
-				+ ", gender=" + gender + ", maritialStatus=" + maritialStatus + ", emailId=" + emailId + ", linkedinId="
-				+ linkedinId + ", skypeId=" + skypeId + ", phoneNo=" + phoneNo + ", currentAddress=" + currentAddress
-				+ ", city=" + city + ", country=" + country + ", languageKnown=" + languageKnown + "]";
+				+ ", userLastName=" + userLastName + ", about=" + about + ", birthDate=" + birthDate + ", nationality="
+				+ nationality + ", gender=" + gender + ", maritialStatus=" + maritialStatus + ", emailId=" + emailId
+				+ ", linkedinId=" + linkedinId + ", skypeId=" + skypeId + ", phoneNo=" + phoneNo + ", currentAddress="
+				+ currentAddress + ", city=" + city + ", country=" + country + ", languageKnown=" + languageKnown
+				+ ", personalSkill=" + personalSkill + "]";
 	}
 
+
+
+	public String getAbout() {
+		return about;
+	}
+
+
+
+	public void setAbout(String about) {
+		this.about = about;
+	}
+
+	
 }

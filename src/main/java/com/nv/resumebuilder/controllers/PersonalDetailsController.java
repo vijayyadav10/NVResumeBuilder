@@ -59,6 +59,6 @@ public class PersonalDetailsController {
 		model.addAttribute("personaldetails1", personalDetails);
 		System.out.println(personalDetails);
 		session.setAttribute("id", personalDetails.getId());
-		return "PersonalDetailsProcessing";
+		return "redirect:/education";
 	}
 }
