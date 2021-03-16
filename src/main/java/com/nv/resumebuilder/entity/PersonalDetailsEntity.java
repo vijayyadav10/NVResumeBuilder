@@ -1,13 +1,14 @@
 package com.nv.resumebuilder.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -19,6 +20,11 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "personaldetails")
 public class PersonalDetailsEntity implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public PersonalDetailsEntity() {
 		super();
@@ -128,7 +134,7 @@ public class PersonalDetailsEntity implements Serializable {
 
 	@Column
 	@NotNull(message = "is required")
-	@Email(message = "Invalid email! Please enter valid email")
+//	@Email(message = "Invalid email! Please enter valid email")
 	private String skypeId;
 
 	@Column
@@ -143,13 +149,49 @@ public class PersonalDetailsEntity implements Serializable {
 	@Column
 	@NotEmpty
 	private String city;
+	
 	@Column
 	@NotEmpty
 	private String country;
 
-	/** Person has Experience */
+	@OneToOne(mappedBy = "personalDetailsEntity")
+	private AchievementsAndHonoursEntity  AchievementsAndHonoursEntity;
+
+	@OneToOne(mappedBy = "personalDetailsEntity")
+	private EducationalDetailsEntity educationalDetailsEntity;
+
 	@OneToOne(mappedBy = "personalDetailsEntity")
 	private ExperienceDetailsEntity experienceDetail;
+
+	@OneToMany(mappedBy = "personalDetailsEntity")
+	private List<ReferenceDetailsEntity> refernceDetailsEntity;
+	
+	@OneToOne(mappedBy = "personalDetailsEntity")
+	private OrganizationalDetailsEntity organizationalDetailsEntity;
+
+	public AchievementsAndHonoursEntity getAchievementsAndHonoursEntity() {
+		return AchievementsAndHonoursEntity;
+	}
+
+	public void setAchievementsAndHonoursEntity(AchievementsAndHonoursEntity achievementsAndHonoursEntity) {
+		AchievementsAndHonoursEntity = achievementsAndHonoursEntity;
+	}
+
+	public OrganizationalDetailsEntity getOrganizationalDetailsEntity() {
+		return organizationalDetailsEntity;
+	}
+
+	public void setOrganizationalDetailsEntity(OrganizationalDetailsEntity organizationalDetailsEntity) {
+		this.organizationalDetailsEntity = organizationalDetailsEntity;
+	}
+
+	public List<ReferenceDetailsEntity> getRefernceDetailsEntity() {
+		return refernceDetailsEntity;
+	}
+
+	public void setRefernceDetailsEntity(List<ReferenceDetailsEntity> refernceDetailsEntity) {
+		this.refernceDetailsEntity = refernceDetailsEntity;
+	}
 
 	public String getCity() {
 		return city;
@@ -172,11 +214,6 @@ public class PersonalDetailsEntity implements Serializable {
 	private String languageKnown;
 	
 	
-	
-	//Person has Experience
-	@OneToOne(mappedBy = "personalDetailsEntity")
-	private EducationalDetailsEntity educationalDetailsEntity;
-
 	public long getId() {
 		return id;
 	}

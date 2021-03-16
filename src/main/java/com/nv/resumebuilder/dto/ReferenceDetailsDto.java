@@ -1,22 +1,20 @@
-package com.nv.resumebuilder.entity;
+package com.nv.resumebuilder.dto;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-@Entity
-public class ReferenceDetailsEntity implements Serializable {
-	
-	private static final long serialVersionUID = 5581597786026830472L;
+public class ReferenceDetailsDto implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,28 +43,13 @@ public class ReferenceDetailsEntity implements Serializable {
 	@Size(max = 40, message = "Enter upto 40 characters")
 	private String organization;
 
-	@ManyToOne
-	@JoinColumn(name="personaldetails_id")
-	private PersonalDetailsEntity personalDetailsEntity;
 	
-	public ReferenceDetailsEntity(Long i, String refernceName, String designation, String emailId, String contactNo,
-			String address, String organization) {
-
-		this.id = i;
-		this.refernceName = refernceName;
-		this.designation = designation;
-		this.emailId = emailId;
-		this.contactNo = contactNo;
-		this.address = address;
-		this.organization = organization;
-	}
-
-	public ReferenceDetailsEntity() {
+	public ReferenceDetailsDto() {
 
 	}
 
-	public ReferenceDetailsEntity(String refernceName, String designation, String emailId, String contactNo,
-			String address, String organization) {
+	public ReferenceDetailsDto(String refernceName, String designation, String emailId, String contactNo, String address,
+			String organization) {
 
 		this.refernceName = refernceName;
 		this.designation = designation;
@@ -76,16 +59,19 @@ public class ReferenceDetailsEntity implements Serializable {
 		this.organization = organization;
 	}
 
+	public ReferenceDetailsDto(Long id,String refernceName, String designation, String emailId, String contactNo, String address,
+			String organization) {
+       this.id=id;
+		this.refernceName = refernceName;
+		this.designation = designation;
+		this.emailId = emailId;
+		this.contactNo = contactNo;
+		this.address = address;
+		this.organization = organization;
+	}
+
 	
-	public PersonalDetailsEntity getPersonalDetailsEntity() {
-		return personalDetailsEntity;
-	}
-
-	public void setPersonalDetailsEntity(PersonalDetailsEntity personalDetailsEntity) {
-		this.personalDetailsEntity = personalDetailsEntity;
-	}
-
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -143,13 +129,6 @@ public class ReferenceDetailsEntity implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		return "ReferenceDetailsEntity [ personName=" + refernceName + ", designation=" + designation + ", emailId="
-				+ emailId + ", contactNo=" + contactNo + ", address=" + address + ", organization=" + organization
-				+ "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -159,7 +138,6 @@ public class ReferenceDetailsEntity implements Serializable {
 		result = prime * result + ((emailId == null) ? 0 : emailId.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((organization == null) ? 0 : organization.hashCode());
-		result = prime * result + ((personalDetailsEntity == null) ? 0 : personalDetailsEntity.hashCode());
 		result = prime * result + ((refernceName == null) ? 0 : refernceName.hashCode());
 		return result;
 	}
@@ -172,7 +150,7 @@ public class ReferenceDetailsEntity implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ReferenceDetailsEntity other = (ReferenceDetailsEntity) obj;
+		ReferenceDetailsDto other = (ReferenceDetailsDto) obj;
 		if (address == null) {
 			if (other.address != null)
 				return false;
@@ -203,11 +181,6 @@ public class ReferenceDetailsEntity implements Serializable {
 				return false;
 		} else if (!organization.equals(other.organization))
 			return false;
-		if (personalDetailsEntity == null) {
-			if (other.personalDetailsEntity != null)
-				return false;
-		} else if (!personalDetailsEntity.equals(other.personalDetailsEntity))
-			return false;
 		if (refernceName == null) {
 			if (other.refernceName != null)
 				return false;
@@ -216,8 +189,14 @@ public class ReferenceDetailsEntity implements Serializable {
 		return true;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "ReferenceDetailsDto [id=" + id + ", refernceName=" + refernceName + ", designation=" + designation
+				+ ", emailId=" + emailId + ", contactNo=" + contactNo + ", address=" + address + ", organization="
+				+ organization + "]";
+	}
 
+	
 	
 
 }
