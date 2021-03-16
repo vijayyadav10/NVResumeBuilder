@@ -55,9 +55,9 @@ th, td {
 					<div class="form-group">
 						<td><b><label> Designation</label></b></td>
 						<td><form:select path="designation" multiple="true">
-								<form:option value="tester">Tester</form:option>
-								<form:option value="database">Database</form:option>
-								<form:option value="ui">Ui Developer</form:option>
+								<form:option value="Tester">Tester</form:option>
+								<form:option value="Database Developer">Database Developer</form:option>
+								<form:option value="Ui Developer">Ui Developer</form:option>
 								<form:option value="hr">HR</form:option>
 								<form:option value="fresher">Fresher</form:option>
 							</form:select> <form:errors path="designation" cssClass="errormsg" /></td>

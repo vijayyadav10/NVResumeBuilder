@@ -42,7 +42,7 @@ public class AchievementsFormController {
 		} else {
 			achievementsAndHonoursServices.addAchievementsAndHonours(achievemnetsandhonours);
 			model.addAttribute("achievemnetsandhonours1", achievemnetsandhonours);
-			return "AchievementsFormProcessing";
+			return "ReferenceDetailsPage";
 		}
 	}
 }

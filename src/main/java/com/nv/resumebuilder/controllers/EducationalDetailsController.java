@@ -43,7 +43,7 @@ public class EducationalDetailsController
 		educationalDetailsService.educationalDetailsServices(details);  
 		model.addAttribute("details1", details);
 		System.out.println(details);
-		return "EducationProcessing";
+		return "redirect:/experienceDetail";
 	}
 
 	

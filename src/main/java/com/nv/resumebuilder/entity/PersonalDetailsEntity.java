@@ -25,7 +25,7 @@ public class PersonalDetailsEntity implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	//Person has Experience 
+	//employee has current organization
 		@OneToOne(mappedBy = "personalDetailsEntity")
 		private OrganizationalDetailsEntity organizationalDetailsEntity;
 	

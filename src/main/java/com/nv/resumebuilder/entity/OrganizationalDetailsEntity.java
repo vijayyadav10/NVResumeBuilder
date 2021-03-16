@@ -14,13 +14,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "OrganizationDetails")
 public class OrganizationalDetailsEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "comName")
+	@Column(name = "companyName")
 	@NotEmpty(message = "organization name is required")
 	@Size(min = 1, max = 40, message = "organization name must be less then 40")
 	private String comName;
@@ -30,11 +29,11 @@ public class OrganizationalDetailsEntity {
 	private String designation;
 
 	@NotEmpty(message = "Joining Date Required")
-	@Column(name = "date")
+	@Column(name = "JoiningDate")
 	private String date;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "PersonalDetailsEntity_id")
 	private PersonalDetailsEntity personalDetailsEntity;
 
 	public OrganizationalDetailsEntity() {
