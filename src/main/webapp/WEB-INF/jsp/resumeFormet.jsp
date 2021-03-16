@@ -1,4 +1,5 @@
 <! DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">OCTYPE html>
 <html lang="en">
 <head>
 
@@ -311,7 +312,6 @@ justify-content: space-between;
               
              </div>
          </li>
-<<<<<<< HEAD
               <li>
              <div class="icon">
                <i class="fab fa-facebook-square"></i>
@@ -321,9 +321,6 @@ justify-content: space-between;
                
              </div>
              </li>
-=======
-           
->>>>>>> 171450b3feeb20b68b7ea56d45ad5889b4fa0dc1
          </ul>
        </div>
        
@@ -398,6 +395,7 @@ justify-content: space-between;
      <div class="resume_item resume_currentWork">
         <div class="title">
            <p class="bold">Current Organization</p>
+           <h6>${orgDetails.comName}</h6>
          </div>
         <ul>
             <li>

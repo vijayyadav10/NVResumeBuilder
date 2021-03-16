@@ -1,8 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">OCTYPE html>
-<html lang="en">
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ page isELIgnored="false"%>
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 
 	<meta charset="UTF-8">
@@ -214,8 +214,7 @@ justify-content: space-between;
 
 
 <body>
-	<jsp:include page="dashboard.jsp" flush="true" />
-	<p>${orgDetails}</p>
+
 <div class="resume">
    <div class="resume_left">
      
@@ -266,7 +265,7 @@ justify-content: space-between;
              </div>
              <div class="data">
                Mobile Number
-             </div>
+                </div>
            </li>
           
            
@@ -349,22 +348,76 @@ justify-content: space-between;
     <div class="resume_item resume_about">
         <div class="title">
            <p class="bold">NAME</p>
-           <p class="semi-bold">about yourself</p>
-         </div>
+       
+           <p class="semi-bold"></p>
+                    </div>
            </div>
   
   <div class="resume_item resume_education">
       <div class="title">
            <p class="bold">Education</p>
-         </div>
-      <ul>
             <li>
                 <div class="date">FROM(2016) - TO(2020)</div> 
                 <div class="info">
-                     <p class="semi-bold">Drgree</p> 
-                  <p>colledge Name(Univercity Name)</p>
+                     <p class="semi-bold">Degree</p> 
+                    <p>colledge Name(Univercity Name)</p>
                 </div>
             </li>
+           <li>
+                
+                <div class="info">
+                     <p class="semi-bold">College Name: ${details1.nameOfCollege}</p> 
+                  
+                </div>
+            
+                <div class="info">
+                    
+                     <p class="semi-bold">Degree: ${details1.degree}</p> 
+                    
+                </div>
+                          
+                <div class="info">
+                        <p class="semi-bold">University Name: ${details1.university}</p> 
+                     
+                </div>
+            
+                
+                <div class="info">
+                    <p class="semi-bold">Year of Passing: ${details1.yearOfPassing}</p> 
+                     
+                </div>
+            
+                <div class="info">
+                    <p class="semi-bold">Percentage: ${details1.percentage}</p> 
+                      
+                </div>
+          
+                
+                <div class="info">
+                     <p class="semi-bold">Master Degree: ${details1.Masters_degree}</p> 
+                    
+                </div>
+           
+                <div class="info">
+                      <p class="semi-bold">College Name: ${details1.Masters_college_name}</p> 
+                   
+                </div>
+            
+                
+                <div class="info">
+                     <p class="semi-bold">University Name: ${details1.Masters_university}</p> 
+                     
+                </div>
+          
+                <div class="info">
+                     <p class="semi-bold">Year of Passing: ${details1.Masters_yearOfPassing}</p>
+                
+                </div>
+            </li>
+            
+         </div>
+      <ul>
+           
             
         </ul>
       
@@ -390,14 +443,27 @@ justify-content: space-between;
      <div class="resume_item resume_currentWork">
         <div class="title">
            <p class="bold">Current Organization</p>
-           <h6>${orgDetails.comName}</h6>
+           
          </div>
         <ul>
             <li>
                 
                 <div class="info">
-                     <p class="semi-bold">Designation</p> 
-                  <p>Company name(New vision)</p>
+                     <p class="semi-bold">Company Name: ${orgDetails.comName}</p> 
+                  <p></p>
+                </div>
+            </li>
+             <li>
+                
+                <div class="info">
+                     <p class="semi-bold">Designation: ${orgDetails.designation}</p> 
+                  
+                </div>
+            </li> <li>
+                
+                <div class="info">
+                     <p class="semi-bold">Joining Date: ${orgDetails.date}</p> 
+                 
                 </div>
             </li>
             </ul>
@@ -429,8 +495,5 @@ justify-content: space-between;
   </div>
 </div>
 
-	<jsp:include page="dashboard.jsp" flush="true" />
-	<p>${orgDetails}</p>
 </body>
 </html>
-

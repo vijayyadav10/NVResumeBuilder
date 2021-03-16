@@ -1,7 +1,6 @@
 package com.nv.resumebuilder.service;
 
 import java.util.List;
-
 import com.nv.resumebuilder.entity.ExperienceDetailsEntity;
 
 public interface ExperienceDetailService {

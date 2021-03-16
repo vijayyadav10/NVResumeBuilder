@@ -48,7 +48,7 @@ public class ResumeTempletController
 	@Autowired
 	private RefernceDetailsService refernceDetailsService;
 
-	@RequestMapping("/resumeFormet") 
+	@RequestMapping("/preview") 
 	public String achievementsForm(Model model,HttpSession session) 
 	{
 		PersonalDetailsEntity personalDetails = personalDetailsServices.findById((Long) session.getAttribute("id"));

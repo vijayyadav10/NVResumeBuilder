@@ -13,6 +13,4 @@ public interface ProjectService {
 	public void save(ProjectDetailsEntity theProject);
 
 	public void deleteById(Long theId);
-
-	//public ProjectDetailsEntity findByOtherId(Long id);
 }

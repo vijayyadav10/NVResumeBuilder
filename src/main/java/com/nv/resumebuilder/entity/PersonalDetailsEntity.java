@@ -31,6 +31,7 @@ public class PersonalDetailsEntity implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public String getAbout() {
 		return about;
 	}
@@ -134,7 +135,7 @@ public class PersonalDetailsEntity implements Serializable {
 
 	@Column
 	@NotNull(message = "is required")
-//	@Email(message = "Invalid email! Please enter valid email")
+	//	@Email(message = "Invalid email! Please enter valid email")
 	private String skypeId;
 
 	@Column
@@ -149,13 +150,13 @@ public class PersonalDetailsEntity implements Serializable {
 	@Column
 	@NotEmpty
 	private String city;
-	
+
 	@Column
 	@NotEmpty
 	private String country;
 
 	@OneToOne(mappedBy = "personalDetailsEntity")
-	private AchievementsAndHonoursEntity  AchievementsAndHonoursEntity;
+	private AchievementsAndHonoursEntity  achievementsAndHonoursEntity;
 
 	@OneToOne(mappedBy = "personalDetailsEntity")
 	private EducationalDetailsEntity educationalDetailsEntity;
@@ -165,16 +166,16 @@ public class PersonalDetailsEntity implements Serializable {
 
 	@OneToMany(mappedBy = "personalDetailsEntity")
 	private List<ReferenceDetailsEntity> refernceDetailsEntity;
-	
+
 	@OneToOne(mappedBy = "personalDetailsEntity")
 	private OrganizationalDetailsEntity organizationalDetailsEntity;
 
 	public AchievementsAndHonoursEntity getAchievementsAndHonoursEntity() {
-		return AchievementsAndHonoursEntity;
+		return achievementsAndHonoursEntity;
 	}
 
 	public void setAchievementsAndHonoursEntity(AchievementsAndHonoursEntity achievementsAndHonoursEntity) {
-		AchievementsAndHonoursEntity = achievementsAndHonoursEntity;
+		this.achievementsAndHonoursEntity = achievementsAndHonoursEntity;
 	}
 
 	public OrganizationalDetailsEntity getOrganizationalDetailsEntity() {
@@ -212,8 +213,8 @@ public class PersonalDetailsEntity implements Serializable {
 	@Column
 	@NotEmpty(message = "Select at least one language.")
 	private String languageKnown;
-	
-	
+
+
 	public long getId() {
 		return id;
 	}
@@ -333,6 +334,7 @@ public class PersonalDetailsEntity implements Serializable {
 	public void setLanguageKnown(String languageKnown) {
 		this.languageKnown = languageKnown;
 	}
+
 
 	@Override
 	public String toString() {

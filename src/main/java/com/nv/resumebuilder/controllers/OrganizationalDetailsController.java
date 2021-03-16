@@ -17,31 +17,33 @@ import com.nv.resumebuilder.service.OrganizationalDetailsService;
 import com.nv.resumebuilder.service.PersonalDetailsServices;
 
 @Controller
-public class OrganizationalDetailsController {
+public class OrganizationalDetailsController 
+{
 
-	@Autowired
+
 	private OrganizationalDetailsService organizationDetailServiceobj;
-	
-	@Autowired
 	private PersonalDetailsServices personalDetailsServices;
 
-
-	public OrganizationalDetailsController(OrganizationalDetailsService organizationDetailServiceobj) {
-		super();
+	@Autowired
+	public OrganizationalDetailsController(OrganizationalDetailsService organizationDetailServiceobj,
+			PersonalDetailsServices personalDetailsService) 
+	{
 		this.organizationDetailServiceobj = organizationDetailServiceobj;
-	}
+		this.personalDetailsServices = personalDetailsService;
+    }
 
 	@GetMapping(value = "/organizationaldetailsform")
-	public String orgForm(Model model) {
+	public String orgForm(Model model) 
+	{
 		model.addAttribute("OrganizationDetailsEntity", new OrganizationalDetailsEntity());
 		return "organizationaldetailsform";
 	}
 
 	@PostMapping(path = "/adddetails")
-	public String orgDetailsAdding(
-			@Valid @ModelAttribute("OrganizationDetailsEntity") OrganizationalDetailsEntity organizationDetails,
-			BindingResult result, Model model,HttpSession session) {
-		if (result.hasErrors()) {
+	public String orgDetailsAdding(@Valid @ModelAttribute("OrganizationDetailsEntity") OrganizationalDetailsEntity organizationDetails,BindingResult result, Model model,HttpSession session) 
+	{
+		if (result.hasErrors()) 
+		{
 			return "organizationaldetailsform";
 		} 
 		else 
@@ -49,11 +51,9 @@ public class OrganizationalDetailsController {
 			PersonalDetailsEntity personalDetails = personalDetailsServices.findById((Long) session.getAttribute("id"));
 			organizationDetails.setPersonalDetailsEntity(personalDetails);
 			organizationDetailServiceobj.addorganizationDetailsServices(organizationDetails);
-			
-			model.addAttribute("orgDetails", organizationDetails);
-			
-			return "redirect:/AchievementsForm";
-		}
-	}
 
+			model.addAttribute("orgDetails", organizationDetails);
+			return "redirect:/AchievementsForm";		
+        }
+    }
 }
