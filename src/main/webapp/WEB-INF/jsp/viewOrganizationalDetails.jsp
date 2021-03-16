@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">OCTYPE html>
 <html lang="en">
+=======
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ page isELIgnored="false"%>
+<!DOCTYPE html>
+<html>
+>>>>>>> 8623c8f404c8ca65f8d5500d7c7c49aac419ade0
 <head>
 
 	<meta charset="UTF-8">
@@ -211,6 +219,7 @@ justify-content: space-between;
 
 
 <body>
+<<<<<<< HEAD
 
 <div class="resume">
    <div class="resume_left">
@@ -425,6 +434,10 @@ justify-content: space-between;
   </div>
 </div>
 
+=======
+	<jsp:include page="dashboard.jsp" flush="true" />
+	<p>${orgDetails}</p>
+>>>>>>> 8623c8f404c8ca65f8d5500d7c7c49aac419ade0
 </body>
 </html>
 

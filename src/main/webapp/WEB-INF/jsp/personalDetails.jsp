@@ -8,21 +8,22 @@
 </head>
 <body>
 
-<jsp:include page = "dashboard.jsp" flush = "true" /> 
+	<jsp:include page="dashboard.jsp" flush="true" />
 	<form action="PersonalDetailsProcessing" method="post">
 		<table align="center" width="700" height="800">
 
 			<tr>
 				<th>Name</th>
 				<td><input type="text" name="userFirstName" maxlength="20"
-					placeholder="firstName" required style="color: black" ;/></td>
+					placeholder="firstName"  style="color: black" ;/></td>
 
 				<td><input type="text" name="userMiddleName" maxlength="20"
-					placeholder="middleName" required style="color: black" ;/></td>
+					placeholder="middleName" style="color: black" ;/></td>
 
 				<td><input type="text" name="userLastName" maxlength="20"
-					placeholder="LastName" required style="color: black" ;/></td>
+					placeholder="LastName" style="color: black" ;/></td>
 			</tr>
+
 
 			<tr>
 				<th>Date Of Birth</th>
@@ -43,8 +44,7 @@
 				<td>Female <input type="radio" id="female" name="gender"
 					value="female"></td>
 				<td>other <input type="radio" id="other" name="gender"
-					value="other">
-				</t>
+					value="other"> </t>
 			</tr>
 
 			<tr>
@@ -58,6 +58,13 @@
 						<option value="Seperated" style="color: black";>Seperated</option>
 						<option value="Divorced" style="color: black";>Divorced</option>
 				</select></td>
+			</tr>
+
+			<tr>
+				<th>About</th>
+				<td><textarea rows="6" cols="25" name="about"
+						style="color: black" ;
+							placeholder="about" required></textarea></td>
 			</tr>
 
 			<tr>
@@ -99,7 +106,7 @@
 				<td><input type="text" name="country" maxlength="20"
 					placeholder="country" required style="color: black" ;/></td>
 			</tr>
-			
+
 			<tr>
 				<th>City</th>
 				<td><input type="text" name="city" maxlength="20"

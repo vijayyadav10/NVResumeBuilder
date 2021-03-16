@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nv.resumebuilder.entity.ExperienceDetailsEntity;
 import com.nv.resumebuilder.entity.PersonalDetailsEntity;
 import com.nv.resumebuilder.repository.PersonalDetailsRepository;
 import com.nv.resumebuilder.service.PersonalDetailsServices;

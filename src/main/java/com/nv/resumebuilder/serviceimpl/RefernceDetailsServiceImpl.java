@@ -19,21 +19,20 @@ public class RefernceDetailsServiceImpl implements RefernceDetailsService {
 	}
 
 	@Override
-	public List<ReferenceDetailsEntity> getAllRefernceDetails() {
-
-		return (List<ReferenceDetailsEntity>) repository.findAll();
+	public List<ReferenceDetailsEntity> getAllRefernceDetails(long id) {
+		return repository.findAllById(id);
 	}
 
 	@Override
-	public ReferenceDetailsEntity getRefernceDetailsById(int i) {
+	public ReferenceDetailsEntity getRefernceDetailsById(long i) {
 
 		ReferenceDetailsEntity refernceEntity = repository.findById(i).orElse(null);
 		return refernceEntity;
 	}
 
 	@Override
-	public void deleteRefernceDetails(int id) {
-		
+	public void deleteRefernceDetails(long id) {
+
 		repository.deleteById(id);
 	}
 

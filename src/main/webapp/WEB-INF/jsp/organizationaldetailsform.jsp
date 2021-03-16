@@ -29,7 +29,7 @@ th, td {
 </style>
 </head>
 <body>
- <jsp:include page = "dashboard.jsp" flush = "true" />
+	<jsp:include page="dashboard.jsp" flush="true" />
 	<div class="container mt-5">
 		<form:form action="adddetails" method="post"
 			modelAttribute="OrganizationDetailsEntity">

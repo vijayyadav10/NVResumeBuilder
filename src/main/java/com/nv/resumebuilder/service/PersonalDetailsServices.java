@@ -4,7 +4,8 @@ import com.nv.resumebuilder.entity.PersonalDetailsEntity;
 
 public interface PersonalDetailsServices {
 	public PersonalDetailsEntity savePersonalDetails(PersonalDetailsEntity personalDetailsEntity);
-	
+
 	public PersonalDetailsEntity findById(Long theId);
+
 	
 }

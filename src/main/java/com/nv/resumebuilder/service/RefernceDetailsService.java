@@ -7,9 +7,9 @@ import com.nv.resumebuilder.entity.ReferenceDetailsEntity;
 public interface RefernceDetailsService {
 	public ReferenceDetailsEntity saveRefernceDetails(ReferenceDetailsEntity refernceDetails);
 
-	public List<ReferenceDetailsEntity> getAllRefernceDetails();
+	public List<ReferenceDetailsEntity> getAllRefernceDetails(long id);
 
-	public ReferenceDetailsEntity getRefernceDetailsById(int id);
+	public ReferenceDetailsEntity getRefernceDetailsById(long id);
 
-	public void deleteRefernceDetails(int id);
+	public void deleteRefernceDetails(long id);
 }

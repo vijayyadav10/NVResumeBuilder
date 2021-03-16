@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">OCTYPE html>
+=======
+OCTYPE html>
+>>>>>>> 8623c8f404c8ca65f8d5500d7c7c49aac419ade0
 <html lang="en">
 <head>
 
@@ -311,7 +315,23 @@ justify-content: space-between;
               
              </div>
          </li>
+<<<<<<< HEAD
            
+=======
+<<<<<<< HEAD
+              <li>
+             <div class="icon">
+               <i class="fab fa-facebook-square"></i>
+             </div>
+             <div class="data">
+               <p class="semi-bold">Facebook</p>
+               
+             </div>
+             </li>
+=======
+           
+>>>>>>> 171450b3feeb20b68b7ea56d45ad5889b4fa0dc1
+>>>>>>> 8623c8f404c8ca65f8d5500d7c7c49aac419ade0
          </ul>
        </div>
        
@@ -386,7 +406,10 @@ justify-content: space-between;
      <div class="resume_item resume_currentWork">
         <div class="title">
            <p class="bold">Current Organization</p>
+<<<<<<< HEAD
            <h6>${orgDetails.comName}</h6>
+=======
+>>>>>>> 8623c8f404c8ca65f8d5500d7c7c49aac419ade0
          </div>
         <ul>
             <li>
