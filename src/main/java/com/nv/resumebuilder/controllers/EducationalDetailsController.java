@@ -31,7 +31,7 @@ public class EducationalDetailsController {
      }
 
 	@RequestMapping("/education")
-	public String education(Model model) {
+	public String education(Model model) {	
 		model.addAttribute("EducationalDetailsEntity", new EducationalDetailsEntity());
 		return "educational";
 	}
