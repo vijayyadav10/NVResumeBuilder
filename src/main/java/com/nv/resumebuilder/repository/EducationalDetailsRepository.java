@@ -9,6 +9,7 @@ import com.nv.resumebuilder.entity.EducationalDetailsEntity;
 
 @Repository
 public interface EducationalDetailsRepository extends CrudRepository<EducationalDetailsEntity, Long> {
-	@Query(value = "SELECT * FROM EDUCATIONAL_DETAILS_ENTITY  where PERSONAL_DETAILS_ENTITY_ID =?", nativeQuery = true)
-	EducationalDetailsEntity findByPersonId( @Param("id") Long id);
+	@Query(value = "SELECT * FROM educationaldetails  where PERSONAL_DETAILS_ENTITY_ID =?", nativeQuery = true)
+	EducationalDetailsEntity findByPersonId(@Param("id") Long id);
+
 }

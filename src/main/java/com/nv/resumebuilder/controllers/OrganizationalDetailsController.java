@@ -17,7 +17,9 @@ import com.nv.resumebuilder.service.OrganizationalDetailsService;
 import com.nv.resumebuilder.service.PersonalDetailsServices;
 
 @Controller
-public class OrganizationalDetailsController {
+public class OrganizationalDetailsController 
+{
+
 
 	private OrganizationalDetailsService organizationDetailServiceobj;
 	private PersonalDetailsServices personalDetailsServices;
@@ -31,7 +33,8 @@ public class OrganizationalDetailsController {
     }
 
 	@GetMapping(value = "/organizationaldetailsform")
-	public String orgForm(Model model) {
+	public String orgForm(Model model) 
+	{
 		model.addAttribute("OrganizationDetailsEntity", new OrganizationalDetailsEntity());
 		return "organizationaldetailsform";
 	}

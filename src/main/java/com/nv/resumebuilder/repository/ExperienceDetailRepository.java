@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.nv.resumebuilder.entity.ExperienceDetailsEntity;
 
-public interface ExperienceDetailRepository extends JpaRepository<ExperienceDetailsEntity, Long>{
-	@Query(value = "select * from experiences e where e.id =?", nativeQuery = true)
-	public ExperienceDetailsEntity findByperson_id( @Param("id") Long id);
+public interface ExperienceDetailRepository extends JpaRepository<ExperienceDetailsEntity, Long> {
+	@Query(value = "select * from experiencedetails e where e.id =?", nativeQuery = true)
+	public ExperienceDetailsEntity findByperson_id(@Param("id") Long id);
 }

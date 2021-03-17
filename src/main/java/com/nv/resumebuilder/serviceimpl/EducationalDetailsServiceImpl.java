@@ -23,7 +23,7 @@ public class EducationalDetailsServiceImpl implements EducationalDetailsService 
 	}
 
 	@Override
-	public EducationalDetailsEntity findByPersonId(long id) {
+	public EducationalDetailsEntity findByPersonId(Long id) {
 		Optional<EducationalDetailsEntity> result = Optional
 				.ofNullable(this.educationalDetailsRepository.findByPersonId(id));
 

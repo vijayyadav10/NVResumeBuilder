@@ -149,6 +149,7 @@ public class PersonalDetailsEntity implements Serializable {
 	@Column
 	@NotEmpty
 	private String city;
+
 	@Column
 	@NotEmpty
 	private String country;

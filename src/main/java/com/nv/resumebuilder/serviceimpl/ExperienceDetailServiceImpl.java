@@ -1,6 +1,5 @@
 package com.nv.resumebuilder.serviceimpl;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +17,6 @@ public class ExperienceDetailServiceImpl implements ExperienceDetailService {
 	@Autowired
 	public ExperienceDetailServiceImpl(ExperienceDetailRepository theExperienceDetailRepository) {
 		this.experienceDetailRepository = theExperienceDetailRepository;
-	}
-
-	@Override
-	public List<ExperienceDetailsEntity> findAll() {
-		return this.experienceDetailRepository.findAll();
 	}
 
 	@Override

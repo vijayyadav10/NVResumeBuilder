@@ -40,10 +40,11 @@ public class AchievementsFormController {
 	@PostMapping(path = "/AchievementsFormProcessing")
 	public String achievementsFormProcessing(
 			@Valid @ModelAttribute("AchievementsAndHonoursEntity") AchievementsAndHonoursEntity achievemnetsandhonours,
-			BindingResult result, Model model, HttpSession session) {
+			BindingResult result, Model model, HttpSession session) 
+	{
 		if (result.hasErrors()) // The BindingResult interface contains the result of validation and also it
-								// contains errors that may have occurred. The BindingResult must come right
-								// after the model object that is validated
+			// contains errors that may have occurred. The BindingResult must come right
+			// after the model object that is validated
 		{
 			return "AchievementsForm";
 		}

@@ -47,7 +47,7 @@ public class ResumeTemplateController {
 	@Autowired
 	private RefernceDetailsService refernceDetailsService;
 
-	@GetMapping("/download")
+	@GetMapping("/preview")
 	private String downloadResume(HttpSession session, Model model) {
 		//personal details
 		PersonalDetailsEntity personalDetails = this.personalDetailsServices
@@ -80,6 +80,7 @@ public class ResumeTemplateController {
 				.getAllRefernceDetails((Long) session.getAttribute("id"));
 		model.addAttribute("refernceDetailsdata", refernceDetailsdata);
 
-		return "resumeFormet";
+		return "sample";
 	}
+
 }

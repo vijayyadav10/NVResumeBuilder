@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.nv.resumebuilder.entity.AchievementsAndHonoursEntity;
 
 @Repository
-public interface AchievementsAndHonoursRepository extends CrudRepository<AchievementsAndHonoursEntity, Long> {
-	@Query(value = "SELECT * FROM ACHIEVEMENTS_AND_HONOURS_ENTITY where Person_id=?", nativeQuery = true)
+public interface AchievementsAndHonoursRepository extends CrudRepository<AchievementsAndHonoursEntity, Long> 
+{
+	@Query(value = "SELECT * FROM achievements_and_honoursdetails where Person_id=?", nativeQuery = true)
 	AchievementsAndHonoursEntity findByPersonId( @Param("id") Long id);
 }

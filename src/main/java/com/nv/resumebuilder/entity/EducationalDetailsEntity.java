@@ -8,12 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "educationaldetails")
 public class EducationalDetailsEntity {
 
 	@Id
@@ -53,6 +54,13 @@ public class EducationalDetailsEntity {
 	@Column(name = "Masters_yearOfPassing")
 	private String yearOfPassingM;
 
+	@Column(name = "technicalSkills")
+	private String technicalSkills;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "personalDetailsEntity_id")
+	private PersonalDetailsEntity personalDetailsEntity;
+
 	public Long getId() {
 		return id;
 	}
@@ -68,13 +76,6 @@ public class EducationalDetailsEntity {
 	public void setPersonalDetailsEntity(PersonalDetailsEntity personalDetailsEntity) {
 		this.personalDetailsEntity = personalDetailsEntity;
 	}
-
-	@Column(name = "technicalSkills")
-	private String technicalSkills;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "personalDetailsEntity_id")
-	private PersonalDetailsEntity personalDetailsEntity;
 
 	public EducationalDetailsEntity() {
 
