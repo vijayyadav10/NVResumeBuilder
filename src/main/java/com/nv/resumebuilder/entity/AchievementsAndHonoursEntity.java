@@ -8,12 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "achievementsandhonour")
+
 public class AchievementsAndHonoursEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,13 +32,11 @@ public class AchievementsAndHonoursEntity {
 	@Size(min = 1, max = 200, message = "Please enter at least one awards and honoursdetails....")
 	@Column(name = "awards_and_honoursdetails1")
 	private String awardsandhonoursdetails1;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "person_id")
 	private PersonalDetailsEntity personalDetailsEntity;
-	
-	
-	
+
 	public PersonalDetailsEntity getPersonalDetailsEntity() {
 		return personalDetailsEntity;
 	}
@@ -139,5 +136,5 @@ public class AchievementsAndHonoursEntity {
 				+ ", certification1=" + certification1 + ", awardsandhonoursdetails1=" + awardsandhonoursdetails1
 				+ ", personalDetailsEntity=" + personalDetailsEntity + "]";
 	}
-	
+
 }

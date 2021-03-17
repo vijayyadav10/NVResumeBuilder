@@ -17,4 +17,14 @@ public class AchievementsAndHonoursServicesImplementation implements Achievement
 		achievementsAndHonoursRepository.save(achievemnetsandhonours); // saving our data in h2 database
 		return achievemnetsandhonours;
 	}
+
+	@Override
+	public AchievementsAndHonoursEntity findBYPersonId(Long id) {
+	
+		AchievementsAndHonoursEntity achievementsAndHonoursEntity=achievementsAndHonoursRepository.findByPersonId(id);
+		return achievementsAndHonoursEntity;
+		
+	}
+
+	
 }

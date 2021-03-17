@@ -36,7 +36,7 @@ public class AchievementsFormController {
 	}
 
 	// @RequestMapping(path="/AchievementsFormProcessing" , method =
-	// RequestMethod.POST) // processing the Achievements Form 
+	// RequestMethod.POST) // processing the Achievements Form
 	@PostMapping(path = "/AchievementsFormProcessing")
 	public String achievementsFormProcessing(
 			@Valid @ModelAttribute("AchievementsAndHonoursEntity") AchievementsAndHonoursEntity achievemnetsandhonours,
@@ -52,7 +52,8 @@ public class AchievementsFormController {
 		achievemnetsandhonours.setPersonalDetailsEntity(personalDetails);
 		achievementsAndHonoursServices.addAchievementsAndHonours(achievemnetsandhonours);
 		model.addAttribute("achievemnetsandhonours1", achievemnetsandhonours);
-		return "AchievementsFormProcessing";
+		return "redirect:/refernceDetails";
 
-	}  
+	}
+
 }

@@ -134,7 +134,7 @@ public class PersonalDetailsEntity implements Serializable {
 
 	@Column
 	@NotNull(message = "is required")
-	@Email(message = "Invalid email! Please enter valid email")
+	//@Email(message = "Invalid email! Please enter valid email")
 	private String skypeId;
 
 	@Column
