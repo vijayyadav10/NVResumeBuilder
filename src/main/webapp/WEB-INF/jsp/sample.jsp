@@ -9,8 +9,17 @@
 <body>
 
 <jsp:include page = "dashboard.jsp" flush = "true" />
-<p>${personalDetails}</p>
+<p>${personalDetails.userFirstName}</p>
+<p>${personalDetails.userMiddleName}</p>
+
 <p>${educationalDetails}</p>
+
+<p>${organizationalDetails}</p>
+
+<p>${experienceDetails}</p>
+
+<p>${projectDetails}</p>
+
 <p>${achievementsAndHonours}</p>
 <p>${refernceDetailsdata}</p>
 

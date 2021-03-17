@@ -1,20 +1,21 @@
 package com.nv.resumebuilder.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "OrganizationDetails")
 public class OrganizationalDetailsEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "comName")
@@ -28,7 +29,10 @@ public class OrganizationalDetailsEntity {
 	@NotNull(message = "Joining Date Required")
 	@Column(name = "date")
 	private String date;
-
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "personal_id")
+	private PersonalDetailsEntity personalDetailsEntity;
+	
 	public OrganizationalDetailsEntity() {
 		super();
 	}
@@ -49,6 +53,23 @@ public class OrganizationalDetailsEntity {
 		this.comName = comName;
 		this.designation = designation;
 		this.date = date;
+	}
+
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public PersonalDetailsEntity getPersonalDetailsEntity() {
+		return personalDetailsEntity;
+	}
+
+	public void setPersonalDetailsEntity(PersonalDetailsEntity personalDetailsEntity) {
+		this.personalDetailsEntity = personalDetailsEntity;
 	}
 
 	public String getComName() {
