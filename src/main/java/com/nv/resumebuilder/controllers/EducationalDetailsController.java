@@ -20,15 +20,15 @@ import com.nv.resumebuilder.service.PersonalDetailsServices;
 @Controller
 public class EducationalDetailsController {
 
+	
 	private EducationalDetailsService educationalDetailsService;
-	private PersonalDetailsServices personalDetailsServices;
+	private PersonalDetailsServices personalDetailsService;
 
 	@Autowired
 	public EducationalDetailsController(EducationalDetailsService educationalDetailsService , PersonalDetailsServices personalDetailsService) {
 	this.educationalDetailsService = educationalDetailsService;
-	this.personalDetailsServices = personalDetailsService;
-
-	}
+	this.personalDetailsService = personalDetailsService;
+     }
 
 	@RequestMapping("/education")
 	public String education(Model model) {
@@ -47,7 +47,7 @@ public class EducationalDetailsController {
 		}
 		
 
-		PersonalDetailsEntity personalDetails = this.personalDetailsServices
+		PersonalDetailsEntity personalDetails = this.personalDetailsService
 				.findById((Long) session.getAttribute("id"));
         details.setPersonalDetailsEntity(personalDetails);
         
