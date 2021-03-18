@@ -43,13 +43,12 @@ public class ReferenceDetailsDto implements Serializable {
 	@Size(max = 40, message = "Enter upto 40 characters")
 	private String organization;
 
-	
 	public ReferenceDetailsDto() {
 
 	}
 
-	public ReferenceDetailsDto(String refernceName, String designation, String emailId, String contactNo, String address,
-			String organization) {
+	public ReferenceDetailsDto(String refernceName, String designation, String emailId, String contactNo,
+			String address, String organization) {
 
 		this.refernceName = refernceName;
 		this.designation = designation;
@@ -59,9 +58,9 @@ public class ReferenceDetailsDto implements Serializable {
 		this.organization = organization;
 	}
 
-	public ReferenceDetailsDto(Long id,String refernceName, String designation, String emailId, String contactNo, String address,
-			String organization) {
-       this.id=id;
+	public ReferenceDetailsDto(Long id, String refernceName, String designation, String emailId, String contactNo,
+			String address, String organization) {
+		this.id = id;
 		this.refernceName = refernceName;
 		this.designation = designation;
 		this.emailId = emailId;
@@ -70,8 +69,6 @@ public class ReferenceDetailsDto implements Serializable {
 		this.organization = organization;
 	}
 
-	
-	
 	public Long getId() {
 		return id;
 	}
@@ -195,8 +192,5 @@ public class ReferenceDetailsDto implements Serializable {
 				+ ", emailId=" + emailId + ", contactNo=" + contactNo + ", address=" + address + ", organization="
 				+ organization + "]";
 	}
-
-	
-	
 
 }

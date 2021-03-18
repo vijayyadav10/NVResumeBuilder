@@ -31,7 +31,6 @@ public class PersonalDetailsEntity implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public String getAbout() {
 		return about;
 	}
@@ -135,7 +134,7 @@ public class PersonalDetailsEntity implements Serializable {
 
 	@Column
 	@NotNull(message = "is required")
-	//	@Email(message = "Invalid email! Please enter valid email")
+	// @Email(message = "Invalid email! Please enter valid email")
 	private String skypeId;
 
 	@Column
@@ -155,36 +154,19 @@ public class PersonalDetailsEntity implements Serializable {
 	@NotEmpty
 	private String country;
 
-	@OneToOne(mappedBy = "personalDetailsEntity")
-	private AchievementsAndHonoursEntity  achievementsAndHonoursEntity;
-
-	@OneToOne(mappedBy = "personalDetailsEntity")
-	private EducationalDetailsEntity educationalDetailsEntity;
-
+	/** Person has Experience */
 	@OneToOne(mappedBy = "personalDetailsEntity")
 	private ExperienceDetailsEntity experienceDetail;
 
+	// person has multiple reference Details
 	@OneToMany(mappedBy = "personalDetailsEntity")
 	private List<ReferenceDetailsEntity> refernceDetailsEntity;
 
 	@OneToOne(mappedBy = "personalDetailsEntity")
+	private AchievementsAndHonoursEntity AchievementsAndHonoursEntity;
+	
+	@OneToOne(mappedBy = "personalDetailsEntity")
 	private OrganizationalDetailsEntity organizationalDetailsEntity;
-
-	public AchievementsAndHonoursEntity getAchievementsAndHonoursEntity() {
-		return achievementsAndHonoursEntity;
-	}
-
-	public void setAchievementsAndHonoursEntity(AchievementsAndHonoursEntity achievementsAndHonoursEntity) {
-		this.achievementsAndHonoursEntity = achievementsAndHonoursEntity;
-	}
-
-	public OrganizationalDetailsEntity getOrganizationalDetailsEntity() {
-		return organizationalDetailsEntity;
-	}
-
-	public void setOrganizationalDetailsEntity(OrganizationalDetailsEntity organizationalDetailsEntity) {
-		this.organizationalDetailsEntity = organizationalDetailsEntity;
-	}
 
 	public List<ReferenceDetailsEntity> getRefernceDetailsEntity() {
 		return refernceDetailsEntity;
@@ -214,6 +196,9 @@ public class PersonalDetailsEntity implements Serializable {
 	@NotEmpty(message = "Select at least one language.")
 	private String languageKnown;
 
+	// Person has Experience
+	@OneToOne(mappedBy = "personalDetailsEntity")
+	private EducationalDetailsEntity educationalDetailsEntity;
 
 	public long getId() {
 		return id;
@@ -334,7 +319,6 @@ public class PersonalDetailsEntity implements Serializable {
 	public void setLanguageKnown(String languageKnown) {
 		this.languageKnown = languageKnown;
 	}
-
 
 	@Override
 	public String toString() {

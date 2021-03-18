@@ -11,6 +11,6 @@ import com.nv.resumebuilder.entity.ReferenceDetailsEntity;
 
 @Repository
 public interface RefernceDetailsRepository extends JpaRepository<ReferenceDetailsEntity, Long> {
-	@Query(value = "select * from REFERENCE_DETAILS_ENTITY b where b.PERSONALDETAILS_ID =?", nativeQuery = true)
+	@Query(value = "select * from referncedetails b where b.PERSONALDETAILS_ID =?", nativeQuery = true)
 	List<ReferenceDetailsEntity> findAllById( @Param("id") Long id);
 }

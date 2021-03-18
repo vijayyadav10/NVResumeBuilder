@@ -7,5 +7,4 @@ public interface PersonalDetailsServices {
 
 	public PersonalDetailsEntity findById(Long theId);
 
-	
 }

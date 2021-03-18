@@ -1,6 +1,5 @@
 package com.nv.resumebuilder.serviceimpl;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import com.nv.resumebuilder.entity.ExperienceDetailsEntity;
 import com.nv.resumebuilder.repository.ExperienceDetailRepository;
 import com.nv.resumebuilder.service.ExperienceDetailService;
 
-
 @Service
 public class ExperienceDetailServiceImpl implements ExperienceDetailService {
 
@@ -19,11 +17,6 @@ public class ExperienceDetailServiceImpl implements ExperienceDetailService {
 	@Autowired
 	public ExperienceDetailServiceImpl(ExperienceDetailRepository theExperienceDetailRepository) {
 		this.experienceDetailRepository = theExperienceDetailRepository;
-	}
-
-	@Override
-	public List<ExperienceDetailsEntity> findAll() {
-		return this.experienceDetailRepository.findAll();
 	}
 
 	@Override
@@ -52,11 +45,19 @@ public class ExperienceDetailServiceImpl implements ExperienceDetailService {
 	}
 
 	@Override
-	public ExperienceDetailsEntity findByOtherId(Long id) 
-	{
-		Optional <ExperienceDetailsEntity> experienceDetailsEntityOptional=experienceDetailRepository.findByperson_id(id);
-		ExperienceDetailsEntity experienceDetailsEntity=experienceDetailsEntityOptional.get();
-		return experienceDetailsEntity;	
+	public ExperienceDetailsEntity findByOtherId(Long id) {
+		Optional<ExperienceDetailsEntity> result = Optional
+				.ofNullable(this.experienceDetailRepository.findByperson_id(id));
+
+		ExperienceDetailsEntity experienceDetailsEntity = null;
+
+		if (result.isPresent()) {
+			experienceDetailsEntity = result.get();
+		} else {
+			throw new RuntimeException("Did not find employee id - " + id);
+		}
+
+		return experienceDetailsEntity;
 	}
 
 }

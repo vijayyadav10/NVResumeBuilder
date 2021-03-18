@@ -8,5 +8,6 @@ import com.nv.resumebuilder.entity.EducationalDetailsEntity;
 public interface EducationalDetailsService {
 
 	public EducationalDetailsEntity educationalDetailsServices(EducationalDetailsEntity details);
-	public EducationalDetailsEntity findByOtherId(Long id);
+	public EducationalDetailsEntity findByPersonId(Long id);
+	
 }

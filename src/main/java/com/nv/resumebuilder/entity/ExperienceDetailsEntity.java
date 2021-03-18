@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nv.resumebuilder.validation.PastDate;
 
 @Entity
-@Table(name = "experiences")
+@Table(name = "experiencedetails")
 public class ExperienceDetailsEntity {
 
 	@Id

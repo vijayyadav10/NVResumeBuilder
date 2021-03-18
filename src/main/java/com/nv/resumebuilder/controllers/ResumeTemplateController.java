@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.nv.resumebuilder.entity.AchievementsAndHonoursEntity;
 import com.nv.resumebuilder.entity.EducationalDetailsEntity;
@@ -25,8 +25,7 @@ import com.nv.resumebuilder.service.ProjectService;
 import com.nv.resumebuilder.service.RefernceDetailsService;
 
 @Controller
-public class ResumeTempletController 
-{
+public class ResumeTemplateController {
 	@Autowired
 	private PersonalDetailsServices personalDetailsServices;
 
@@ -48,32 +47,40 @@ public class ResumeTempletController
 	@Autowired
 	private RefernceDetailsService refernceDetailsService;
 
-	@RequestMapping("/preview") 
-	public String achievementsForm(Model model,HttpSession session) 
-	{
-		PersonalDetailsEntity personalDetails = personalDetailsServices.findById((Long) session.getAttribute("id"));
-
-		PersonalDetailsEntity personalDetailsEntity=personalDetailsServices.findById(personalDetails.getId());
-		model.addAttribute("personalDetails",personalDetailsEntity);
-
-		AchievementsAndHonoursEntity achievementsAndHonoursEntity=achievementsAndHonoursServices.findByOtherId(personalDetails.getId());
-		model.addAttribute("achievementsAndHonoursDetails",achievementsAndHonoursEntity);
-
-		EducationalDetailsEntity educationalDetailsEntity=educationalDetailsService.findByOtherId(personalDetails.getId());
-		model.addAttribute("educationalDetails",educationalDetailsEntity);
-
-		ExperienceDetailsEntity experienceDetailsEntity=experienceDetailService.findByOtherId(personalDetails.getId());        
-		model.addAttribute("experienceDetails",experienceDetailsEntity);
-
-	    OrganizationalDetailsEntity organizationalDetailsEntity=organizationalDetailsService.findByOtherId(personalDetails.getId());        
+	@GetMapping("/preview")
+	private String downloadResume(HttpSession session, Model model) {
+		//personal details
+		PersonalDetailsEntity personalDetails = this.personalDetailsServices
+				.findById((Long) session.getAttribute("id"));
+		model.addAttribute("personalDetails", personalDetails);
+		
+		//Education details
+		EducationalDetailsEntity educationalDetails=educationalDetailsService.findByPersonId((Long) session.getAttribute("id"));
+		model.addAttribute("educationalDetails", educationalDetails);
+		
+		//organizational details
+		OrganizationalDetailsEntity organizationalDetailsEntity=organizationalDetailsService.findByOtherId((Long) session.getAttribute("id"));        
 	    model.addAttribute("organizationalDetails",organizationalDetailsEntity);
 
-		ProjectDetailsEntity projectDetailsEntity=projectService.findById(personalDetails.getId());
+		//Experience details
+		ExperienceDetailsEntity experienceDetailsEntity=experienceDetailService.findByOtherId((Long) session.getAttribute("id"));        
+		model.addAttribute("experienceDetails",experienceDetailsEntity);
+
+	    
+		List<ProjectDetailsEntity> projectDetailsEntity=projectService.findById(experienceDetailsEntity.getExperienceId());
 		model.addAttribute("projectDetails",projectDetailsEntity);
+		
+       //achievments and honours details
+		AchievementsAndHonoursEntity achievementsAndHonours = achievementsAndHonoursServices
+				.findBYPersonId((Long) session.getAttribute("id"));
+		model.addAttribute("achievementsAndHonours", achievementsAndHonours);
+		
+        //Reference Details
+		List<ReferenceDetailsEntity> refernceDetailsdata = refernceDetailsService
+				.getAllRefernceDetails((Long) session.getAttribute("id"));
+		model.addAttribute("refernceDetailsdata", refernceDetailsdata);
 
-		List<ReferenceDetailsEntity> referenceDetailsEntity=refernceDetailsService.getAllRefernceDetails(personalDetails.getId());
-		model.addAttribute("referenceDetails",referenceDetailsEntity);
-
-		return "resumeFormet";
+		return "sample";
 	}
+
 }

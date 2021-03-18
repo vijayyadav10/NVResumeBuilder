@@ -8,14 +8,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name="referncedetails")
 public class ReferenceDetailsEntity implements Serializable {
-	
+
 	private static final long serialVersionUID = 5581597786026830472L;
 
 	@Id
@@ -46,9 +48,9 @@ public class ReferenceDetailsEntity implements Serializable {
 	private String organization;
 
 	@ManyToOne
-	@JoinColumn(name="personaldetails_id")
+	@JoinColumn(name = "personaldetails_id")
 	private PersonalDetailsEntity personalDetailsEntity;
-	
+
 	public ReferenceDetailsEntity(Long i, String refernceName, String designation, String emailId, String contactNo,
 			String address, String organization) {
 
@@ -76,7 +78,6 @@ public class ReferenceDetailsEntity implements Serializable {
 		this.organization = organization;
 	}
 
-	
 	public PersonalDetailsEntity getPersonalDetailsEntity() {
 		return personalDetailsEntity;
 	}
@@ -84,7 +85,6 @@ public class ReferenceDetailsEntity implements Serializable {
 	public void setPersonalDetailsEntity(PersonalDetailsEntity personalDetailsEntity) {
 		this.personalDetailsEntity = personalDetailsEntity;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -215,9 +215,5 @@ public class ReferenceDetailsEntity implements Serializable {
 			return false;
 		return true;
 	}
-
-	
-
-	
 
 }

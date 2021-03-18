@@ -1,7 +1,5 @@
 package com.nv.resumebuilder.repository;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -11,6 +9,6 @@ import com.nv.resumebuilder.entity.OrganizationalDetailsEntity;
 
 @Repository
 public interface OrganizationalDetailsRepository extends CrudRepository<OrganizationalDetailsEntity, Long> {
-	@Query(value = "select * from organizational_details_entity a where a.personal_id =?", nativeQuery = true)
-	public Optional <OrganizationalDetailsEntity> findBypersonid( @Param("id") Long id);
+	@Query(value = "select * from organizationaldetails a where a.personal_id =?", nativeQuery = true)
+	public OrganizationalDetailsEntity findBypersonid(@Param("id") Long id);
 }

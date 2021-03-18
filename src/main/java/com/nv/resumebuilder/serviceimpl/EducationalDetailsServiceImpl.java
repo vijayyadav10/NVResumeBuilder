@@ -23,10 +23,18 @@ public class EducationalDetailsServiceImpl implements EducationalDetailsService 
 	}
 
 	@Override
-	public EducationalDetailsEntity findByOtherId(Long id) 
-	{
-		Optional <EducationalDetailsEntity> educationalDetailsEntityOptional=educationalDetailsRepository.findByperson_id(id);
-		EducationalDetailsEntity educationalDetailsEntity=educationalDetailsEntityOptional.get();
+	public EducationalDetailsEntity findByPersonId(Long id) {
+		Optional<EducationalDetailsEntity> result = Optional
+				.ofNullable(this.educationalDetailsRepository.findByPersonId(id));
+
+		EducationalDetailsEntity educationalDetailsEntity = null;
+
+		if (result.isPresent()) {
+			educationalDetailsEntity = result.get();
+		} else {
+			throw new RuntimeException("Did not find employee id - " + id);
+		}
+
 		return educationalDetailsEntity;
 	}
 

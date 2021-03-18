@@ -2,9 +2,9 @@ package com.nv.resumebuilder.serviceimpl;
 
 import java.util.Optional;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.nv.resumebuilder.entity.OrganizationalDetailsEntity;
 import com.nv.resumebuilder.repository.OrganizationalDetailsRepository;
 import com.nv.resumebuilder.service.OrganizationalDetailsService;
@@ -22,15 +22,20 @@ public class OrganizationalDetailsServiceImpl implements OrganizationalDetailsSe
 	}
 
 	@Override
-	public OrganizationalDetailsEntity findByOtherId(Long id) 
-	{
-		Optional <OrganizationalDetailsEntity> organizationalDetailsEntityOptional=organizationRepository.findBypersonid(id);
-		OrganizationalDetailsEntity organizationdetailsEntity=organizationalDetailsEntityOptional.get();
-		return organizationdetailsEntity;
+	public OrganizationalDetailsEntity findByOtherId(Long id) {
+		// TODO Auto-generated method stub
+		Optional<OrganizationalDetailsEntity> result = Optional
+				.ofNullable(this.organizationRepository.findBypersonid(id));
+
+		OrganizationalDetailsEntity organizationalDetailsEntity = null;
+
+		if (result.isPresent()) {
+			organizationalDetailsEntity = result.get();
+		} else {
+			throw new RuntimeException("Did not find employee id - " + id);
+		}
+
+		return organizationalDetailsEntity;
 	}
-	
-	@Override
-	public List<OrganizationalDetailsEntity> getAllOrganizationalDetails() {
-		return (List<OrganizationalDetailsEntity>) organizationRepository.findAll();
-	}
+
 }
