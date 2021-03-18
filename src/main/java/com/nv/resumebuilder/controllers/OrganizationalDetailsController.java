@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.nv.resumebuilder.entity.OrganizationalDetailsEntity;
+import com.nv.resumebuilder.repository.ProjectRepository;
 import com.nv.resumebuilder.service.OrganizationalDetailsService;
 
 @Controller
@@ -18,15 +19,19 @@ public class OrganizationalDetailsController {
 
 	@Autowired
 	private OrganizationalDetailsService organizationDetailServiceobj;
+	@Autowired
+	private ProjectRepository projectRepository;
 
-	public OrganizationalDetailsController(OrganizationalDetailsService organizationDetailServiceobj) {
+	public OrganizationalDetailsController(OrganizationalDetailsService organizationDetailServiceobj, ProjectRepository projectRepository) {
 		super();
 		this.organizationDetailServiceobj = organizationDetailServiceobj;
+		this.projectRepository = projectRepository;
 	}
 
 	@GetMapping(value = "/organizationaldetailsform")
 	public String orgForm(Model model) {
 		model.addAttribute("OrganizationDetailsEntity", new OrganizationalDetailsEntity());
+		System.out.println("hack"+this.projectRepository.findByExperienceId(1L));
 		return "organizationaldetailsform";
 	}
 

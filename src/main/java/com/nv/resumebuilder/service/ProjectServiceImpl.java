@@ -41,4 +41,9 @@ public class ProjectServiceImpl implements ProjectService{
 		
 	}
 
+//	@Override
+//	public List<ProjectDetailsEntity> findProjectByExperienceId(Long theId) {
+//		return this.projectRepository.findByExperienceId(theId);
+//	}
+
 }
