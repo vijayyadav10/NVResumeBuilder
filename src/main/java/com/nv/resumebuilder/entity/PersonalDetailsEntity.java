@@ -27,7 +27,7 @@ public class PersonalDetailsEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column
@@ -102,10 +102,10 @@ public class PersonalDetailsEntity implements Serializable {
 	@NotEmpty(message = "Select at least one language.")
 	private String languageKnown;
 
-	// Person has Experience
+	// Person has Education
 	@OneToOne(mappedBy = "personalDetailsEntity")
 	private EducationalDetailsEntity educationalDetailsEntity;
-	/** Person has Experience */
+	/* Person has Experience */
 	@OneToOne(mappedBy = "personalDetailsEntity")
 	private ExperienceDetailsEntity experienceDetail;
 
@@ -320,10 +320,3 @@ public class PersonalDetailsEntity implements Serializable {
 	}
 
 }
-
-/*
- * PersonalDetailsEntity personalDetailsEntity=new PersonalDetailsEntity
- * ("userFirstName","userMiddleName","userLastName","birthDate",
- * "nationality","gender","maritialStatus","emailId","linkedinId",
- * "skypeId","phoneNo","currentAddress","city","country","languageKnown");
- */
