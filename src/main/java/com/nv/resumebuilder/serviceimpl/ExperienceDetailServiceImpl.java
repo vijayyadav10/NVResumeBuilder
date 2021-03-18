@@ -1,6 +1,5 @@
 package com.nv.resumebuilder.serviceimpl;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +17,6 @@ public class ExperienceDetailServiceImpl implements ExperienceDetailService {
 	@Autowired
 	public ExperienceDetailServiceImpl(ExperienceDetailRepository theExperienceDetailRepository) {
 		this.experienceDetailRepository = theExperienceDetailRepository;
-	}
-
-	@Override
-	public List<ExperienceDetailsEntity> findAll() {
-		return this.experienceDetailRepository.findAll();
 	}
 
 	@Override
@@ -48,6 +42,22 @@ public class ExperienceDetailServiceImpl implements ExperienceDetailService {
 	@Override
 	public void deleteById(Long theId) {
 		this.experienceDetailRepository.deleteById(theId);
+	}
+
+	@Override
+	public ExperienceDetailsEntity findByOtherId(Long id) {
+		Optional<ExperienceDetailsEntity> result = Optional
+				.ofNullable(this.experienceDetailRepository.findByperson_id(id));
+
+		ExperienceDetailsEntity experienceDetailsEntity = null;
+
+		if (result.isPresent()) {
+			experienceDetailsEntity = result.get();
+		} else {
+			throw new RuntimeException("Did not find employee id - " + id);
+		}
+
+		return experienceDetailsEntity;
 	}
 
 }

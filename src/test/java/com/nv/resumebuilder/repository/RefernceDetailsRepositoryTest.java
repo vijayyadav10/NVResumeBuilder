@@ -28,12 +28,14 @@ class RefernceDetailsRepositoryTest {
 	@Test
 	@DisplayName("Saving data into Repository")
 	void testSaveRepository() {
+		
 		ReferenceDetailsEntity refernceEntity = repository.save(
 				new ReferenceDetailsEntity("Rutuja bagade", "Software developer", "rutuja.bagade@newvisionsoftware.in",
 						"9139251151", "20,Ramcha got,Satara", "New vision softcom and consultancy,Pune"));
+		
 
 		Assert.assertNotNull(refernceEntity.getId());
-		assertThat(refernceEntity).hasFieldOrPropertyWithValue("personName", "Rutuja bagade");
+		assertThat(refernceEntity).hasFieldOrPropertyWithValue("refernceName", "Rutuja bagade");
 		assertThat(refernceEntity).hasFieldOrPropertyWithValue("designation", "Software developer");
 		assertThat(refernceEntity).hasFieldOrPropertyWithValue("contactNo", "9139251151");
 

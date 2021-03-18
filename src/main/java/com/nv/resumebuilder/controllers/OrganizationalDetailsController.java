@@ -1,5 +1,6 @@
 package com.nv.resumebuilder.controllers;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,42 +12,49 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.nv.resumebuilder.entity.OrganizationalDetailsEntity;
-import com.nv.resumebuilder.repository.ProjectRepository;
+import com.nv.resumebuilder.entity.PersonalDetailsEntity;
 import com.nv.resumebuilder.service.OrganizationalDetailsService;
+import com.nv.resumebuilder.service.PersonalDetailsServices;
 
 @Controller
-public class OrganizationalDetailsController {
+public class OrganizationalDetailsController 
+{
 
-	@Autowired
+
 	private OrganizationalDetailsService organizationDetailServiceobj;
-	@Autowired
-	private ProjectRepository projectRepository;
+	private PersonalDetailsServices personalDetailsServices;
 
-	public OrganizationalDetailsController(OrganizationalDetailsService organizationDetailServiceobj, ProjectRepository projectRepository) {
-		super();
+	@Autowired
+	public OrganizationalDetailsController(OrganizationalDetailsService organizationDetailServiceobj,
+			PersonalDetailsServices personalDetailsService) 
+	{
 		this.organizationDetailServiceobj = organizationDetailServiceobj;
-		this.projectRepository = projectRepository;
-	}
+		this.personalDetailsServices = personalDetailsService;
+    }
 
 	@GetMapping(value = "/organizationaldetailsform")
-	public String orgForm(Model model) {
+	public String orgForm(Model model) 
+	{
 		model.addAttribute("OrganizationDetailsEntity", new OrganizationalDetailsEntity());
 		System.out.println("hack"+this.projectRepository.findByExperienceId(1L));
 		return "organizationaldetailsform";
 	}
 
 	@PostMapping(path = "/adddetails")
-	public String orgDetailsAdding(
-			@Valid @ModelAttribute("OrganizationDetailsEntity") OrganizationalDetailsEntity organizationDetails,
-			BindingResult result, Model model) {
-		if (result.hasErrors()) {
+	public String orgDetailsAdding(@Valid @ModelAttribute("OrganizationDetailsEntity") OrganizationalDetailsEntity organizationDetails,BindingResult result, Model model,HttpSession session) 
+	{
+		if (result.hasErrors()) 
+		{
 			return "organizationaldetailsform";
-		} else {
+		} 
+		else 
+		{
+			PersonalDetailsEntity personalDetails = personalDetailsServices.findById((Long) session.getAttribute("id"));
+			organizationDetails.setPersonalDetailsEntity(personalDetails);
 			organizationDetailServiceobj.addorganizationDetailsServices(organizationDetails);
-			model.addAttribute("orgDetails", organizationDetails);
-			System.out.println(organizationDetails);
-			return "redirect:/AchievementsForm";
-		}
-	}
 
+			model.addAttribute("orgDetails", organizationDetails);
+			return "redirect:/AchievementsForm";		
+        }
+    }
 }

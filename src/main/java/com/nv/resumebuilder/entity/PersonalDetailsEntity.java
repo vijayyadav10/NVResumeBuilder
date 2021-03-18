@@ -1,13 +1,14 @@
 package com.nv.resumebuilder.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -20,50 +21,23 @@ import javax.validation.constraints.Size;
 @Table(name = "personaldetails")
 public class PersonalDetailsEntity implements Serializable {
 
-	public PersonalDetailsEntity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public PersonalDetailsEntity(long id,
-			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userFirstName,
-			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userMiddleName,
-			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userLastName,
-			@NotNull(message = "is required") String birthDate, @NotEmpty String nationality,
-			@NotNull(message = "Select gender") @NotEmpty String gender, @NotEmpty String maritialStatus,
-			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String emailId,
-			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String linkedinId,
-			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String skypeId,
-			@NotEmpty @Pattern(regexp = "(^$|[0-9]{10})") String phoneNo, @NotEmpty String currentAddress,
-			@NotEmpty String city, @NotEmpty String country,
-			@NotEmpty(message = "Select at least one language.") String languageKnown) {
-		super();
-		this.id = id;
-		this.userFirstName = userFirstName;
-		this.userMiddleName = userMiddleName;
-		this.userLastName = userLastName;
-		this.birthDate = birthDate;
-		this.nationality = nationality;
-		this.gender = gender;
-		this.maritialStatus = maritialStatus;
-		this.emailId = emailId;
-		this.linkedinId = linkedinId;
-		this.skypeId = skypeId;
-		this.phoneNo = phoneNo;
-		this.currentAddress = currentAddress;
-		this.city = city;
-		this.country = country;
-		this.languageKnown = languageKnown;
-	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column
 	@NotEmpty
 	@Size(min = 1, max = 10, message = "size upto 10 Characters..")
 	private String userFirstName;
+
+	@Column
+	@NotEmpty
+	private String about;
 
 	@Column
 	@NotEmpty
@@ -79,16 +53,6 @@ public class PersonalDetailsEntity implements Serializable {
 	// @Temporal(TemporalType.DATE)
 	@Column
 	private String birthDate;
-
-	/*
-	 * @Column //@DateTimeFormat(pattern ="dd/mm/yyyy")
-	 * 
-	 * @Temporal(TemporalType.DATE) //@CreationTimestamp
-	 * 
-	 * @NotNull
-	 * 
-	 * @Past private LocalDate birthDate;
-	 */
 
 	@Column
 	@NotEmpty
@@ -115,7 +79,7 @@ public class PersonalDetailsEntity implements Serializable {
 
 	@Column
 	@NotNull(message = "is required")
-	@Email(message = "Invalid email! Please enter valid email")
+	// @Email(message = "Invalid email! Please enter valid email")
 	private String skypeId;
 
 	@Column
@@ -130,13 +94,84 @@ public class PersonalDetailsEntity implements Serializable {
 	@Column
 	@NotEmpty
 	private String city;
+
 	@Column
 	@NotEmpty
 	private String country;
+	@Column
+	@NotEmpty(message = "Select at least one language.")
+	private String languageKnown;
 
-	/** Person has Experience */
+	// Person has Education
+	@OneToOne(mappedBy = "personalDetailsEntity")
+	private EducationalDetailsEntity educationalDetailsEntity;
+	/* Person has Experience */
 	@OneToOne(mappedBy = "personalDetailsEntity")
 	private ExperienceDetailsEntity experienceDetail;
+
+	// person has multiple reference Details
+	@OneToMany(mappedBy = "personalDetailsEntity")
+	private List<ReferenceDetailsEntity> refernceDetailsEntity;
+
+	@OneToOne(mappedBy = "personalDetailsEntity")
+	private AchievementsAndHonoursEntity AchievementsAndHonoursEntity;
+
+	@OneToOne(mappedBy = "personalDetailsEntity")
+	private OrganizationalDetailsEntity organizationalDetailsEntity;
+
+	public PersonalDetailsEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public PersonalDetailsEntity(long id, String userFirstName, String about, String userMiddleName,
+			String userLastName, String birthDate, String nationality, String gender, String maritialStatus,
+			String emailId, String linkedinId, String skypeId, String phoneNo, String currentAddress, String city,
+			String country, String languageKnown) {
+		super();
+		this.id = id;
+		this.userFirstName = userFirstName;
+		this.about = about;
+		this.userMiddleName = userMiddleName;
+		this.userLastName = userLastName;
+		this.birthDate = birthDate;
+		this.nationality = nationality;
+		this.gender = gender;
+		this.maritialStatus = maritialStatus;
+		this.emailId = emailId;
+		this.linkedinId = linkedinId;
+		this.skypeId = skypeId;
+		this.phoneNo = phoneNo;
+		this.currentAddress = currentAddress;
+		this.city = city;
+		this.country = country;
+
+		this.languageKnown = languageKnown;
+	}
+
+	public String getAbout() {
+		return about;
+	}
+
+	public void setAbout(String about) {
+		this.about = about;
+	}
+
+	public ExperienceDetailsEntity getExperienceDetail() {
+		return experienceDetail;
+	}
+
+	public void setExperienceDetail(ExperienceDetailsEntity experienceDetail) {
+		this.experienceDetail = experienceDetail;
+	}
+
+	public List<ReferenceDetailsEntity> getRefernceDetailsEntity() {
+		return refernceDetailsEntity;
+	}
+
+	public void setRefernceDetailsEntity(List<ReferenceDetailsEntity> refernceDetailsEntity) {
+		this.refernceDetailsEntity = refernceDetailsEntity;
+	}
 
 	public String getCity() {
 		return city;
@@ -154,10 +189,6 @@ public class PersonalDetailsEntity implements Serializable {
 		this.country = country;
 	}
 
-	@Column
-	@NotEmpty(message = "Select at least one language.")
-	private String languageKnown;
-
 	public long getId() {
 		return id;
 	}
@@ -168,6 +199,14 @@ public class PersonalDetailsEntity implements Serializable {
 
 	public String getUserFirstName() {
 		return userFirstName;
+	}
+
+	public EducationalDetailsEntity getEducationalDetailsEntity() {
+		return educationalDetailsEntity;
+	}
+
+	public void setEducationalDetailsEntity(EducationalDetailsEntity educationalDetailsEntity) {
+		this.educationalDetailsEntity = educationalDetailsEntity;
 	}
 
 	public void setUserFirstName(String userFirstName) {
@@ -272,18 +311,12 @@ public class PersonalDetailsEntity implements Serializable {
 
 	@Override
 	public String toString() {
-		return "PersonalDetailsEntity [id=" + id + ", userFirstName=" + userFirstName + ", userMiddleName="
-				+ userMiddleName + ", userLastName=" + userLastName + ", birthDate=" + birthDate + ", nationality="
-				+ nationality + ", gender=" + gender + ", maritialStatus=" + maritialStatus + ", emailId=" + emailId
-				+ ", linkedinId=" + linkedinId + ", skypeId=" + skypeId + ", phoneNo=" + phoneNo + ", currentAddress="
-				+ currentAddress + ", city=" + city + ", country=" + country + ", languageKnown=" + languageKnown + "]";
+		return "PersonalDetailsEntity [id=" + id + ", userFirstName=" + userFirstName + ", about=" + about
+				+ ", userMiddleName=" + userMiddleName + ", userLastName=" + userLastName + ", birthDate=" + birthDate
+				+ ", nationality=" + nationality + ", gender=" + gender + ", maritialStatus=" + maritialStatus
+				+ ", emailId=" + emailId + ", linkedinId=" + linkedinId + ", skypeId=" + skypeId + ", phoneNo="
+				+ phoneNo + ", currentAddress=" + currentAddress + ", city=" + city + ", country=" + country
+				+ ", languageKnown=" + languageKnown + "]";
 	}
 
 }
-
-/*
- * PersonalDetailsEntity personalDetailsEntity=new PersonalDetailsEntity
- * ("userFirstName","userMiddleName","userLastName","birthDate",
- * "nationality","gender","maritialStatus","emailId","linkedinId",
- * "skypeId","phoneNo","currentAddress","city","country","languageKnown");
- */

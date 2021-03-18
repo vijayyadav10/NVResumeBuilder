@@ -18,7 +18,7 @@ import com.nv.resumebuilder.entity.AchievementsAndHonoursEntity;
 import com.nv.resumebuilder.service.AchievementsAndHonoursServices;
 
 @Controller    // this controller is for Achievements Form
-public class AchievementsFormController 
+public class AchievementsFormControllerTest
 {
 	@Autowired
     private AchievementsAndHonoursServices achievementsAndHonoursServices; // calling services to store data

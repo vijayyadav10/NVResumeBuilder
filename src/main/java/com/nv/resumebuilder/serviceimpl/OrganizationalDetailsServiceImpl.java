@@ -1,5 +1,7 @@
 package com.nv.resumebuilder.serviceimpl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +20,22 @@ public class OrganizationalDetailsServiceImpl implements OrganizationalDetailsSe
 		organizationRepository.save(organizationdetailsEntity);
 		return organizationdetailsEntity;
 	}
+
+	@Override
+	public OrganizationalDetailsEntity findByOtherId(Long id) {
+		// TODO Auto-generated method stub
+		Optional<OrganizationalDetailsEntity> result = Optional
+				.ofNullable(this.organizationRepository.findBypersonid(id));
+
+		OrganizationalDetailsEntity organizationalDetailsEntity = null;
+
+		if (result.isPresent()) {
+			organizationalDetailsEntity = result.get();
+		} else {
+			throw new RuntimeException("Did not find employee id - " + id);
+		}
+
+		return organizationalDetailsEntity;
+	}
+
 }

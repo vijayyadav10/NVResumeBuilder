@@ -6,25 +6,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name="referncedetails")
 public class ReferenceDetailsEntity implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 5581597786026830472L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	@NotEmpty
 	@Size(min = 10, max = 30)
-	private String personName;
+	private String refernceName;
 
 	@NotEmpty
 	@Size(min = 2, max = 20, message = "Enter designation upto 20 characters!!")
@@ -45,11 +47,15 @@ public class ReferenceDetailsEntity implements Serializable {
 	@Size(max = 40, message = "Enter upto 40 characters")
 	private String organization;
 
-	public ReferenceDetailsEntity(Integer i, String personName, String designation, String emailId, String contactNo,
+	@ManyToOne
+	@JoinColumn(name = "personaldetails_id")
+	private PersonalDetailsEntity personalDetailsEntity;
+
+	public ReferenceDetailsEntity(Long i, String refernceName, String designation, String emailId, String contactNo,
 			String address, String organization) {
 
 		this.id = i;
-		this.personName = personName;
+		this.refernceName = refernceName;
 		this.designation = designation;
 		this.emailId = emailId;
 		this.contactNo = contactNo;
@@ -61,10 +67,10 @@ public class ReferenceDetailsEntity implements Serializable {
 
 	}
 
-	public ReferenceDetailsEntity(String personName, String designation, String emailId, String contactNo,
+	public ReferenceDetailsEntity(String refernceName, String designation, String emailId, String contactNo,
 			String address, String organization) {
 
-		this.personName = personName;
+		this.refernceName = refernceName;
 		this.designation = designation;
 		this.emailId = emailId;
 		this.contactNo = contactNo;
@@ -72,20 +78,28 @@ public class ReferenceDetailsEntity implements Serializable {
 		this.organization = organization;
 	}
 
-	public Integer getId() {
+	public PersonalDetailsEntity getPersonalDetailsEntity() {
+		return personalDetailsEntity;
+	}
+
+	public void setPersonalDetailsEntity(PersonalDetailsEntity personalDetailsEntity) {
+		this.personalDetailsEntity = personalDetailsEntity;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getPersonName() {
-		return personName;
+	public String getRefernceName() {
+		return refernceName;
 	}
 
-	public void setPersonName(String personName) {
-		this.personName = personName;
+	public void setRefernceName(String refernceName) {
+		this.refernceName = refernceName;
 	}
 
 	public String getDesignation() {
@@ -130,7 +144,7 @@ public class ReferenceDetailsEntity implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ReferenceDetailsEntity [ personName=" + personName + ", designation=" + designation + ", emailId="
+		return "ReferenceDetailsEntity [ personName=" + refernceName + ", designation=" + designation + ", emailId="
 				+ emailId + ", contactNo=" + contactNo + ", address=" + address + ", organization=" + organization
 				+ "]";
 	}
@@ -145,7 +159,8 @@ public class ReferenceDetailsEntity implements Serializable {
 		result = prime * result + ((emailId == null) ? 0 : emailId.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((organization == null) ? 0 : organization.hashCode());
-		result = prime * result + ((personName == null) ? 0 : personName.hashCode());
+		result = prime * result + ((personalDetailsEntity == null) ? 0 : personalDetailsEntity.hashCode());
+		result = prime * result + ((refernceName == null) ? 0 : refernceName.hashCode());
 		return result;
 	}
 
@@ -188,10 +203,15 @@ public class ReferenceDetailsEntity implements Serializable {
 				return false;
 		} else if (!organization.equals(other.organization))
 			return false;
-		if (personName == null) {
-			if (other.personName != null)
+		if (personalDetailsEntity == null) {
+			if (other.personalDetailsEntity != null)
 				return false;
-		} else if (!personName.equals(other.personName))
+		} else if (!personalDetailsEntity.equals(other.personalDetailsEntity))
+			return false;
+		if (refernceName == null) {
+			if (other.refernceName != null)
+				return false;
+		} else if (!refernceName.equals(other.refernceName))
 			return false;
 		return true;
 	}

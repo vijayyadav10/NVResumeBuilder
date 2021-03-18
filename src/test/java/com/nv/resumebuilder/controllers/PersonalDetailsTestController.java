@@ -1,4 +1,4 @@
-package com.nv.resumebuilder;
+package com.nv.resumebuilder.controllers;
 
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -17,7 +17,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.nv.resumebuilder.config.WebTestConfig;
-import com.nv.resumebuilder.controllers.PersonalDetailsController;
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles({ "web" })
