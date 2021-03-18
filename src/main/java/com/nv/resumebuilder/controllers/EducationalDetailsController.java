@@ -16,7 +16,6 @@ import com.nv.resumebuilder.entity.PersonalDetailsEntity;
 import com.nv.resumebuilder.service.EducationalDetailsService;
 import com.nv.resumebuilder.service.PersonalDetailsServices;
 
-
 @Controller
 public class EducationalDetailsController {
 
@@ -25,16 +24,25 @@ public class EducationalDetailsController {
 	private PersonalDetailsServices personalDetailsService;
 
 	@Autowired
+<<<<<<< HEAD
 	public EducationalDetailsController(EducationalDetailsService educationalDetailsService , PersonalDetailsServices personalDetailsService) {
 	this.educationalDetailsService = educationalDetailsService;
 	this.personalDetailsService = personalDetailsService;
      }
+=======
+	public EducationalDetailsController(EducationalDetailsService educationalDetailsService,
+			PersonalDetailsServices personalDetailsService) {
+		this.educationalDetailsService = educationalDetailsService;
+		this.personalDetailsServices = personalDetailsService;
+
+	}
+>>>>>>> 494b25e86c50ac4aacb10de4a40413197d4f0a81
 
 	@RequestMapping("/education")
 	public String education(Model model) {	
 		model.addAttribute("EducationalDetailsEntity", new EducationalDetailsEntity());
 		return "educational";
-	}
+	}    
 
 	@RequestMapping(path = "/processform", method = RequestMethod.POST)
 	public String educationFormProcessing(
@@ -45,13 +53,11 @@ public class EducationalDetailsController {
 		if (result.hasErrors()) {
 			return "educational";
 		}
-		
 
 		PersonalDetailsEntity personalDetails = this.personalDetailsService
 				.findById((Long) session.getAttribute("id"));
-        details.setPersonalDetailsEntity(personalDetails);
-        
-        
+		details.setPersonalDetailsEntity(personalDetails);
+
 		educationalDetailsService.educationalDetailsServices(details);
 		model.addAttribute("details1", details);
 		System.out.println(details);

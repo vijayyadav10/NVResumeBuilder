@@ -13,17 +13,20 @@ import com.nv.resumebuilder.service.PersonalDetailsServices;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class ResumebuilderApplicationTests 
-{
+
+class ResumebuilderApplicationTests {
 	@Autowired
 	private PersonalDetailsServices service;
 	@MockBean
 	private PersonalDetailsRepository repository;
+
 	@Test
 	public void savePersonalDetails()
 	{
 		//PersonalDetailsEntity personalDetailsEntity=new PersonalDetailsEntity(1,"khushabu", "pramod","warade", null, null, null, null, null, null, null, null, null, null, null, null)
 
 	}
-}
 
+
+
+}

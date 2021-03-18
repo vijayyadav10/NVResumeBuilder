@@ -53,36 +53,6 @@
 							cssClass="errormsg" /></b></small>
 			</div>
 
-			<div class="form-group">
-				<form:input path="particationevent2" size="200"
-					cssClass="form-control"
-					placeholder="Enter Second Partication Event" />
-				<small><b><form:errors path="particationevent2"
-							cssClass="errormsg" /></b></small>
-			</div>
-
-
-			<div class="form-group">
-				<form:input path="particationevent3" size="200"
-					cssClass="form-control" placeholder="Enter Third Partication Event" />
-				<small><b><form:errors path="particationevent3"
-							cssClass="errormsg" /></b></small>
-			</div>
-
-			<div class="form-group">
-				<form:input path="particationevent4" size="200"
-					cssClass="form-control"
-					placeholder="Enter Fourth Partication Event" />
-				<small><b><form:errors path="particationevent4"
-							cssClass="errormsg" /></b></small>
-			</div>
-
-			<div class="form-group">
-				<form:input path="particationevent5" size="200"
-					cssClass="form-control" placeholder="Enter Fifth Partication Event" />
-				<small><b><form:errors path="particationevent5"
-							cssClass="errormsg" /></b></small>
-			</div>
 
 			<br>
 
@@ -100,34 +70,6 @@
 							cssClass="errormsg" /></b></small>
 			</div>
 
-
-			<div class="form-group">
-				<form:input path="certification2" size="200" cssClass="form-control"
-					placeholder="Enter Second Certification" />
-				<small><b><form:errors path="certification2"
-							cssClass="errormsg" /></b></small>
-			</div>
-
-			<div class="form-group">
-				<form:input path="certification3" size="200" cssClass="form-control"
-					placeholder="Enter Third Certification" />
-				<small><b><form:errors path="certification3"
-							cssClass="errormsg" /></b></small>
-			</div>
-
-			<div class="form-group">
-				<form:input path="certification4" size="200" cssClass="form-control"
-					placeholder="Enter Fourth Certification" />
-				<small><b><form:errors path="certification4"
-							cssClass="errormsg" /></b></small>
-			</div>
-
-			<div class="form-group">
-				<form:input path="certification5" size="200" cssClass="form-control"
-					placeholder="Enter Fifth Certification" />
-				<small><b><form:errors path="certification5"
-							cssClass="errormsg" /></b></small>
-			</div>
 
 			<br>
 
@@ -147,41 +89,11 @@
 							cssClass="errormsg" /></b></small>
 			</div>
 
-			<div class="form-group">
-				<form:input path="awardsandhonoursdetails2" size="200"
-					cssClass="form-control" placeholder="Enter Second Award and Honour" />
-				<small><b><form:errors path="awardsandhonoursdetails2"
-							cssClass="errormsg" /></b></small>
-			</div>
-
-			<div class="form-group">
-				<form:input path="awardsandhonoursdetails3" size="200"
-					cssClass="form-control" placeholder="Enter Third Award and Honour" />
-				<small><b><form:errors path="awardsandhonoursdetails3"
-							cssClass="errormsg" /></b></small>
-			</div>
-
-			<div class="form-group">
-				<form:input path="awardsandhonoursdetails4" size="200"
-					cssClass="form-control" placeholder="Enter Fourth Award and Honour" />
-				<small><b><form:errors path="awardsandhonoursdetails4"
-							cssClass="errormsg" /></b></small>
-			</div>
-
-			<div class="form-group">
-				<form:input path="awardsandhonoursdetails5" size="200"
-					cssClass="form-control" placeholder="Enter Fifth Award and Honour" />
-				<small><b><form:errors path="awardsandhonoursdetails5"
-							cssClass="errormsg" /></b></small>
-			</div>
-
-
 			<div class="container text-center">
 
 				<button type="submit" class="btn btn-primary"
 					style="background-color: #c1272d">Submit</button>
-				<br>
-				<br>
+				<br> <br>
 				<button type="submit" class="btn btn-primary"
 					style="background-color: #c1272d">Reset</button>
 

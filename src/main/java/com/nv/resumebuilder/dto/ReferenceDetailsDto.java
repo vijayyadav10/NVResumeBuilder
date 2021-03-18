@@ -18,11 +18,11 @@ public class ReferenceDetailsDto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	@NotEmpty
 	@Size(min = 10, max = 30)
-	private String personName;
+	private String refernceName;
 
 	@NotEmpty
 	@Size(min = 2, max = 20, message = "Enter designation upto 20 characters!!")
@@ -43,26 +43,14 @@ public class ReferenceDetailsDto implements Serializable {
 	@Size(max = 40, message = "Enter upto 40 characters")
 	private String organization;
 
-	public ReferenceDetailsDto(Integer i, String personName, String designation, String emailId, String contactNo,
-			String address, String organization) {
-
-		this.id = i;
-		this.personName = personName;
-		this.designation = designation;
-		this.emailId = emailId;
-		this.contactNo = contactNo;
-		this.address = address;
-		this.organization = organization;
-	}
-
 	public ReferenceDetailsDto() {
 
 	}
 
-	public ReferenceDetailsDto(String personName, String designation, String emailId, String contactNo, String address,
-			String organization) {
+	public ReferenceDetailsDto(String refernceName, String designation, String emailId, String contactNo,
+			String address, String organization) {
 
-		this.personName = personName;
+		this.refernceName = refernceName;
 		this.designation = designation;
 		this.emailId = emailId;
 		this.contactNo = contactNo;
@@ -70,20 +58,31 @@ public class ReferenceDetailsDto implements Serializable {
 		this.organization = organization;
 	}
 
-	public Integer getId() {
+	public ReferenceDetailsDto(Long id, String refernceName, String designation, String emailId, String contactNo,
+			String address, String organization) {
+		this.id = id;
+		this.refernceName = refernceName;
+		this.designation = designation;
+		this.emailId = emailId;
+		this.contactNo = contactNo;
+		this.address = address;
+		this.organization = organization;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getPersonName() {
-		return personName;
+	public String getRefernceName() {
+		return refernceName;
 	}
 
-	public void setPersonName(String personName) {
-		this.personName = personName;
+	public void setRefernceName(String refernceName) {
+		this.refernceName = refernceName;
 	}
 
 	public String getDesignation() {
@@ -127,13 +126,6 @@ public class ReferenceDetailsDto implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		return "ReferenceDetailsEntity [ personName=" + personName + ", designation=" + designation + ", emailId="
-				+ emailId + ", contactNo=" + contactNo + ", address=" + address + ", organization=" + organization
-				+ "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -143,7 +135,7 @@ public class ReferenceDetailsDto implements Serializable {
 		result = prime * result + ((emailId == null) ? 0 : emailId.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((organization == null) ? 0 : organization.hashCode());
-		result = prime * result + ((personName == null) ? 0 : personName.hashCode());
+		result = prime * result + ((refernceName == null) ? 0 : refernceName.hashCode());
 		return result;
 	}
 
@@ -186,12 +178,19 @@ public class ReferenceDetailsDto implements Serializable {
 				return false;
 		} else if (!organization.equals(other.organization))
 			return false;
-		if (personName == null) {
-			if (other.personName != null)
+		if (refernceName == null) {
+			if (other.refernceName != null)
 				return false;
-		} else if (!personName.equals(other.personName))
+		} else if (!refernceName.equals(other.refernceName))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ReferenceDetailsDto [id=" + id + ", refernceName=" + refernceName + ", designation=" + designation
+				+ ", emailId=" + emailId + ", contactNo=" + contactNo + ", address=" + address + ", organization="
+				+ organization + "]";
 	}
 
 }

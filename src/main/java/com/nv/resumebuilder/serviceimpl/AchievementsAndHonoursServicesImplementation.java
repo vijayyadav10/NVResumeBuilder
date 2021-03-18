@@ -1,5 +1,7 @@
 package com.nv.resumebuilder.serviceimpl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +19,21 @@ public class AchievementsAndHonoursServicesImplementation implements Achievement
 		achievementsAndHonoursRepository.save(achievemnetsandhonours); // saving our data in h2 database
 		return achievemnetsandhonours;
 	}
+
+	@Override
+	public AchievementsAndHonoursEntity findBYPersonId(Long id) {
+		Optional<AchievementsAndHonoursEntity> result = Optional
+				.ofNullable(this.achievementsAndHonoursRepository.findByPersonId(id));
+
+		AchievementsAndHonoursEntity achievementsAndHonoursEntity = null;
+
+		if (result.isPresent()) {
+			achievementsAndHonoursEntity = result.get();
+		} else {
+			throw new RuntimeException("Did not find employee id - " + id);
+		}
+
+		return achievementsAndHonoursEntity;
+	}
+
 }
