@@ -11,10 +11,12 @@ body {
 	margin: 0;
 	font-family: Arial, Helvetica, sans-serif;
 }
+
 .topnav {
 	overflow: hidden;
 	background-color: #333;
 }
+
 .topnav a {
 	float: left;
 	display: block;
@@ -24,17 +26,21 @@ body {
 	text-decoration: none;
 	font-size: 17px;
 }
+
 .topnav a:hover {
 	background-color: #ddd;
 	color: black;
 }
+
 .topnav a.active {
 	background-color: #4CAF50;
 	color: white;
 }
+
 .topnav .icon {
 	display: none;
 }
+
 @media screen and (max-width: 600px) {
 	.topnav a:not(:first-child) {
 		display: none;
@@ -44,6 +50,7 @@ body {
 		display: block;
 	}
 }
+
 @media screen and (max-width: 600px) {
 	.topnav.responsive {
 		position: relative;
@@ -64,17 +71,21 @@ body {
 <body>
 
 	<div class="topnav" id="myTopnav">
-		<a class="active" href="/userLogin">Home</a> <a href="personalDetails">Personal
-			Details</a> <a href="education">Educational Details</a> <a
-			href="experienceDetailForm">Work Experience Details</a> <a
-			href="organizationaldetailsform">Current Organizational Details</a> <a
-			href="AchievementsForm">Achievements</a> <a href="refernceDetails">Reference
-			Details</a> <a href="download">Download Your resume</a> <a href="logout">Log
-			Out</a> <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-			<i class="fa fa-bars"></i>
+		<a class="active" href="/userLogin">Home</a> 
+		<a href="personalDetails">Personal Details</a> 
+		<a href="education">Educational Details</a> 
+		<a href="experienceDetailForm">Work Experience Details</a> 
+		<a href="organizationaldetailsform">Current Organizational Details</a> 
+		<a href="AchievementsForm">AchievementsandHonours Details</a> 
+		<a href="refernceDetails">Reference Details</a> 
+		<a href="preview">Preview Your resume</a> 
+		<a href="logout">Log Out</a> 
+		
+		<a href="javascript:void(0);" class="icon" onclick="myFunction()"> 
+		<i class="fa fa-bars"></i>
 		</a>
+	
 	</div>
-
 
 
 	<script>

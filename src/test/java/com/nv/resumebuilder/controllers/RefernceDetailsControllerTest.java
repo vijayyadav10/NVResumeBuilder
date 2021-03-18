@@ -9,9 +9,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,10 +19,10 @@ import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.nv.resumebuilder.entity.ReferenceDetailsEntity;
+import com.nv.resumebuilder.service.PersonalDetailsServices;
 import com.nv.resumebuilder.service.RefernceDetailsService;
 
 @ExtendWith(SpringExtension.class)
@@ -38,17 +35,20 @@ class RefernceDetailsControllerTest {
 
 	@Mock
 	private RefernceDetailsService service;
+	@Mock
+	private PersonalDetailsServices personalDetailsServices;
 
 	@BeforeEach
 	void setup() {
-		this.mockMvc = MockMvcBuilders.standaloneSetup(new RefernceDetailsController(service)).build();
+		this.mockMvc = MockMvcBuilders.standaloneSetup(new RefernceDetailsController(service, personalDetailsServices))
+				.build();
 	}
 
 	@BeforeEach
 	public void init() {
 		refernceEntity = new ReferenceDetailsEntity();
-		refernceEntity.setId(1);
-		refernceEntity.setPersonName("Rutuja bagade");
+		refernceEntity.setId(1L);
+		refernceEntity.setRefernceName("Rutuja bagade");
 		refernceEntity.setDesignation("Software developer");
 		refernceEntity.setEmailId("rutuja.bagade@newvisionsoftware.in");
 		refernceEntity.setContactNo("9139251151");
@@ -62,22 +62,6 @@ class RefernceDetailsControllerTest {
 		mockMvc.perform(get("/refernceDetails")).andExpect(status().isOk())
 				.andExpect(view().name("RefernceDetailsPage")).andDo(MockMvcResultHandlers.print());
 
-	}
-
-	@DisplayName("Testing  Show all Refernce Details handler")
-	@Test
-	void testShowRefernceDetails() throws Exception {
-		List<ReferenceDetailsEntity> refernceEntityList = Arrays.asList(refernceEntity, refernceEntity);
-
-		Mockito.when(service.getAllRefernceDetails()).thenReturn(refernceEntityList);
-		// Web test
-		mockMvc.perform(get("/showRefernceDetails")).andExpect(status().isOk())
-				.andExpect(view().name("RefernceDetailsShow"))
-				.andExpect(MockMvcResultMatchers.model().attribute("referncedetailsList", refernceEntityList));
-
-		// verify at a time only one method is runnable
-		verify(service, times(1)).getAllRefernceDetails();
-		verifyNoMoreInteractions(service);
 	}
 
 	@DisplayName("Testing Update Refernce Details handler ")

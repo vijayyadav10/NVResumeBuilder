@@ -3,6 +3,7 @@ package com.nv.resumebuilder.controllers;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
@@ -19,7 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.nv.resumebuilder.dto.ReferenceDetailsDto;
+import com.nv.resumebuilder.entity.PersonalDetailsEntity;
 import com.nv.resumebuilder.entity.ReferenceDetailsEntity;
+import com.nv.resumebuilder.service.PersonalDetailsServices;
 import com.nv.resumebuilder.service.RefernceDetailsService;
 
 @Controller
@@ -27,10 +30,12 @@ public class RefernceDetailsController {
 
 	private static final ModelMapper modelMapper = new ModelMapper();
 	private RefernceDetailsService service;
+	private PersonalDetailsServices personalDetailsServices;
 
 	@Autowired
-	public RefernceDetailsController(RefernceDetailsService service) {
+	public RefernceDetailsController(RefernceDetailsService service, PersonalDetailsServices personalDetailsService) {
 		this.service = service;
+		this.personalDetailsServices = personalDetailsService;
 
 	}
 
@@ -46,23 +51,29 @@ public class RefernceDetailsController {
 	// Reference Details form Processing handler
 	@PostMapping(value = "/handleReferncedetails")
 	public String refernceDetailsProcess(@Valid @ModelAttribute("refernceDetails") ReferenceDetailsDto refernceDetails,
-			BindingResult result, Model map) {
+			BindingResult result, Model map, HttpSession session) {
 		if (result.hasErrors()) {
 			return "RefernceDetailsPage";
 		}
+		PersonalDetailsEntity personalDetails = this.personalDetailsServices
+				.findById((Long) session.getAttribute("id"));
+		ReferenceDetailsEntity referenceDetailsEntity = modelMapper.map(refernceDetails, ReferenceDetailsEntity.class);
+		referenceDetailsEntity.setPersonalDetailsEntity(personalDetails);
+		service.saveRefernceDetails(referenceDetailsEntity);
 
-		service.saveRefernceDetails(modelMapper.map(refernceDetails, ReferenceDetailsEntity.class));
-		map.addAttribute("message", "Addded Succesfully !!!!");
 		return "redirect:/showRefernceDetails";
 	}
 
 	// show all Reference Details Information handler
 	@RequestMapping("/showRefernceDetails")
-	public String showRefernceDetails(Model m) {
+	public String showRefernceDetails(Model m, HttpSession session) {
 
-		List<ReferenceDetailsEntity> refernceDetailsdata = service.getAllRefernceDetails();
-		System.out.println(refernceDetailsdata);
+		PersonalDetailsEntity personalDetails = this.personalDetailsServices
+				.findById((Long) session.getAttribute("id"));
+		
+		List<ReferenceDetailsEntity> refernceDetailsdata = service.getAllRefernceDetails(personalDetails.getId());
 
+		System.out.println("***********" + refernceDetailsdata);
 		m.addAttribute("referncedetailsList", refernceDetailsdata);
 
 		return "RefernceDetailsShow";
@@ -70,7 +81,7 @@ public class RefernceDetailsController {
 
 	// delete reference Details handler
 	@RequestMapping("/delete/{id}")
-	public RedirectView deleteRefernceDetails(@PathVariable("id") Integer id, HttpServletRequest request) {
+	public RedirectView deleteRefernceDetails(@PathVariable("id") Long id, HttpServletRequest request) {
 		this.service.deleteRefernceDetails(id);
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl(request.getContextPath() + "/showRefernceDetails");
@@ -78,7 +89,7 @@ public class RefernceDetailsController {
 	}
 
 	@RequestMapping("/edit/{id}")
-	public ModelAndView updateRefernceDetails(@PathVariable("id") Integer id, Model model) {
+	public ModelAndView updateRefernceDetails(@PathVariable("id") Long id, Model model) {
 
 		ModelAndView mav = new ModelAndView("RefernceDetailsEdit");
 		ReferenceDetailsEntity refernceDetails = service.getRefernceDetailsById(id);
