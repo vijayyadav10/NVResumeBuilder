@@ -24,19 +24,13 @@ public class EducationalDetailsController {
 	private PersonalDetailsServices personalDetailsService;
 
 	@Autowired
-<<<<<<< HEAD
+
 	public EducationalDetailsController(EducationalDetailsService educationalDetailsService , PersonalDetailsServices personalDetailsService) {
 	this.educationalDetailsService = educationalDetailsService;
 	this.personalDetailsService = personalDetailsService;
      }
-=======
-	public EducationalDetailsController(EducationalDetailsService educationalDetailsService,
-			PersonalDetailsServices personalDetailsService) {
-		this.educationalDetailsService = educationalDetailsService;
-		this.personalDetailsServices = personalDetailsService;
 
-	}
->>>>>>> 494b25e86c50ac4aacb10de4a40413197d4f0a81
+	
 
 	@RequestMapping("/education")
 	public String education(Model model) {	

@@ -8,10 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-<<<<<<< HEAD
-=======
 import javax.persistence.Table;
->>>>>>> 494b25e86c50ac4aacb10de4a40413197d4f0a81
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
