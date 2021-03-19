@@ -14,44 +14,66 @@
 <style>
 {
 margin
-:
- 
-0
-;
 
-  
+
+:
+
+ 
+
+0
+
+
+;
 padding
+
+
 :
+
  
+
 0
-;
 
-  
+
+;
 box-sizing
+
+
 :
+
  
+
 border-box
-;
 
-  
+
+;
 list-style
-:
- 
-none
-;
 
-  
-font-family
+
 :
+
  
+
+none
+
+
+;
+font-family
+
+
+:
+
+ 
+
 "
 Montserrat
+
+
 "
 ,
 sans-serif
+
+
 ;
-
-
 }
 body {
 	background: #585c68;
@@ -237,12 +259,16 @@ body {
 	background: #008b8b;
 }
 justify-content
+
+
 :
+
  
+
 space-between
+
+
 ;
-
-
 }
 </style>
 
@@ -251,9 +277,10 @@ space-between
 
 
 <body>
-<div class="btn-group" role="group" aria-label="Basic mixed styles example">
-  <button type="button" class="btn btn-success">Back</button>
-</div>
+	<div class="btn-group" role="group"
+		aria-label="Basic mixed styles example">
+		<button type="button" class="btn btn-success">Back</button>
+	</div>
 	<div class="resume">
 		<div class="resume_left">
 
@@ -276,7 +303,7 @@ space-between
 
 							</div>
 							<div class="data">${personalDetails.currentAddress},
-							${personalDetails.city},${personalDetails.country}</div>
+								${personalDetails.city},${personalDetails.country}</div>
 						</li>
 						<li>
 							<div class="icon">
@@ -306,12 +333,17 @@ space-between
 					<div class="title">
 						<p class="bold">SKILLS</p>
 					</div>
-					
+
 					<ul>
 						<li>
 							<div class="skill_name">${educationalDetails.technicalSkills}</div>
+						 
+					<%-- 	<c:forEach items="${educationalDetails}" var="techskill">
+						<h4>${techskill.technicalSkills}</h4>
+						</c:forEach>
+						 --%>
 						</li>
-						
+
 
 					</ul>
 				</div>
@@ -362,7 +394,7 @@ space-between
 						<li>
 							<div class="language_name">${personalDetails.languageKnown}</div>
 						</li>
-						
+
 
 					</ul>
 				</div>
@@ -375,13 +407,15 @@ space-between
 
 			<div class="resume_item resume_about">
 				<div class="title">
-					<h2><p class="bold">
-					${personalDetails.userFirstName}  ${personalDetails.userMiddleName}
-					   ${personalDetails.userLastName}    </h2>
+					<h2>
+						<p class="bold">${personalDetails.userFirstName}
+							${personalDetails.userMiddleName} ${personalDetails.userLastName}
+						
+					</h2>
 					<h3>${organizationalDetails.designation}</h3>
 					<h4>${personalDetails.about}</h4>
 					</p>
-            
+
 					<!--  <p class="semi-bold">about yourself</p> -->
 				</div>
 			</div>
@@ -400,14 +434,14 @@ space-between
 							<p>${educationalDetails.percentage}</p>
 						</div>
 					</li>
-					
+
 					<li>
 						<div class="date">${educationalDetails.yearOfPassingM}</div>
 						<div class="info">
 							<p class="semi-bold">${educationalDetails.degreeM}</p>
 							<p>${educationalDetails.collegeNameM}
 								(${educationalDetails.universityM})</p>
-							
+
 						</div>
 					</li>
 
@@ -421,38 +455,38 @@ space-between
 				</div>
 				<ul>
 					<li>
-					
+
 						<div class="date">joining
 							(${experienceDetails.joiningDate})-Leaving(${experienceDetails.leavingDate})</div>
-							<h4>${experienceDetails.companyName} (${experienceDetails.designation})</h4>
+						<h4>${experienceDetails.companyName}
+							(${experienceDetails.designation})</h4>
 						<div class="info">
 							<!--  <p class="semi-bold">Designation</p>  -->
 							<p>Project Details</p>
 							<ul>
-						<h4>		
+								<h4>
 
-<table class="table">
-					<thead class="thead-dark">
-						<tr>
-							<th scope="col">Project Name</th>
-							<th scope="col">Description</th>
-							
-						</tr>
-					</thead>
-					<tbody>
-
-										<c:forEach items="${projectDetails}" var="projects">
+									<table class="table">
+										<thead class="thead-dark">
 											<tr>
-
-												<td>${projects.projectName}</td>
-												<td>${projects.projectDescription}</td>
+												<th scope="col">Project Name</th>
+												<th scope="col">Description</th>
 
 											</tr>
-										</c:forEach>
-									</tbody>
-				</table>
-<h4>
+										</thead>
+										<tbody>
 
+											<c:forEach items="${projectDetails}" var="projects">
+												<tr>
+
+													<td>${projects.projectName}</td>
+													<td>${projects.projectDescription}</td>
+
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<h4>
 						</div>
 					</li>
 				</ul>
@@ -463,20 +497,20 @@ space-between
 			<div class="resume_item resume_currentWork">
 				<div class="title">
 					<p class="bold">Current Organization</p>
-				
+
 				</div>
 				<h4>
-				
-					
 
-						<div class="info">
-<ul>
+
+
+					<div class="info">
+						<ul>
 							<li><p>${organizationalDetails.comName}</p></li>
 							<li><p>${organizationalDetails.designation}</p></li>
 							<li><p>${organizationalDetails.date}(Joining)</p></li>
-						</div>
+					</div>
 					</ul>
-				
+
 				</h4>
 
 			</div>
@@ -485,33 +519,33 @@ space-between
 					<p class="bold">Achievements</p>
 				</div>
 				<h4>
-				<ul>
-					<li><i class="achievement-1"></i>${achievementsAndHonours.particationevent1}</li>
-					<li><i class="achievement-2"></i>${achievementsAndHonours.certification1}</li>
-					<li><i class="achievement-2"></i>${achievementsAndHonours.awardsandhonoursdetails1}</li>
-				</ul>
+					<ul>
+						<li><i class="achievement-1"></i>${achievementsAndHonours.particationevent1}</li>
+						<li><i class="achievement-2"></i>${achievementsAndHonours.certification1}</li>
+						<li><i class="achievement-2"></i>${achievementsAndHonours.awardsandhonoursdetails1}</li>
+					</ul>
 				</h4>
 			</div>
 
 
-			
+
 
 			<div class="resume_item resume_reference">
 				<div class="title">
 					<p class="bold">References</p>
-				
+
 				</div>
 				<ul>
-				<c:forEach items="${refernceDetailsdata}" var="refernce">
-							
-							<h2>${refernce.refernceName} (${refernce.designation })</h2>
-							
-							<h4>${refernce.emailId}</h4>
-							<h4>${refernce.contactNo}</h4>
-							<h4>${refernce.address}</h4>
-							<h4>${refernce.organization}</h4>
-								
-						</c:forEach>
+					<c:forEach items="${refernceDetailsdata}" var="refernce">
+
+						<h2>${refernce.refernceName}(${refernce.designation })</h2>
+
+						<h4>${refernce.emailId}</h4>
+						<h4>${refernce.contactNo}</h4>
+						<h4>${refernce.address}</h4>
+						<h4>${refernce.organization}</h4>
+
+					</c:forEach>
 				</ul>
 			</div>
 

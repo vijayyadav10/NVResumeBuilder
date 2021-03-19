@@ -33,6 +33,7 @@ public class AchievementsAndHonoursServicesImplementation implements Achievement
 			throw new RuntimeException("Did not find employee id - " + id);
 		}
 
+		System.out.println(achievementsAndHonoursEntity);
 		return achievementsAndHonoursEntity;
 	}
 

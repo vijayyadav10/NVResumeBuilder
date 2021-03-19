@@ -32,7 +32,7 @@ public class OrganizationalDetailsServiceImpl implements OrganizationalDetailsSe
 		if (result.isPresent()) {
 			organizationalDetailsEntity = result.get();
 		} else {
-			throw new RuntimeException("Did not find employee id - " + id);
+			throw new RuntimeException("Did not find employee id that is associate to Organizational Details- " + id);
 		}
 
 		return organizationalDetailsEntity;

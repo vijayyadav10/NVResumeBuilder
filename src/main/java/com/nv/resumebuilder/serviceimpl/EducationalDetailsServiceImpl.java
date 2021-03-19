@@ -19,7 +19,6 @@ public class EducationalDetailsServiceImpl implements EducationalDetailsService 
 	public EducationalDetailsEntity educationalDetailsServices(EducationalDetailsEntity details) {
 		educationalDetailsRepository.save(details);
 		return details;
-
 	}
 
 	@Override
@@ -27,15 +26,15 @@ public class EducationalDetailsServiceImpl implements EducationalDetailsService 
 		Optional<EducationalDetailsEntity> result = Optional
 				.ofNullable(this.educationalDetailsRepository.findByPersonId(id));
 
+		//System.out.println(result);
 		EducationalDetailsEntity educationalDetailsEntity = null;
 
 		if (result.isPresent()) {
 			educationalDetailsEntity = result.get();
 		} else {
-			throw new RuntimeException("Did not find employee id - " + id);
+			throw new RuntimeException("Did not find employee id that is associate to Education- " + id);
 		}
-
+		
 		return educationalDetailsEntity;
 	}
-
 }
