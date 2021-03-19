@@ -26,63 +26,8 @@ public class PersonalDetailsEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public PersonalDetailsEntity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public String getAbout() {
-		return about;
-	}
-
-	public void setAbout(String about) {
-		this.about = about;
-	}
-
-	public ExperienceDetailsEntity getExperienceDetail() {
-		return experienceDetail;
-	}
-
-	public void setExperienceDetail(ExperienceDetailsEntity experienceDetail) {
-		this.experienceDetail = experienceDetail;
-	}
-
-	public PersonalDetailsEntity(long id,
-			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userFirstName,
-			@NotEmpty String about,
-			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userMiddleName,
-			@NotEmpty @Size(min = 1, max = 10, message = "size upto 10 Characters..") String userLastName,
-			@NotNull(message = "is required") String birthDate, @NotEmpty String nationality,
-			@NotNull(message = "Select gender") @NotEmpty String gender, @NotEmpty String maritialStatus,
-			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String emailId,
-			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String linkedinId,
-			@NotNull(message = "is required") @Email(message = "Invalid email! Please enter valid email") String skypeId,
-			@NotEmpty @Pattern(regexp = "(^$|[0-9]{10})") String phoneNo, @NotEmpty String currentAddress,
-			@NotEmpty String city, @NotEmpty String country, ExperienceDetailsEntity experienceDetail,
-			@NotEmpty(message = "Select at least one language.") String languageKnown) {
-		super();
-		this.id = id;
-		this.userFirstName = userFirstName;
-		this.about = about;
-		this.userMiddleName = userMiddleName;
-		this.userLastName = userLastName;
-		this.birthDate = birthDate;
-		this.nationality = nationality;
-		this.gender = gender;
-		this.maritialStatus = maritialStatus;
-		this.emailId = emailId;
-		this.linkedinId = linkedinId;
-		this.skypeId = skypeId;
-		this.phoneNo = phoneNo;
-		this.currentAddress = currentAddress;
-		this.city = city;
-		this.country = country;
-		this.experienceDetail = experienceDetail;
-		this.languageKnown = languageKnown;
-	}
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column
@@ -153,8 +98,14 @@ public class PersonalDetailsEntity implements Serializable {
 	@Column
 	@NotEmpty
 	private String country;
+	@Column
+	@NotEmpty(message = "Select at least one language.")
+	private String languageKnown;
 
-	/** Person has Experience */
+	// Person has Education
+	@OneToOne(mappedBy = "personalDetailsEntity")
+	private EducationalDetailsEntity educationalDetailsEntity;
+	/* Person has Experience */
 	@OneToOne(mappedBy = "personalDetailsEntity")
 	private ExperienceDetailsEntity experienceDetail;
 
@@ -164,9 +115,55 @@ public class PersonalDetailsEntity implements Serializable {
 
 	@OneToOne(mappedBy = "personalDetailsEntity")
 	private AchievementsAndHonoursEntity AchievementsAndHonoursEntity;
-	
+
 	@OneToOne(mappedBy = "personalDetailsEntity")
 	private OrganizationalDetailsEntity organizationalDetailsEntity;
+
+	public PersonalDetailsEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public PersonalDetailsEntity(long id, String userFirstName, String about, String userMiddleName,
+			String userLastName, String birthDate, String nationality, String gender, String maritialStatus,
+			String emailId, String linkedinId, String skypeId, String phoneNo, String currentAddress, String city,
+			String country, String languageKnown) {
+		super();
+		this.id = id;
+		this.userFirstName = userFirstName;
+		this.about = about;
+		this.userMiddleName = userMiddleName;
+		this.userLastName = userLastName;
+		this.birthDate = birthDate;
+		this.nationality = nationality;
+		this.gender = gender;
+		this.maritialStatus = maritialStatus;
+		this.emailId = emailId;
+		this.linkedinId = linkedinId;
+		this.skypeId = skypeId;
+		this.phoneNo = phoneNo;
+		this.currentAddress = currentAddress;
+		this.city = city;
+		this.country = country;
+
+		this.languageKnown = languageKnown;
+	}
+
+	public String getAbout() {
+		return about;
+	}
+
+	public void setAbout(String about) {
+		this.about = about;
+	}
+
+	public ExperienceDetailsEntity getExperienceDetail() {
+		return experienceDetail;
+	}
+
+	public void setExperienceDetail(ExperienceDetailsEntity experienceDetail) {
+		this.experienceDetail = experienceDetail;
+	}
 
 	public List<ReferenceDetailsEntity> getRefernceDetailsEntity() {
 		return refernceDetailsEntity;
@@ -191,14 +188,6 @@ public class PersonalDetailsEntity implements Serializable {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
-	@Column
-	@NotEmpty(message = "Select at least one language.")
-	private String languageKnown;
-
-	// Person has Experience
-	@OneToOne(mappedBy = "personalDetailsEntity")
-	private EducationalDetailsEntity educationalDetailsEntity;
 
 	public long getId() {
 		return id;
@@ -331,10 +320,3 @@ public class PersonalDetailsEntity implements Serializable {
 	}
 
 }
-
-/*
- * PersonalDetailsEntity personalDetailsEntity=new PersonalDetailsEntity
- * ("userFirstName","userMiddleName","userLastName","birthDate",
- * "nationality","gender","maritialStatus","emailId","linkedinId",
- * "skypeId","phoneNo","currentAddress","city","country","languageKnown");
- */

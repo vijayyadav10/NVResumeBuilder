@@ -32,6 +32,10 @@ public class OrganizationalDetailsController
 		this.personalDetailsServices = personalDetailsService;
     }
 
+	public OrganizationalDetailsController(OrganizationalDetailsService organizationDetailServiceobj2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	@GetMapping(value = "/organizationaldetailsform")
 	public String orgForm(Model model) 
 	{
