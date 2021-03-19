@@ -251,7 +251,9 @@ space-between
 
 
 <body>
-
+<div class="btn-group" role="group" aria-label="Basic mixed styles example">
+  <button type="button" class="btn btn-success">Back</button>
+</div>
 	<div class="resume">
 		<div class="resume_left">
 
