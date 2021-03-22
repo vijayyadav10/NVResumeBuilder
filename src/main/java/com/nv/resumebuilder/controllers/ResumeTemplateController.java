@@ -1,6 +1,7 @@
 package com.nv.resumebuilder.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,12 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.nv.resumebuilder.entity.AchievementsAndHonoursEntity;
-import com.nv.resumebuilder.entity.EducationalDetailsEntity;
 import com.nv.resumebuilder.entity.ExperienceDetailsEntity;
 import com.nv.resumebuilder.entity.OrganizationalDetailsEntity;
 import com.nv.resumebuilder.entity.PersonalDetailsEntity;
 import com.nv.resumebuilder.entity.ProjectDetailsEntity;
 import com.nv.resumebuilder.entity.ReferenceDetailsEntity;
+import com.nv.resumebuilder.repository.EducationalDetailsRepository;
 import com.nv.resumebuilder.service.AchievementsAndHonoursServices;
 import com.nv.resumebuilder.service.EducationalDetailsService;
 import com.nv.resumebuilder.service.ExperienceDetailService;
@@ -30,7 +31,7 @@ public class ResumeTemplateController {
 	private PersonalDetailsServices personalDetailsServices;
 
 	@Autowired
-	private AchievementsAndHonoursServices achievementsAndHonoursServices; 
+	private AchievementsAndHonoursServices achievementsAndHonoursServices;
 
 	@Autowired
 	private EducationalDetailsService educationalDetailsService;
@@ -47,40 +48,58 @@ public class ResumeTemplateController {
 	@Autowired
 	private RefernceDetailsService refernceDetailsService;
 
+	@Autowired
+	public EducationalDetailsRepository educationalDetailsRepository;
+
 	@GetMapping("/preview")
 	private String downloadResume(HttpSession session, Model model) {
-		//personal details
-		PersonalDetailsEntity personalDetails = this.personalDetailsServices
-				.findById((Long) session.getAttribute("id"));
-		model.addAttribute("personalDetails", personalDetails);
-		
-		//Education details
-		EducationalDetailsEntity educationalDetails=educationalDetailsService.findByPersonId((Long) session.getAttribute("id"));
-		model.addAttribute("educationalDetails", educationalDetails);
-		
-		//organizational details
-		OrganizationalDetailsEntity organizationalDetailsEntity=organizationalDetailsService.findByOtherId((Long) session.getAttribute("id"));        
-	    model.addAttribute("organizationalDetails",organizationalDetailsEntity);
+		// personal details
+		Long idAttribute = (Long) session.getAttribute("id");
+		PersonalDetailsEntity personalDetails = null;
 
-		//Experience details
-		ExperienceDetailsEntity experienceDetailsEntity=experienceDetailService.findByOtherId((Long) session.getAttribute("id"));        
-		model.addAttribute("experienceDetails",experienceDetailsEntity);
+		if (idAttribute == null) {
+			return "redirect:/personalDetails";
+		} else {
+			personalDetails = this.personalDetailsServices.findById(idAttribute);
 
-	    
-		List<ProjectDetailsEntity> projectDetailsEntity=projectService.findById(experienceDetailsEntity.getExperienceId());
-		model.addAttribute("projectDetails",projectDetailsEntity);
-		
-       //achievments and honours details
-		AchievementsAndHonoursEntity achievementsAndHonours = achievementsAndHonoursServices
-				.findBYPersonId((Long) session.getAttribute("id"));
-		model.addAttribute("achievementsAndHonours", achievementsAndHonours);
-		
-        //Reference Details
-		List<ReferenceDetailsEntity> refernceDetailsdata = refernceDetailsService
-				.getAllRefernceDetails((Long) session.getAttribute("id"));
-		model.addAttribute("refernceDetailsdata", refernceDetailsdata);
+			model.addAttribute("personalDetails", personalDetails);
 
-		return "sample";
+			// Education details
+			Optional<Object> educationalDetails = Optional
+					.ofNullable(educationalDetailsRepository.findByPersonId(idAttribute));
+
+			if (!educationalDetails.isPresent()) {
+				return "redirect:/education";
+			} 
+
+			model.addAttribute("educationalDetails", educationalDetails);
+
+			// organizational details
+			OrganizationalDetailsEntity organizationalDetailsEntity = organizationalDetailsService
+					.findByOtherId(idAttribute);
+			model.addAttribute("organizationalDetails", organizationalDetailsEntity);
+
+			// Experience details
+			ExperienceDetailsEntity experienceDetailsEntity = experienceDetailService.findByOtherId(idAttribute);
+			model.addAttribute("experienceDetails", experienceDetailsEntity);
+
+			List<ProjectDetailsEntity> projectDetailsEntity = projectService
+					.findById(experienceDetailsEntity.getExperienceId());
+			model.addAttribute("projectDetails", projectDetailsEntity);
+
+			// achievments and honours details
+			AchievementsAndHonoursEntity achievementsAndHonours = achievementsAndHonoursServices
+					.findBYPersonId(idAttribute);
+			model.addAttribute("achievementsAndHonours", achievementsAndHonours);
+
+			// Reference Details
+			List<ReferenceDetailsEntity> refernceDetailsdata = refernceDetailsService
+					.getAllRefernceDetails(idAttribute);
+			model.addAttribute("refernceDetailsdata", refernceDetailsdata);
+
+			return "sample";
+
+		}
 	}
 
 }

@@ -36,7 +36,6 @@ public class OrganizationalDetailsController
 	public String orgForm(Model model) 
 	{
 		model.addAttribute("OrganizationDetailsEntity", new OrganizationalDetailsEntity());
-		System.out.println("hack"+this.projectRepository.findByExperienceId(1L));
 		return "organizationaldetailsform";
 	}
 

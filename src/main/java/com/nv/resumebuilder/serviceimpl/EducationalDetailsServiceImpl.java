@@ -26,15 +26,17 @@ public class EducationalDetailsServiceImpl implements EducationalDetailsService 
 	public EducationalDetailsEntity findByPersonId(Long id) {
 		Optional<EducationalDetailsEntity> result = Optional
 				.ofNullable(this.educationalDetailsRepository.findByPersonId(id));
-
+		System.out.println("====result====");
+		System.out.println(result);
 		EducationalDetailsEntity educationalDetailsEntity = null;
 
 		if (result.isPresent()) {
 			educationalDetailsEntity = result.get();
 		} else {
-			throw new RuntimeException("Did not find employee id - " + id);
+			throw new RuntimeException("Did not find employee id that is associate to Education- " + id);
 		}
-
+		System.out.println("====educationalDetailsEntity=====");
+		System.out.println(educationalDetailsEntity);
 		return educationalDetailsEntity;
 	}
 
