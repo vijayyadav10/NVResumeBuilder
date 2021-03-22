@@ -56,10 +56,11 @@ th, td {
 						<td><b><label> Designation</label></b></td>
 						<td><form:select path="designation" multiple="true">
 								<form:option value="Tester">Tester</form:option>
+								<form:option value="Java Developer">Java Developer</form:option>
 								<form:option value="Database Developer">Database Developer</form:option>
 								<form:option value="Ui Developer">Ui Developer</form:option>
 								<form:option value="hr">HR</form:option>
-								<form:option value="fresher">Fresher</form:option>
+								<form:option value="Full Stack Developer">Full Stack Developer</form:option>
 							</form:select> <form:errors path="designation" cssClass="errormsg" /></td>
 
 					</div>

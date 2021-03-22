@@ -19,15 +19,14 @@ public class EducationalDetailsServiceImpl implements EducationalDetailsService 
 	public EducationalDetailsEntity educationalDetailsServices(EducationalDetailsEntity details) {
 		educationalDetailsRepository.save(details);
 		return details;
-
 	}
 
 	@Override
 	public EducationalDetailsEntity findByPersonId(Long id) {
 		Optional<EducationalDetailsEntity> result = Optional
 				.ofNullable(this.educationalDetailsRepository.findByPersonId(id));
-		System.out.println("====result====");
-		System.out.println(result);
+
+		//System.out.println(result);
 		EducationalDetailsEntity educationalDetailsEntity = null;
 
 		if (result.isPresent()) {
@@ -35,9 +34,7 @@ public class EducationalDetailsServiceImpl implements EducationalDetailsService 
 		} else {
 			throw new RuntimeException("Did not find employee id that is associate to Education- " + id);
 		}
-		System.out.println("====educationalDetailsEntity=====");
-		System.out.println(educationalDetailsEntity);
+		
 		return educationalDetailsEntity;
 	}
-
 }
