@@ -22,7 +22,9 @@
 	font-family: "Times New Roman", Times, serif;
 }
 
-
+.select{
+	height: 3rem !important;
+}
 </style>
 </head>
 <body>
@@ -47,7 +49,7 @@
 				
 					<div class="form-group">
 						<label> Designation</label>
-						<form:select  class="form-control" path="designation" 
+						<form:select  class="form-control select" path="designation" 
 								required="required">
 								<form:option value="Tester">Tester</form:option>
 								<form:option value="Java Developer">Java Developer</form:option>

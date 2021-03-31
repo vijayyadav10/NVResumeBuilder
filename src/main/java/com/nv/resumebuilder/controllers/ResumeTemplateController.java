@@ -72,6 +72,8 @@ public class ResumeTemplateController {
 	private Optional<EducationalDetailsEntity> educationalDetails = null;
 	PersonalDetailsEntity personalDetails = null;
 	
+	private String userFullName;
+	
 	public ResumeTemplateController(TemplateEngine templateEngine) {
 		this.templateEngine = templateEngine;
 	}
@@ -129,6 +131,7 @@ public class ResumeTemplateController {
 		}
 
 		resumeTemplateEntity.setPersonalDetailsEntity(personalDetails);
+		userFullName = personalDetails.getUserFirstName() + "_" + personalDetails.getUserLastName();
 		resumeTemplateEntity.setEducationalDetailsEntity(educationalDetails.get());
 		resumeTemplateEntity.setExperienceDetailsEntity(experienceDetailsEntity.get());
 		resumeTemplateEntity.setProjectDetailsEntity(projectDetailsEntity);
@@ -149,7 +152,7 @@ public class ResumeTemplateController {
 		/* Do Business Logic */
 
 		Object resumeTemplatedetails = resumeTemplateEntity;
-
+		
 		/* Create HTML using Thymeleaf template Engine */
 
 		WebContext context = new WebContext(request, response, servletContext);
@@ -173,7 +176,7 @@ public class ResumeTemplateController {
 
 		/* Send the response as downloadable PDF */
 
-		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=resume.pdf")
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename= "+userFullName+".pdf")
 				.contentType(MediaType.APPLICATION_PDF).body(bytes);
 
 	}

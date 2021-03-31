@@ -78,7 +78,8 @@ body {
 		<a href="organizationaldetailsform">Current Organizational Details</a> 
 		<a href="AchievementsForm">AchievementsandHonours Details</a> 
 		<a href="refernceDetails">Reference Details</a> 
-		<a href="preview">Preview Your resume</a> 
+		<a href="preview">Preview Your resume</a>
+		<a href="preview/pdf">Download</a> 
 		<a href="logout">Log Out</a> 
 		
 		<a href="javascript:void(0);" class="icon" onclick="myFunction()"> 
