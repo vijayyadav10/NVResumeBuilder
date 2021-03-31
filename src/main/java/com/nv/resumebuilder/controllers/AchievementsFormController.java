@@ -53,6 +53,7 @@ public class AchievementsFormController {
 		achievemnetsandhonours.setPersonalDetailsEntity(personalDetails);
 		achievementsAndHonoursServices.addAchievementsAndHonours(achievemnetsandhonours);
 		model.addAttribute("achievemnetsandhonours1", achievemnetsandhonours);
+		session.setAttribute("message" , "You have Succesfully added achievementsAndHonours details Info...");
 		return "redirect:/refernceDetails";
 
 	}

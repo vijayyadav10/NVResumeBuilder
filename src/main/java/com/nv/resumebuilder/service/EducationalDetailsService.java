@@ -1,5 +1,7 @@
 package com.nv.resumebuilder.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.nv.resumebuilder.entity.EducationalDetailsEntity;
@@ -8,6 +10,6 @@ import com.nv.resumebuilder.entity.EducationalDetailsEntity;
 public interface EducationalDetailsService {
 
 	public EducationalDetailsEntity educationalDetailsServices(EducationalDetailsEntity details);
-	public EducationalDetailsEntity findByPersonId(Long id);
+	public Optional<EducationalDetailsEntity> findByPersonId(Long id);
 	
 }

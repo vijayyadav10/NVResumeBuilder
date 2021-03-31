@@ -1,7 +1,6 @@
 package com.nv.resumebuilder.entity;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,6 +19,17 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nv.resumebuilder.validation.PastDate;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "experiencedetails")
 public class ExperienceDetailsEntity {
@@ -29,102 +39,84 @@ public class ExperienceDetailsEntity {
 	private Long experienceId;
 
 	@NotNull(message = "is required")
-	@Size(min=1, message = "is required")
+	@Size(min = 1, message = "is required")
 	@Column(name = "company_name")
 	private String companyName;
-	
+
 	@NotNull(message = "is required")
-	@Size(min=1, message = "is required")
+	@Size(min = 1, message = "is required")
 	@Column(name = "designation")
 	private String designation;
-    
+
 	@PastDate
 	@Column(name = "joining_date")
 	private Date joiningDate;
-    
-    @Column(name = "leaving_date")
+
+	@Column(name = "leaving_date")
 	private Date leavingDate;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id")
 	private PersonalDetailsEntity personalDetailsEntity;
 
-    @JsonIgnore
+	@JsonIgnore
 	@OneToMany(mappedBy = "experienceDetail", cascade = CascadeType.ALL)
 	private List<ProjectDetailsEntity> project;
 
-	public ExperienceDetailsEntity() {
-	}
-
-	public Long getExperienceId() {
-		return experienceId;
-	}
-
-	public void setExperienceId(Long experienceId) {
-		this.experienceId = experienceId;
-	}
-
-	public String getcompanyName() {
-		return companyName;
-	}
-
-	public PersonalDetailsEntity getPersonalDetailsEntity() {
-		return personalDetailsEntity;
-	}
-
-	public void setPersonalDetailsEntity(PersonalDetailsEntity personalDetailsEntity) {
-		this.personalDetailsEntity = personalDetailsEntity;
-	}
-
-	public void setcompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-
-	public String getDesignation() {
-		return designation;
-	}
-
-	public void setDesignation(String designation) {
-		this.designation = designation;
-	}
-
-	public Date getJoiningDate() {
-		return joiningDate;
-	}
-
-	public void setJoiningDate(Date joiningDate) {
-		this.joiningDate = joiningDate;
-	}
-
-	public Date getLeavingDate() {
-		return leavingDate;
-	}
-
-	public void setLeavingDate(Date leavingDate) {
-		this.leavingDate = leavingDate;
-	}
-
-	public List<ProjectDetailsEntity> getProjects() {
-		return project;
-	}
-
-	public void setProjects(List<ProjectDetailsEntity> projects) {
-		this.project = projects;
-	}
-
-	// add a convenience method
-	public void addProject(ProjectDetailsEntity theProject) {
-		if (project == null) {
-			project = new ArrayList<>();
-		}
-
-		project.add(theProject);
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((companyName == null) ? 0 : companyName.hashCode());
+		result = prime * result + ((designation == null) ? 0 : designation.hashCode());
+		result = prime * result + ((experienceId == null) ? 0 : experienceId.hashCode());
+		result = prime * result + ((joiningDate == null) ? 0 : joiningDate.hashCode());
+		result = prime * result + ((leavingDate == null) ? 0 : leavingDate.hashCode());
+		result = prime * result + ((project == null) ? 0 : project.hashCode());
+		return result;
 	}
 
 	@Override
-	public String toString() {
-		return "ExperienceDetail [experience_id=" + experienceId + ", companyName=" + companyName + ", designation="
-				+ designation + ", joiningDate=" + joiningDate + ", leavingDate=" + leavingDate + "]";
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ExperienceDetailsEntity other = (ExperienceDetailsEntity) obj;
+		if (companyName == null) {
+			if (other.companyName != null)
+				return false;
+		} else if (!companyName.equals(other.companyName))
+			return false;
+		if (designation == null) {
+			if (other.designation != null)
+				return false;
+		} else if (!designation.equals(other.designation))
+			return false;
+		if (experienceId == null) {
+			if (other.experienceId != null)
+				return false;
+		} else if (!experienceId.equals(other.experienceId))
+			return false;
+		if (joiningDate == null) {
+			if (other.joiningDate != null)
+				return false;
+		} else if (!joiningDate.equals(other.joiningDate))
+			return false;
+		if (leavingDate == null) {
+			if (other.leavingDate != null)
+				return false;
+		} else if (!leavingDate.equals(other.leavingDate))
+			return false;
+		if (project == null) {
+			if (other.project != null)
+				return false;
+		} else if (!project.equals(other.project))
+			return false;
+		return true;
 	}
 
+	
 }

@@ -1,6 +1,7 @@
 package com.nv.resumebuilder.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -30,7 +31,7 @@ public class ResumeTemplateController {
 	private PersonalDetailsServices personalDetailsServices;
 
 	@Autowired
-	private AchievementsAndHonoursServices achievementsAndHonoursServices; 
+	private AchievementsAndHonoursServices achievementsAndHonoursServices;
 
 	@Autowired
 	private EducationalDetailsService educationalDetailsService;
@@ -47,51 +48,68 @@ public class ResumeTemplateController {
 	@Autowired
 	private RefernceDetailsService refernceDetailsService;
 
-	
-		@GetMapping("/preview")
-		private String downloadResume(HttpSession session, Model model) {
+	@GetMapping("/preview")
+	private String downloadResume(HttpSession session, Model model) {
 		// personal details
 		Long idAttribute = (Long) session.getAttribute("id");
 		PersonalDetailsEntity personalDetails = null;
 
 		if (idAttribute == null) {
-		model.addAttribute("Error", "Please Fill the form");
-		return "redirect:/personalDetails";
+			model.addAttribute("Error", "Please Fill the form");
+			return "redirect:/personalDetails";
 		}
 
 		personalDetails = this.personalDetailsServices.findById(idAttribute);
 		model.addAttribute("personalDetails", personalDetails);
 
 		// Education details
-		EducationalDetailsEntity educationalDetails = educationalDetailsService.findByPersonId(idAttribute);
-		model.addAttribute("educationalDetails", educationalDetails);
-
-		// organizational details
-		OrganizationalDetailsEntity organizationalDetailsEntity = organizationalDetailsService
-		.findByOtherId(idAttribute);
-		model.addAttribute("organizationalDetails", organizationalDetailsEntity);
-
+		Optional<EducationalDetailsEntity> educationalDetails = educationalDetailsService.findByPersonId(idAttribute);
+		if (!educationalDetails.isPresent()) {
+			return "redirect:/education";
+		}
+		model.addAttribute("educationalDetails", educationalDetails.get());
 		// Experience details
-		ExperienceDetailsEntity experienceDetailsEntity = experienceDetailService.findByOtherId(idAttribute);
-		model.addAttribute("experienceDetails", experienceDetailsEntity);
+		Optional<ExperienceDetailsEntity> experienceDetailsEntity = experienceDetailService.findByOtherId(idAttribute);
+		if (!experienceDetailsEntity.isPresent()) {
+			return "redirect:/experienceDetailForm";
+		}
 
+		model.addAttribute("experienceDetails", experienceDetailsEntity.get());
+		// project details
 		List<ProjectDetailsEntity> projectDetailsEntity = projectService
-		.findById(experienceDetailsEntity.getExperienceId());
+				.findById(experienceDetailsEntity.get().getExperienceId());
+
+		if (projectDetailsEntity.isEmpty()) {
+			return "redirect:/projectDetails.html?id=";
+		}
+
 		model.addAttribute("projectDetails", projectDetailsEntity);
 
+		// organizational details
+		Optional<OrganizationalDetailsEntity> organizationalDetailsEntity = organizationalDetailsService
+				.findByOtherId(idAttribute);
+		if (!organizationalDetailsEntity.isPresent()) {
+			return "redirect:/organizationaldetailsform";
+		}
+		model.addAttribute("organizationalDetails", organizationalDetailsEntity.get());
+
 		// achievments and honours details
-		AchievementsAndHonoursEntity achievementsAndHonours = achievementsAndHonoursServices
-		.findBYPersonId(idAttribute);
-		model.addAttribute("achievementsAndHonours", achievementsAndHonours);
+		Optional<AchievementsAndHonoursEntity> achievementsAndHonours = achievementsAndHonoursServices
+				.findBYPersonId(idAttribute);
+		if (!achievementsAndHonours.isPresent()) {
+			return "redirect:/AchievementsForm";
+		}
+		model.addAttribute("achievementsAndHonours", achievementsAndHonours.get());
 
 		// Reference Details
 		List<ReferenceDetailsEntity> refernceDetailsdata = refernceDetailsService.getAllRefernceDetails(idAttribute);
-		model.addAttribute("refernceDetailsdata", refernceDetailsdata);
 
-		return "resumeFormet";
+		if (refernceDetailsdata.isEmpty()) {
+			return "redirect:/refernceDetails";
 		}
-		
-		
+		model.addAttribute("refernceDetailsdata", refernceDetailsdata);
+		model.addAttribute("MSG","HELLO WORLD !!!!");
+		return "thymeleaf/resumeFormet";
 	}
 
-
+}

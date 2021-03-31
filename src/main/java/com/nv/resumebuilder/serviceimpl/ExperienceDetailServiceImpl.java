@@ -20,18 +20,9 @@ public class ExperienceDetailServiceImpl implements ExperienceDetailService {
 	}
 
 	@Override
-	public ExperienceDetailsEntity findById(Long theId) {
-		Optional<ExperienceDetailsEntity> result = this.experienceDetailRepository.findById(theId);
-
-		ExperienceDetailsEntity theExperienceDetail = null;
-
-		if (result.isPresent()) {
-			theExperienceDetail = result.get();
-		} else {
-			throw new RuntimeException("Did not find employee id - " + theId);
-		}
-
-		return theExperienceDetail;
+	public Optional<ExperienceDetailsEntity> findById(Long theId) {
+		
+		return this.experienceDetailRepository.findById(theId);
 	}
 
 	@Override
@@ -45,19 +36,18 @@ public class ExperienceDetailServiceImpl implements ExperienceDetailService {
 	}
 
 	@Override
-	public ExperienceDetailsEntity findByOtherId(Long id) {
-		Optional<ExperienceDetailsEntity> result = Optional
-				.ofNullable(this.experienceDetailRepository.findByperson_id(id));
+	public Optional<ExperienceDetailsEntity> findByOtherId(Long id) {
+		/*
+		 * Optional<ExperienceDetailsEntity> result = Optional
+		 * .ofNullable(this.experienceDetailRepository.findByperson_id(id));
+		 * 
+		 * ExperienceDetailsEntity experienceDetailsEntity = null;
+		 * 
+		 * if (result.isPresent()) { experienceDetailsEntity = result.get(); } else {
+		 * throw new RuntimeException("Did not find employee id - " + id); }
+		 */
 
-		ExperienceDetailsEntity experienceDetailsEntity = null;
-
-		if (result.isPresent()) {
-			experienceDetailsEntity = result.get();
-		} else {
-			throw new RuntimeException("Did not find employee id - " + id);
-		}
-
-		return experienceDetailsEntity;
+		return this.experienceDetailRepository.findByperson_id(id);
 	}
 
 }

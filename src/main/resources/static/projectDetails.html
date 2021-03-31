@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>NV-Project_Details</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
@@ -204,19 +204,25 @@ function myFunctionRedirect() {
 </head>
 <body>
 	<div class="topnav" id="myTopnav">
-		<a class="active" href="/userLogin">Home</a> <a href="personalDetails">Personal
-			Details</a> <a href="education">Educational Details</a> <a
-			href="experienceDetailForm">Work Experience Details</a> <a
-			href="organizationaldetailsform">Current Organizational Details</a> <a
-			href="AchievementsForm">Achievements</a> <a href="refernceDetails">Reference
-			Details</a> <a href="download">Download Your resume</a> <a href="logout">Log
-			Out</a> <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-			<i class="fa fa-bars"></i>
+		<a class="active" href="/userLogin">Home</a> 
+		<a href="personalDetails">Personal Details</a> 
+		<a href="education">Educational Details</a> 
+		<a href="experienceDetailForm">Work Experience Details</a> 
+		<a href="organizationaldetailsform">Current Organizational Details</a> 
+		<a href="AchievementsForm">AchievementsandHonours Details</a> 
+		<a href="refernceDetails">Reference Details</a> 
+		<a href="preview">Preview Your resume</a> 
+		<a href="logout">Log Out</a> 
+		
+		<a href="javascript:void(0);" class="icon" onclick="myFunction()"> 
+		<i class="fa fa-bars"></i>
 		</a>
+	
 	</div>
 	
 	<div class="container mt-3">
 		<div class="shadow p-3 mb-5 bg-white rounded">
+		
 			<div class="container__header shadow rounded p-3 mb-5">
 				<h1>Project Details</h1>
 			</div>

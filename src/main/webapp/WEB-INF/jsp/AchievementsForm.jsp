@@ -15,7 +15,7 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 
-<title>Achievements And Honours</title>
+<title>NV-Achievements And Honours Details</title>
 
 <style type="text/css">
 .errormsg {
@@ -30,25 +30,26 @@
 	<jsp:include page="dashboard.jsp" flush="true" />
 
 	<div class="container mt-5">
+		<%@include file="message.jsp"%>
 
 		<form:form action="AchievementsFormProcessing" method="post"
 			modelAttribute="AchievementsAndHonoursEntity">
+			<h1 class="text-center  mb-3" style="color: #c1272d">
+				<strong>Achievements And Honours</strong>
+			</h1>
 
-			<center>
-				<b><span style="font-size: 35px; color: #c1272d"><label><u>Achievements
-								And Honours</u></label></span></b>
-			</center>
-			<br>
-			<hr>
+
+			<h2></h2>
 			<div class="form-group">
 				<center>
-					<b><span style="font-size: 30px; color: #c1272d"><label>Participation</label></span></b>
+					<b><span style="font-size: 30px; color: #333"><label>Participation</label></span></b>
 				</center>
 			</div>
 
 			<div class="form-group">
 				<form:input path="particationevent1" size="200"
-					cssClass="form-control" placeholder="Enter First Partication Event" />
+					cssClass="form-control" placeholder="Enter First Partication Event"
+					required="required" />
 				<small><b><form:errors path="particationevent1"
 							cssClass="errormsg" /></b></small>
 			</div>
@@ -59,13 +60,13 @@
 
 			<div class="form-group">
 				<center>
-					<b><span style="font-size: 30px; color: #c1272d"><label>Certification</label></span></b>
+					<b><span style="font-size: 25px; color: #333"><label>Certification</label></span></b>
 				</center>
 			</div>
 
 			<div class="form-group">
 				<form:input path="certification1" size="200" cssClass="form-control"
-					placeholder="Enter First Certification" />
+					placeholder="Enter First Certification" required="required" />
 				<small><b><form:errors path="certification1"
 							cssClass="errormsg" /></b></small>
 			</div>
@@ -77,25 +78,24 @@
 
 			<div class="form-group">
 				<center>
-					<label><b><span style="font-size: 30px; color: #c1272d">Awards
+					<label><b><span style="font-size: 30px; color: #333">Awards
 								and Honours</span></b></label>
 				</center>
 			</div>
 
 			<div class="form-group">
 				<form:input path="awardsandhonoursdetails1" size="200"
-					cssClass="form-control" placeholder="Enter First Award and Honour" />
+					cssClass="form-control" placeholder="Enter First Award and Honour"
+					required="required" />
 				<small><b><form:errors path="awardsandhonoursdetails1"
 							cssClass="errormsg" /></b></small>
 			</div>
 
 			<div class="container text-center">
 
-				<button type="submit" class="btn btn-primary"
-					style="background-color: #c1272d">Submit</button>
+				<button type="submit" class="btn btn-primary">Submit</button>
 				<br> <br>
-				<button type="submit" class="btn btn-primary"
-					style="background-color: #c1272d">Reset</button>
+				<button type="submit" class="btn btn-danger">Reset</button>
 
 			</div>
 			<hr>

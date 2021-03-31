@@ -33,7 +33,7 @@ public class ExperienceDetailServiceTest {
 
 		// GIVEN
 		theExperienceDetail.setExperienceId(Long.valueOf(1));
-		theExperienceDetail.setcompanyName("Nokia");
+		theExperienceDetail.setCompanyName("Nokia");
 		theExperienceDetail.setDesignation("Android Developer");
 		theExperienceDetail.setJoiningDate(Date.valueOf("2015-03-31"));
 		theExperienceDetail.setLeavingDate(Date.valueOf("2020-03-31"));
@@ -46,7 +46,7 @@ public class ExperienceDetailServiceTest {
 		ArrayList<ProjectDetailsEntity> project = new ArrayList<ProjectDetailsEntity>();
 		project.add(theProject);
 
-		theExperienceDetail.setProjects(project);
+		theExperienceDetail.setProject(project);
 
 		// WHEN
 		when(theExperienceDetailService.save(theExperienceDetail))
@@ -63,7 +63,7 @@ public class ExperienceDetailServiceTest {
 		ExperienceDetailsEntity theExperienceDetailSystemWants = new ExperienceDetailsEntity();
 
 		theExperienceDetailSystemWants.setExperienceId(Long.valueOf(1));
-		theExperienceDetailSystemWants.setcompanyName("Nokia");
+		theExperienceDetailSystemWants.setCompanyName("Nokia");
 		theExperienceDetailSystemWants.setDesignation("");
 		theExperienceDetailSystemWants.setJoiningDate(Date.valueOf("2015-03-31"));
 		theExperienceDetailSystemWants.setLeavingDate(Date.valueOf("2020-03-31"));
@@ -76,11 +76,11 @@ public class ExperienceDetailServiceTest {
 		ArrayList<ProjectDetailsEntity> projectSystemWants = new ArrayList<ProjectDetailsEntity>();
 		projectSystemWants.add(theProjectSystemWants);
 
-		theExperienceDetailSystemWants.setProjects(projectSystemWants);
+		theExperienceDetailSystemWants.setProject(projectSystemWants);
 
 		// GIVEN
 		theExperienceDetailUserGiven.setExperienceId(Long.valueOf(1));
-		theExperienceDetailUserGiven.setcompanyName("Nokia");
+		theExperienceDetailUserGiven.setCompanyName("Nokia");
 		theExperienceDetailUserGiven.setDesignation("Android Developer");
 		theExperienceDetailUserGiven.setJoiningDate(Date.valueOf("2015-03-31"));
 		theExperienceDetailUserGiven.setLeavingDate(Date.valueOf("2020-03-31"));
@@ -93,7 +93,7 @@ public class ExperienceDetailServiceTest {
 		ArrayList<ProjectDetailsEntity> project = new ArrayList<ProjectDetailsEntity>();
 		project.add(theProject);
 
-		theExperienceDetailUserGiven.setProjects(project);
+		theExperienceDetailUserGiven.setProject(project);
 
 		// WHEN
 		when(theExperienceDetailService.save(theExperienceDetailUserGiven))

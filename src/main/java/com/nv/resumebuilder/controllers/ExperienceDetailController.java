@@ -61,12 +61,12 @@ public class ExperienceDetailController {
 			HttpSession session) {
 
 		if (theBindingResult.hasErrors()) {
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			//response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return "experienceDetail";
 		}
 
 		ExperienceDetailsEntity experienceDetail = new ExperienceDetailsEntity();
-		experienceDetail.setcompanyName(theExperienceProject.getCompanyName());
+		experienceDetail.setCompanyName(theExperienceProject.getCompanyName());
 		experienceDetail.setDesignation(theExperienceProject.getDesignation());
 		experienceDetail.setJoiningDate(theExperienceProject.getJoiningDate());
 		experienceDetail.setLeavingDate(theExperienceProject.getLeavingDate());
@@ -77,7 +77,7 @@ public class ExperienceDetailController {
 		experienceDetail.setPersonalDetailsEntity(personalDetails);
 
 		this.experienceDetailService.save(experienceDetail);
-
+		
 		return "redirect:/projectDetails.html?id=" + experienceDetail.getExperienceId();
 	}
 
