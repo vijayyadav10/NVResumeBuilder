@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>PDF-preview</title>
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet"
+		  th:href="@{/css/ionicons.min.css}" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,400;0,500;1,100;1,400&display=swap" rel="stylesheet">
+  
+<style>
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	background-color: #fff;
+	color: #333;
+	max-width: 660px;
+	margin: 1em auto;
+}
+
+.resume {
+	/* border: 5px solid #333; */
+	padding: .5em;
+}
+
+.resume__top {
+	padding: 0.8rem;
+	background-color: #2ebcae;
+	border-top-right-radius: 1rem;
+	border-top-left-radius: 1rem;
+}
+
+.resume--person__info {
+	color: white;
+}
+
+.person__info--name {
+	margin: 0%;
+	font-size: 2rem;
+	font-weight: 400;
+}
+
+.person__info--designation {
+	margin-top: 0.5rem;
+	margin-bottom: 0rem;
+	border-bottom: 1.5px solid;
+}
+
+.person__info--about {
+	margin-top: 0.5rem;
+	font-size: 0.9rem;
+}
+
+/* Resume Left Start */
+.resume__left {
+	padding: 10px;
+	border: 1px solid #2ebcae;
+	border-radius: 5px;
+	width: 200px;
+	height: 60rem;
+	float: left;
+	margin: 0 20px 20px 0;
+	margin-top: 1.5rem;
+}
+
+.social__id {
+	margin: 0rem 0rem 1.5rem 0rem;
+	font-size: smaller;
+}
+
+
+.skills__set--title {
+	font-weight: 600;
+	color: #2ebcae;
+	margin: 2.5rem 0rem .5rem;
+}
+
+.skill {
+	margin: .8rem 0rem;
+}
+
+span.skill--block {
+	background-color: #2ebcae;
+	padding: 1px 2px 2px 2px;
+	border-radius: 6px;
+	color: white;
+	padding: 0 .3rem;
+}
+
+.language__knows--title {
+	font-weight: 600;
+	color: #2ebcae;
+	margin: 2.5rem 0rem .5rem;
+}
+
+.language {
+	font-weight: 500;
+	margin: .8rem 0rem;
+}
+
+/* Resume Left End */
+
+/* Resume Right Start */
+
+.resume__right {
+	margin-top: 1.5rem;
+	height: 1000px;
+}
+
+.work-experience__title {
+	font-weight: 600;
+	color: #2ebcae;
+	padding-bottom: .5rem;
+	display: inline-block;
+    border-bottom: 3px solid;
+    margin-bottom: 1rem;
+}
+
+.project__name {
+	color: #2ebcae;
+	font-weight: bold;
+}
+
+.company__name {
+	font-weight: 500;
+	margin: .2rem
+}
+
+.project__startfinishdate {
+	color: #2ebcae;
+}
+
+ul {
+	list-style: none;
+	padding-left: 16rem !important;
+}
+
+ul li::before {
+	content: "\2022";
+	color: #2ebcae;
+	font-weight: bold;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em;
+}
+
+li {
+	font-weight: 500;
+	line-height: 1.5rem;
+}
+
+.organizations {
+	font-weight: 500;
+	margin: .5rem;
+}
+
+.education__title {
+	color: #2ebcae;
+	font-weight: 600;
+	margin: 1rem 0rem;
+	display: inline-block;
+    border-bottom: 3px solid;
+    padding-bottom: 8px;
+}
+
+.education {
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+
+.education__degree {
+	color: white;
+    display: inline-block;
+    background-color: #26bcae;
+}
+
+.education__degree--date {
+	font-weight: lighter;
+	color: #2ebcae;
+}
+
+.honours-and-awards__title {
+	font-weight: 600;
+	color: #2ebcae;
+	margin: 2rem 0rem 0rem 0rem;
+	border-bottom: 3px solid;
+    padding-bottom: 8px;
+    display: inline-block
+}
+
+.honours-name {
+	margin: 1rem 0rem;
+	font-weight: 500;
+}
+
+.awards {
+	font-weight: normal;
+	font-size: small;
+	margin: 1rem 0rem;
+}
+
+/* .cf ::after {
+    content: "";
+    display: block;
+    clear: both;
+} */
+.cf {
+	overflow: auto;
+}
+
+.icon-small {
+	display: inline-block;
+	width: 30px;
+	text-align: center;
+	color: #2ebcae;
+	font-size: 120%;
+	margin-right: 10px;
+	/*secrets to align text and icons*/
+	line-height: 120%;
+	vertical-align: middle;
+	margin-top: -5px;
+}
+
+.title {
+    font-weight: 600;
+    color: #2ebcae;
+    margin: 2rem 0rem 0rem 0rem;
+        display: inline-block;
+    border-bottom: 3px solid;
+    
+}
+
+.data {
+    font-weight: 600;
+    color: #2ebcae;
+    margin: 0.3rem 0rem 1.5rem;
+}
+
+</style>
+</head>
+
+<body>
+
+	<div class="resume cf">
+
+		<div class="resume__top">
+			<div class="resume--person__info">
+				<span class="person__info--name" th:text="${resumeTemplateEntity.personalDetailsEntity.userFirstName}"></span>
+				<span class="person__info--name" th:text="${resumeTemplateEntity.personalDetailsEntity.userMiddleName}"></span>
+				<span class="person__info--name" th:text="${resumeTemplateEntity.personalDetailsEntity.userLastName}"></span>
+				<p class="person__info--designation" th:text="${resumeTemplateEntity.organizationalDetailsEntity.designation}"></p> 
+				<p class="person__info--about" th:text="${resumeTemplateEntity.personalDetailsEntity.about}"></p>
+			</div>
+		</div>
+
+		<div class="resume__left">
+			<div class="data" th:text="${'DOB: '+resumeTemplateEntity.personalDetailsEntity.birthDate}" >DOB</div>
+			<div class="resume--social__contact">
+				<div class="social">
+					<div class="social__icon">
+						<i class="ion-android-mail icon-small"></i>
+					</div>
+					<div class="social__id" th:text="${resumeTemplateEntity.personalDetailsEntity.emailId}"></div>
+				</div>
+				<div class="social">
+					<div class="social__icon">
+						<i class="ion-social-skype icon-small"></i>
+					</div>
+					<div class="social__id" th:text="${resumeTemplateEntity.personalDetailsEntity.skypeId}"></div>
+				</div>
+				<div class="social">
+					<div class="social__icon">
+						<i class="ion-social-linkedin icon-small"></i>
+					</div>
+					<div class="social__id" th:text="${resumeTemplateEntity.personalDetailsEntity.linkedinId}"></div>
+				</div>
+				<span style='font-size:15px; margin-left: 5px;'>&#128224;</span>
+				<div class="data" th:text="${resumeTemplateEntity.personalDetailsEntity.phoneNo}" >Mobile Number</div>
+				<span style='font-size:15px; margin-left: 5px;'>&#127968;</span>
+				<div class="data" th:text="${resumeTemplateEntity.personalDetailsEntity.currentAddress}">Adress</div>
+			</div>
+
+			<div class="resume--skills__set">
+				<div class="skills__set--title">SKILLS</div>
+				
+				<div class="skill" th:each="skills:${skillsset}">
+					<div>
+						<span class="skill--block" th:text="${skills}">C++</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="resume--language__knows">
+				<div class="language__knows--title">LANGUAGES</div>
+				<div class="language" th:each="language:${languages}">
+					<div >
+						<span class="skill--block" th:text="${language}">English</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="resume__right">
+
+			<div class="resume--work-experience">
+				<div class="work-experience__title">WORK EXPERIENCE <span style='font-size:15px;'>&#128198;</span>
+				</div>
+				<div class="project">
+					<div th:each="projects :${resumeTemplateEntity.projectDetailsEntity}">
+						<div class="project__name" th:text="${projects.projectName}">Resume Builder</div>
+						<!--<div class="company__name">NewVision Software pvt</div>-->
+						<div class="project__startfinishdate">
+							<span class="startdate">11/10/2021</span>-<span class="enddate">11/10/2021</span>
+						</div>
+						<div>
+							<ul>
+								<li th:text="${projects.projectName}">project is build on spring boot</li>
+								<li th:text="${projects.projectDescription}">project uses h2 db</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="resume--organizations">
+				<div class="work-experience__title">ORGANIZATIONS <span style='font-size:15px;'>&#127745;</span>
+				</div>
+				<div class="organizations">
+					<span th:text="${resumeTemplateEntity.organizationalDetailsEntity.comName+' - '}"></span><span style='color:#2ebcae;' th:text="${resumeTemplateEntity.organizationalDetailsEntity.date}"></span>
+				</div>
+			</div>
+
+			<div class="resume--education">
+				<div class="education__title">EDUCATION <span style='font-size:15px;'>&#127891;</span>
+				</div>
+				<div class="education">
+					<div class="education__degree" th:text="${resumeTemplateEntity.educationalDetailsEntity.degree}">MSC(SCI)</div>
+					<div class="degree__address" th:text="${resumeTemplateEntity.educationalDetailsEntity.nameOfCollege}">PUNE UNI</div>
+					<div th:text="${resumeTemplateEntity.educationalDetailsEntity.percentage + ' %'}"> </div>
+					<div class="education__degree--date">
+						<span class="degree-start" th:text="${resumeTemplateEntity.educationalDetailsEntity.yearOfPassing}+' ' +passout"></span>
+						<!-- <span class="degree-start">6/2019</span>-<span class="degree-end">4/2021</span> -->
+					</div>
+				</div>
+				
+				<!-- TODO: Master Education -->
+				<div class="education">
+					<div class="education__degree" th:text="${resumeTemplateEntity.educationalDetailsEntity.degreeM}">MSC(SCI)</div>
+					<div class="degree__address" th:text="${resumeTemplateEntity.educationalDetailsEntity.collegeNameM}">PUNE UNI</div>
+					<div class="education__degree--date">
+						<span class="degree-start" th:text="${resumeTemplateEntity.educationalDetailsEntity.yearOfPassingM}"></span>
+						<!-- <span class="degree-start">6/2019</span>-<span class="degree-end">4/2021</span> -->
+					</div>
+				</div>
+			</div>
+
+			<div class="resume--honours-and-awards">
+				<div class="honours-and-awards__title">HONOURSE AND AWARDS <span style='font-size:15px;'>&#127942;</span></div>
+				<div class="honours-name" th:text="${resumeTemplateEntity.achievementsAndHonoursEntity.particationevent1}"></div>
+				<div class="honours-certification" th:text="${resumeTemplateEntity.achievementsAndHonoursEntity.certification1}"></div>
+				<div class="awards" th:text="${resumeTemplateEntity.achievementsAndHonoursEntity.awardsandhonoursdetails1}">venture cup USA</div>
+			</div>
+			
+			<div class="resume_item resume_reference">
+				<div class="title">
+					<p class="bold">REFERENCES <span style='font-size:15px;'>&#128104;</span>
+					</p>
+				</div>
+				<ul th:each="refernce: ${resumeTemplateEntity.referenceDetailsEntity}">
+					<li><i class="ref1" th:text="${refernce.refernceName}"></i></li>
+						<p><span th:text="${refernce.designation}"></span> </p><p><span th:text="${refernce.emailId}"></span></p>
+						<p>(<span th:text="${refernce.contactNo}"></span>) (<span th:text="${refernce.organization}"></span>)</p>
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>

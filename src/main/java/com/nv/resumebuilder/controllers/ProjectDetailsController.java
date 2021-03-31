@@ -2,6 +2,7 @@ package com.nv.resumebuilder.controllers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -41,7 +42,7 @@ public class ProjectDetailsController {
 		String DETECT_PROJECTNAME = "pn";
 		String DETECT_PROJECTDETAILS = "pd";
 
-		ExperienceDetailsEntity experienceDetail = null;
+		Optional<ExperienceDetailsEntity>  experienceDetail = null;
 
 		HashMap<String, String> projectDetails = theExperienceProject;
 
@@ -54,7 +55,7 @@ public class ProjectDetailsController {
 			for (int i = 1; i <= projectDetails.size() / 2; i++) {
 				String keyName = null;
 				ProjectDetailsEntity project = new ProjectDetailsEntity();
-				project.setExperienceDetail(experienceDetail);
+				project.setExperienceDetail(experienceDetail.get());
 				for (String key : projectDetails.keySet()) {
 					if (key.contains(String.valueOf(i))) {
 						keyName = key;
@@ -70,7 +71,7 @@ public class ProjectDetailsController {
 			}
 		}
 
-		experienceDetail.setProjects(projects);
+		experienceDetail.get().setProjects(projects);
 		for (int i = 0; i < projects.size(); i++) {
 			this.projectService.save(projects.get(i));
 		}

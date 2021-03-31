@@ -1,128 +1,181 @@
 package com.nv.resumebuilder.controllers;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
 
+import com.itextpdf.html2pdf.ConverterProperties;
+import com.itextpdf.html2pdf.HtmlConverter;
+import com.nv.resumebuilder.entity.AchievementsAndHonoursEntity;
+import com.nv.resumebuilder.entity.EducationalDetailsEntity;
+import com.nv.resumebuilder.entity.ExperienceDetailsEntity;
+import com.nv.resumebuilder.entity.OrganizationalDetailsEntity;
 import com.nv.resumebuilder.entity.PersonalDetailsEntity;
-import com.nv.resumebuilder.repository.AchievementsAndHonoursRepository;
-import com.nv.resumebuilder.repository.EducationalDetailsRepository;
-import com.nv.resumebuilder.repository.ExperienceDetailRepository;
-import com.nv.resumebuilder.repository.OrganizationalDetailsRepository;
-import com.nv.resumebuilder.repository.ProjectRepository;
-import com.nv.resumebuilder.repository.RefernceDetailsRepository;
+import com.nv.resumebuilder.entity.ProjectDetailsEntity;
+import com.nv.resumebuilder.entity.ReferenceDetailsEntity;
+import com.nv.resumebuilder.entity.ResumeTemplateEntity;
+import com.nv.resumebuilder.service.AchievementsAndHonoursServices;
+import com.nv.resumebuilder.service.EducationalDetailsService;
+import com.nv.resumebuilder.service.ExperienceDetailService;
+import com.nv.resumebuilder.service.OrganizationalDetailsService;
 import com.nv.resumebuilder.service.PersonalDetailsServices;
+import com.nv.resumebuilder.service.ProjectService;
+import com.nv.resumebuilder.service.RefernceDetailsService;
 
 @Controller
 public class ResumeTemplateController {
-@Autowired
-private PersonalDetailsServices personalDetailsServices;
-@Autowired
-public EducationalDetailsRepository educationalDetailsRepository;
+	
+	private ResumeTemplateEntity resumeTemplateEntity = new ResumeTemplateEntity();
 
-@Autowired
-public OrganizationalDetailsRepository organizationalDetailsRepository;
+	@Autowired
+	private PersonalDetailsServices personalDetailsServices;
 
-@Autowired
-public ExperienceDetailRepository experienceDetailRepository;
+	@Autowired
+	private AchievementsAndHonoursServices achievementsAndHonoursServices;
 
-@Autowired
-public ProjectRepository projectRepository;
+	@Autowired
+	private EducationalDetailsService educationalDetailsService;
 
-@Autowired
-public RefernceDetailsRepository refernceDetailsRepository;
+	@Autowired
+	private ExperienceDetailService experienceDetailService;
 
-@Autowired
-public AchievementsAndHonoursRepository achievementsAndHonoursRepository;
+	@Autowired
+	private OrganizationalDetailsService organizationalDetailsService;
 
-@GetMapping("/preview")
-private String downloadResume(HttpSession session, Model model) {
-// personal details
-Long idAttribute = (Long) session.getAttribute("id");
-PersonalDetailsEntity personalDetails = null;
+	@Autowired
+	private ProjectService projectService;
 
-if (idAttribute == null) {
-return "redirect:/personalDetails";
-} else {
-personalDetails = this.personalDetailsServices.findById(idAttribute);
+	@Autowired
+	private RefernceDetailsService refernceDetailsService;
+	@Autowired
+	ServletContext servletContext;
 
-model.addAttribute("personalDetails", personalDetails);
+	private final TemplateEngine templateEngine;
 
-// Education details
-Optional<Object> educationalDetails = Optional
-.ofNullable(educationalDetailsRepository.findByPersonId(idAttribute));
+	private Optional<EducationalDetailsEntity> educationalDetails = null;
+	PersonalDetailsEntity personalDetails = null;
+	
+	public ResumeTemplateController(TemplateEngine templateEngine) {
+		this.templateEngine = templateEngine;
+	}
 
-if (!educationalDetails.isPresent()) {
-System.out.println("educationalDetails +++++ ispresent");
-return "redirect:/education";
+	@GetMapping("/preview")
+	private String downloadResume(HttpSession session, Model model) {
+		// personal details
+		Long idAttribute = (Long) session.getAttribute("id");
+
+		if (idAttribute == null) {
+			model.addAttribute("Error", "Please Fill the form");
+			return "redirect:/personalDetails";
+		}
+
+		personalDetails = this.personalDetailsServices.findById(idAttribute);
+
+		// Education details
+//		Optional<EducationalDetailsEntity> 
+		educationalDetails = educationalDetailsService.findByPersonId(idAttribute);
+		if (!educationalDetails.isPresent()) {
+			return "redirect:/education";
+		}
+
+		// Experience details
+		Optional<ExperienceDetailsEntity> experienceDetailsEntity = experienceDetailService.findByOtherId(idAttribute);
+		if (!experienceDetailsEntity.isPresent()) {
+			return "redirect:/experienceDetailForm";
+		}
+
+		// project details
+		List<ProjectDetailsEntity> projectDetailsEntity = projectService
+				.findById(experienceDetailsEntity.get().getExperienceId());
+
+		if (projectDetailsEntity.isEmpty()) {
+			return "redirect:/projectDetails.html?id=";
+		}
+
+		// organizational details
+		Optional<OrganizationalDetailsEntity> organizationalDetailsEntity = organizationalDetailsService.findByOtherId(idAttribute);
+		if (!organizationalDetailsEntity.isPresent()) {
+			return "redirect:/organizationaldetailsform";
+		}
+
+		// achievments and honours details
+		Optional<AchievementsAndHonoursEntity> achievementsAndHonours = achievementsAndHonoursServices.findBYPersonId(idAttribute);
+		if (!achievementsAndHonours.isPresent()) {
+			return "redirect:/AchievementsForm";
+		}
+
+		// Reference Details
+		List<ReferenceDetailsEntity> refernceDetailsdata = refernceDetailsService.getAllRefernceDetails(idAttribute);
+
+		if (refernceDetailsdata.isEmpty()) {
+			return "redirect:/refernceDetails";
+		}
+
+		resumeTemplateEntity.setPersonalDetailsEntity(personalDetails);
+		resumeTemplateEntity.setEducationalDetailsEntity(educationalDetails.get());
+		resumeTemplateEntity.setExperienceDetailsEntity(experienceDetailsEntity.get());
+		resumeTemplateEntity.setProjectDetailsEntity(projectDetailsEntity);
+		resumeTemplateEntity.setOrganizationalDetailsEntity(organizationalDetailsEntity.get());
+		resumeTemplateEntity.setAchievementsAndHonoursEntity(achievementsAndHonours.get());
+		resumeTemplateEntity.setReferenceDetailsEntity(refernceDetailsdata);
+		model.addAttribute("resumeTemplateEntity", resumeTemplateEntity);
+		model.addAttribute("skillsset", Arrays.asList(educationalDetails.get().getTechnicalSkills().split(",")));
+		model.addAttribute("languages", Arrays.asList(personalDetails.getLanguageKnown().split(",")));
+		
+		return "thymeleaf/resumeTemplate";
+	}
+	
+	@GetMapping("/preview/pdf")
+	public ResponseEntity<?> getPDF(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws IOException { 
+
+		/* Do Business Logic */
+
+		Object resumeTemplatedetails = resumeTemplateEntity;
+
+		/* Create HTML using Thymeleaf template Engine */
+
+		WebContext context = new WebContext(request, response, servletContext);
+		context.setVariable("resumeTemplateEntity", resumeTemplatedetails);
+		context.setVariable("skillsset", Arrays.asList(educationalDetails.get().getTechnicalSkills().split(",")));
+		context.setVariable("languages", Arrays.asList(personalDetails.getLanguageKnown().split(",")));
+		
+		String resumeHtml = templateEngine.process("thymeleaf/resumeTemplate", context);
+
+		/* Setup Source and target I/O streams */
+
+		ByteArrayOutputStream target = new ByteArrayOutputStream();
+		ConverterProperties converterProperties = new ConverterProperties();
+		converterProperties.setBaseUri("http://localhost:8090");
+
+		/* Call convert method */
+		HtmlConverter.convertToPdf(resumeHtml, target, converterProperties);
+
+		/* extract output as bytes */
+		byte[] bytes = target.toByteArray();
+
+		/* Send the response as downloadable PDF */
+
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=resume.pdf")
+				.contentType(MediaType.APPLICATION_PDF).body(bytes);
+
+	}
+
 }
-System.out.println(educationalDetails.get());
-model.addAttribute("educationalDetails", educationalDetails.get());
-
-// experience
-Optional<Object> experienceDetails = Optional
-.ofNullable(experienceDetailRepository.findByperson_id(idAttribute));
-
-if (!experienceDetails.isPresent()) {
-System.out.println("experienceDetails +++++ ispresent");
-return "redirect:/experienceDetailForm";
-}
-
-model.addAttribute("experienceDetails", experienceDetails.get());
-System.out.println(experienceDetails.get());
-
-// organization details
-Optional<Object> organizationalDetails = Optional
-.ofNullable(organizationalDetailsRepository.findBypersonid(idAttribute));
-
-if (!organizationalDetails.isPresent()) {
-System.out.println("organizationalDetails +++++ ispresent");
-return "redirect:/organizationaldetailsform";
-}
-System.out.println(organizationalDetails.get());
-
-model.addAttribute("organizationalDetails", organizationalDetails.get());
-
-// Achievements
-Optional<Object> achievementsAndHonours = Optional
-.ofNullable(achievementsAndHonoursRepository.findByPersonId(idAttribute));
-
-if (!achievementsAndHonours.isPresent()) {
-System.out.println("achievementsAndHonours +++++ ispresent");
-return "redirect:/AchievementsForm";
-}
-System.out.println(achievementsAndHonours.get());
-model.addAttribute("achievementsAndHonours", achievementsAndHonours.get());
-
-// project
-Optional<Object> projectDetails = Optional.ofNullable(projectRepository.findAllById(idAttribute));
-
-if (!experienceDetails.isPresent()) {
-System.out.println("experienceDetails +++++ ispresent");
-return "redirect:/experienceDetail";
-}
-System.out.println(projectDetails.get());
-model.addAttribute("projectDetails", projectDetails.get());
-
-// reference
-Optional<Object> refernceDetailsdata = Optional
-.ofNullable(refernceDetailsRepository.findAllById(idAttribute));
-
-if (!experienceDetails.isPresent()) {
-return "redirect:/RefernceDetailsPage";
-}
-model.addAttribute("refernceDetailsdata", refernceDetailsdata.get());
-System.out.println(refernceDetailsdata.get());
-return "resumeFormet";
-}
-}
-
-}
-
-
-

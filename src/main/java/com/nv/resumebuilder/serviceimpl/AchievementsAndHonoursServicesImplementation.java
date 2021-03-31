@@ -21,20 +21,17 @@ public class AchievementsAndHonoursServicesImplementation implements Achievement
 	}
 
 	@Override
-	public AchievementsAndHonoursEntity findBYPersonId(Long id) {
+	public Optional<AchievementsAndHonoursEntity> findBYPersonId(Long id) {
 		Optional<AchievementsAndHonoursEntity> result = Optional
 				.ofNullable(this.achievementsAndHonoursRepository.findByPersonId(id));
 
-		AchievementsAndHonoursEntity achievementsAndHonoursEntity = null;
-
-		if (result.isPresent()) {
-			achievementsAndHonoursEntity = result.get();
-		} else {
-			throw new RuntimeException("Did not find employee id - " + id);
-		}
-
-		System.out.println(achievementsAndHonoursEntity);
-		return achievementsAndHonoursEntity;
+		/*
+		 * AchievementsAndHonoursEntity achievementsAndHonoursEntity = null;
+		 * 
+		 * if (result.isPresent()) { achievementsAndHonoursEntity = result.get(); } else
+		 * { throw new RuntimeException("Did not find employee id - " + id); }
+		 */
+		return result;
 	}
 
 }

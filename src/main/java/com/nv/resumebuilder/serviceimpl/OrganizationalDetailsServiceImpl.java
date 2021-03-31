@@ -22,20 +22,20 @@ public class OrganizationalDetailsServiceImpl implements OrganizationalDetailsSe
 	}
 
 	@Override
-	public OrganizationalDetailsEntity findByOtherId(Long id) {
+	public Optional<OrganizationalDetailsEntity> findByOtherId(Long id) {
 		// TODO Auto-generated method stub
-		Optional<OrganizationalDetailsEntity> result = Optional
-				.ofNullable(this.organizationRepository.findBypersonid(id));
+		
+		  Optional<OrganizationalDetailsEntity> result = Optional
+		  .ofNullable(this.organizationRepository.findBypersonid(id));
+		 
 
-		OrganizationalDetailsEntity organizationalDetailsEntity = null;
-
-		if (result.isPresent()) {
-			organizationalDetailsEntity = result.get();
-		} else {
-			throw new RuntimeException("Did not find employee id that is associate to Organizational Details- " + id);
-		}
-
-		return organizationalDetailsEntity;
+		/*
+		 * OrganizationalDetailsEntity organizationalDetailsEntity = null;
+		 * 
+		 * if (result.isPresent()) { organizationalDetailsEntity = result.get(); } else
+		 * { throw new RuntimeException("Did not find employee id - " + id); }
+		 */
+		return result;
 	}
 
 }
