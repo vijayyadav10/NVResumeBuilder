@@ -11,10 +11,18 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name="organizationaldetails")
+@Table(name = "organizationaldetails")
 public class OrganizationalDetailsEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +30,12 @@ public class OrganizationalDetailsEntity {
 
 	@Column(name = "companyName")
 	@NotEmpty(message = "organization name is required")
-	@Size(min = 1, max = 40, message = "organization name must be less then 40")
+	@Size(min = 5, max = 40, message = "organization name must be less then 40")
+	@Pattern(regexp = "^[a-zA-Z,() ]*$",message="nummbers are not  allowed")
 	private String comName;
 
 	@NotNull(message = "designation is required")
+	@Pattern(regexp = "^[a-zA-Z,() ]*$",message="no special characters are allowed")
 	@Column(name = "designation")
 	private String designation;
 
@@ -37,71 +47,11 @@ public class OrganizationalDetailsEntity {
 	@JoinColumn(name = "personal_id")
 	private PersonalDetailsEntity personalDetailsEntity;
 
-	public OrganizationalDetailsEntity() {
-		super();
-	}
-
 	public OrganizationalDetailsEntity(String comName, String designation, String date) {
 		super();
 		this.comName = comName;
 		this.designation = designation;
 		this.date = date;
-	}
-
-	public OrganizationalDetailsEntity(Long id,
-			@NotEmpty(message = "organization name is required") @Size(min = 1, max = 40, message = "organization name must be less then 40") String comName,
-			@NotNull(message = "designation is required") String designation,
-			@NotNull(message = "Joining Date Required") String date) {
-		super();
-		this.id = id;
-		this.comName = comName;
-		this.designation = designation;
-		this.date = date;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getComName() {
-		return comName;
-	}
-
-	public void setComName(String comName) {
-		this.comName = comName;
-	}
-
-	public String getDesignation() {
-		return designation;
-	}
-
-	public void setDesignation(String designation) {
-		this.designation = designation;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public PersonalDetailsEntity getPersonalDetailsEntity() {
-		return personalDetailsEntity;
-	}
-
-	public void setPersonalDetailsEntity(PersonalDetailsEntity personalDetailsEntity) {
-		this.personalDetailsEntity = personalDetailsEntity;
-	}
-
-	@Override
-	public String toString() {
-		return "OrganizationDetails [Company Name=" + comName + ", designation=" + designation + ", date=" + date + "]";
 	}
 
 }

@@ -10,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -24,27 +23,25 @@ public class ReferenceDetailsEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotEmpty
-	@Size(min = 10, max = 30)
+	@Size(min = 10, max = 50,message="Enter your full Details")
+	@Pattern(regexp ="^[a-zA-Z  ]+$",message="numbers are not allowed ")
 	private String refernceName;
 
-	@NotEmpty
 	@Size(min = 2, max = 20, message = "Enter designation upto 20 characters!!")
+	@Pattern(regexp ="^[a-zA-Z  ]+$",message="numbers are not allowed ")
 	private String designation;
 
-	@NotEmpty
 	@Email(message = "Please enter valid email")
 	private String emailId;
 
-	@Pattern(regexp = "^[7-9][0-9]{9}$")
+	@Pattern(regexp = "^[7-9][0-9]{9}$", message="Enter valid phone number")
 	private String contactNo;
 
-	@NotEmpty
 	@Size(min = 10, max = 100, message = "Enter upto 100 characters")
 	private String address;
 
-	@NotEmpty
 	@Size(max = 40, message = "Enter upto 40 characters")
+	@Pattern(regexp ="^[a-zA-Z .,()]+$",message="numbers are not allowed ")
 	private String organization;
 
 	@ManyToOne

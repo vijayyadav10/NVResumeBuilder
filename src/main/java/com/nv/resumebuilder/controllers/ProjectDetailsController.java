@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,7 +33,7 @@ public class ProjectDetailsController {
 	}
 
 	@PostMapping("/newprojectDetails")
-	public void login(@RequestBody HashMap<String, String> theExperienceProject, HttpServletResponse response) {
+	public void login(@RequestBody HashMap<String, String> theExperienceProject, HttpServletResponse response,HttpSession session) {
 
 		/*
 		 * These Constant Variable(DETECT_PROJECTDETAILS & DETECT_PROJECTNAME) are going
@@ -70,8 +71,8 @@ public class ProjectDetailsController {
 				}
 			}
 		}
-
-		experienceDetail.get().setProjects(projects);
+		session.setAttribute("message" , "You have Succesfully added Project  details Info...");
+		experienceDetail.get().setProject(projects);;
 		for (int i = 0; i < projects.size(); i++) {
 			this.projectService.save(projects.get(i));
 		}

@@ -1,0 +1,302 @@
+
+<!DOCTYPE html >
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<title>Resume Design</title>
+<link th:src="@{/css/style.css}" rel="stylesheet" />
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+</head>
+
+</head>
+
+
+
+<body>
+	<div class="btn-group" role="group"
+		aria-label="Basic mixed styles example">
+		<button type="button" class="btn btn-success">Back</button>
+	</div>
+	<div class="resume">
+		<div class="resume_left">
+
+			<div class="resume_content">
+				<div class="resume_item resume_info">
+					<div class="title">
+
+						<p class="regular">Designation</p>
+					</div>
+					<ul>
+						<li>
+							<div class="icon">
+								<i class="fas fa-envelope"></i>
+							</div>
+							<div class="data">
+								<span th:text="${personalDetails.emailId}">emailId </span>
+							</div>
+						</li>
+						<li>
+							<div class="icon">
+								<i class="fas fa-map-signs"></i>
+
+							</div>
+							<div class="data"> th:text="${personalDetails.currentAddress},"
+								
+								<span th:text="${personalDetails.city}/>
+								th:text="${personalDetails.country}"></div>
+						</li>
+						<li>
+							<div class="icon">
+								<i class="fas fa-user"></i>
+							</div>
+							<div class="data" th:text="${personalDetails.gender}"></div>
+						</li>
+						<li>
+							<div class="icon">
+								<i class="fas fa-calendar-times"></i>
+							</div>
+							<div class="data" th:text="${personalDetails.birthDate}"></div>
+						</li>
+
+						<li>
+							<div class="icon">
+								<i class="fas fa-mobile-alt"></i>
+							</div>
+							<div class="data" th:text="${personalDetails.phoneNo}"></div>
+						</li>
+
+
+					</ul>
+				</div>
+
+				<div class="resume_item resume_skills">
+					<div class="title">
+						<p class="bold">SKILLS</p>
+					</div>
+
+					<ul>
+						<li>
+							<div class="skill_name"
+								th:text="${educationalDetails.technicalSkills}"></div>
+
+
+						</li>
+
+
+					</ul>
+				</div>
+
+				<div class="resume_item resume_social">
+					<div class="title">
+						<p class="bold">SOCIAL</p>
+					</div>
+					<ul>
+						<li>
+							<div class="icon">
+								<i class="fab fa-skype"></i>
+							</div>
+							<div class="data">
+								<p class="semi-bold" th:text="${personalDetails.skypeId}" />
+
+							</div>
+						</li>
+						<li>
+							<div class="icon">
+								<i class="fab fa-linkedin"></i>
+							</div>
+							<div class="data">
+								<p class="semi-bold" th:text="${personalDetails.linkedinId}" />
+
+							</div>
+						</li>
+
+						<!-- <li>
+							<div class="icon">
+								<i class="fab fa-facebook-square"></i>
+							</div>
+							<div class="data">
+								<p class="semi-bold">Facebook</p>
+
+							</div>
+						</li> -->
+					</ul>
+				</div>
+
+
+				<div class="resume_item resume_language">
+					<div class="title">
+						<p class="bold">Language</p>
+					</div>
+
+					<ul>
+						<li>
+							<div class="language_name"
+								th:text="${personalDetails.languageKnown}"></div>
+						</li>
+
+
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="resume_right">
+
+			<div class="resume_item resume_about">
+				<div class="title">
+					<h2>
+						<p class="bold" th:text="${personalDetails.userFirstName} "
+							,
+							th:text="${personalDetails.userMiddleName}"
+							, th:text=" ${personalDetails.userLastName}"></p>
+					</h2>
+					<h3 th:text="${organizationalDetails.designation}"></h3>
+					<h4 th:text="${personalDetails.about}"></h4>
+
+
+					<!--  <p class="semi-bold">about yourself</p> -->
+				</div>
+			</div>
+
+			<div class="resume_item resume_education">
+				<div class="title">
+					<p class="bold">Education</p>
+				</div>
+				<ul>
+					<li>
+						<div class="date" th:text=" ${educationalDetails.yearOfPassing}"></div>
+						<div class="info">
+							<p class="semi-bold" th:text="${educationalDetails.degree}"></p>
+							<p
+								th:text="${educationalDetails.nameOfCollege}
+								(${educationalDetails.university})"></p>
+							<p th:text="${educationalDetails.percentage}"></p>
+						</div>
+					</li>
+
+					<li>
+						<div class="date" th:text="${educationalDetails.yearOfPassingM}"></div>
+						<div class="info">
+							<p class="semi-bold" th:text="${educationalDetails.degreeM}"></p>
+							<p th:text="${educationalDetails.collegeNameM}",
+								(${educationalDetails.universityM})"></p>
+
+						</div>
+					</li>
+
+				</ul>
+
+			</div>
+
+			<div class="resume_item resume_work">
+				<div class="title">
+					<p class="bold">Work Experience</p>
+				</div>
+				<ul>
+					<li>
+
+						<div class="date">joining
+							(${experienceDetails.joiningDate})-Leaving(${experienceDetails.leavingDate})</div>
+						<h4>${experienceDetails.companyName}
+							(${experienceDetails.designation})</h4>
+						<div class="info">
+							<!--  <p class="semi-bold">Designation</p>  -->
+							<p>Project Details</p>
+							<ul>
+								<h4>
+
+									<table class="table">
+										<thead class="thead-dark">
+											<tr>
+												<th scope="col">Project Name</th>
+												<th scope="col">Description</th>
+
+											</tr>
+										</thead>
+										<tbody>
+
+											
+										
+												<tr th:each="projects : ${projectDetails}">
+
+													<td th:text="${projects.projectName}"></td>
+													<td th:text="${projects.projectDescription}"></td>
+
+												</tr>
+										
+										</tbody>
+									</table>
+								</h4>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+
+
+			<div class="resume_item resume_currentWork">
+				<div class="title">
+					<p class="bold">Current Organization</p>
+
+				</div>
+				<h4>
+
+
+
+					<div class="info">
+						<ul>
+							<li><p th:text="${organizationalDetails.comName}"></p></li>
+							<li><p th:text="${organizationalDetails.designation}"></p></li>
+							<li><p th:text="${organizationalDetails.date}(Joining)"></p></li>
+						</ul>
+					</div>
+
+				</h4>
+
+			</div>
+			<div class="resume_item resume_achievements">
+				<div class="title">
+					<p class="bold">Achievements</p>
+				</div>
+				<h4>
+					<ul>
+						<li><i class="achievement-1"
+							th:text="${achievementsAndHonours.particationevent1}"></i></li>
+						<li><i class="achievement-2"
+							th:text="${achievementsAndHonours.certification1}"></i></li>
+						<li><i class="achievement-2"
+							th:text="${achievementsAndHonours.awardsandhonoursdetails1}"></i></li>
+					</ul>
+				</h4>
+			</div>
+
+
+
+
+			<div class="resume_item resume_reference">
+				<div class="title">
+					<p class="bold">References</p>
+
+				</div>
+				<ul th:each="projects :${refernceDetailsdata}">
+					<th:each items="${refernceDetailsdata}" var="refernce">
+
+						<h2 th:text="${refernce.refernceName}(${refernce.designation" })></h2>
+
+						<h4 th:text="${refernce.emailId}"></h4>
+						<h4 th:text="${refernce.contactNo}"></h4>
+						<h4 th:text="${refernce.address}"></h4>
+						<h4 th:text="${refernce.organization}"></h4>
+						<span th:text="MSG">msg</span>
+					</th:each>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
+

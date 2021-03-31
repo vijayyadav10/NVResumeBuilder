@@ -23,6 +23,7 @@ public class PersonalDetailServiceImpl implements PersonalDetailsServices {
 
 	@Override
 	public PersonalDetailsEntity findById(Long theId) {
+
 		Optional<PersonalDetailsEntity> result = this.personalDetailsRepository.findById(theId);
 
 		PersonalDetailsEntity thePersonalDetailsEntity = null;

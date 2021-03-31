@@ -3,7 +3,6 @@ package com.nv.resumebuilder.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +16,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "personaldetails")
 public class PersonalDetailsEntity implements Serializable {
@@ -29,77 +35,72 @@ public class PersonalDetailsEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
-	@Column
-	@NotEmpty
-	@Size(min = 1, max = 10, message = "size upto 10 Characters..")
+	@NotNull(message = "is required")
+	@Size(min = 2, max = 15, message = "size upto 15 Characters..")
+	@Pattern(regexp ="^[a-zA-Z  ]+$",message="numbers are not allowed ")
 	private String userFirstName;
-
-	@Column
-	@NotEmpty
-	private String about;
-
-	@Column
-	@NotEmpty
-	@Size(min = 1, max = 10, message = "size upto 10 Characters..")
+	
+	@NotNull(message = "is required")
+	@Pattern(regexp ="^[a-zA-Z  ]+$",message="numbers are not allowed ")
+	@Size(min = 2, max = 15, message = "size upto 15 Characters..")
 	private String userMiddleName;
-
-	@Column
-	@NotEmpty
-	@Size(min = 1, max = 10, message = "size upto 10 Characters..")
+	
+	@NotNull(message = "is required")
+	@Pattern(regexp ="^[a-zA-Z  ]+$",message="numbers are not allowed ")
+	@Size(min = 2, max = 15, message = "size upto 15 Characters..")
 	private String userLastName;
+	
+	@NotNull(message = "is required")
+	@Pattern(regexp ="^[a-zA-Z  .,]+$",message="numbers are not allowed ")
+	private String about;
 
 	@NotNull(message = "is required")
 	// @Temporal(TemporalType.DATE)
-	@Column
 	private String birthDate;
 
-	@Column
-	@NotEmpty
+	@NotNull(message = "is required")
+	@Size(min = 3, max = 15, message = "enter upto 15 Characters..")
+	@Pattern(regexp ="^[a-zA-Z  ]+$",message="numbers are not allowed ")
 	private String nationality;
 
-	@Column
 	@NotNull(message = "Select gender")
-	@NotEmpty
 	private String gender;
-
-	@Column
-	@NotEmpty
+	
+	@NotEmpty(message = "Select your Maritial Status")
 	private String maritialStatus;
 
-	@Column
 	@NotNull(message = "is required")
 	@Email(message = "Invalid email! Please enter valid email")
 	private String emailId;
 
-	@Column
 	@NotNull(message = "is required")
-	@Email(message = "Invalid email! Please enter valid email")
+	@Pattern(regexp="((http(s?)://)*([a-zA-Z0-9\\-])*\\.|[linkedin])[linkedin/in/~\\-]+\\.[a-zA-Z0-9/~\\-_,&=\\?\\.;]+[^\\.,\\s<]", message = "enter valid linkedin profile")
 	private String linkedinId;
 
-	@Column
 	@NotNull(message = "is required")
-	// @Email(message = "Invalid email! Please enter valid email")
+	@Pattern(regexp ="^[live].(.+)$",message="enter valid skype id ")
 	private String skypeId;
 
-	@Column
-	@NotEmpty
-	@Pattern(regexp = "(^$|[0-9]{10})")
+	@NotNull(message = "is required")
+	@Pattern(regexp = "^[7-9][0-9]{9}$", message = "enter valid phone no")
 	private String phoneNo;
 
-	@Column
-	@NotEmpty
+	@NotNull(message = "is required")
+	@Size(min = 6, max = 100, message = "enter upto 100 Characters..")
 	private String currentAddress;
 
-	@Column
-	@NotEmpty
+	@NotNull(message = "is required")
+	@Pattern(regexp ="^[a-zA-Z]+$",message="numbers are not allowed ")
+	@Size(min = 3, max = 15, message = "enter upto 15 Characters..")
 	private String city;
 
-	@Column
-	@NotEmpty
+	@NotNull(message = "is required")
+	@Pattern(regexp ="^[a-zA-Z ]+$",message="numbers are not allowed ")
+	@Size(min = 5, max = 20, message = "enter upto 20 Characters..")
 	private String country;
-	@Column
-	@NotEmpty(message = "Select at least one language.")
+
+	@NotEmpty(message = "Enter at least one language.")
+	@Size(min = 10, max = 100, message = "enter upto 100 Characters..")
 	private String languageKnown;
 
 	// Person has Education
@@ -118,205 +119,5 @@ public class PersonalDetailsEntity implements Serializable {
 
 	@OneToOne(mappedBy = "personalDetailsEntity")
 	private OrganizationalDetailsEntity organizationalDetailsEntity;
-
-	public PersonalDetailsEntity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public PersonalDetailsEntity(long id, String userFirstName, String about, String userMiddleName,
-			String userLastName, String birthDate, String nationality, String gender, String maritialStatus,
-			String emailId, String linkedinId, String skypeId, String phoneNo, String currentAddress, String city,
-			String country, String languageKnown) {
-		super();
-		this.id = id;
-		this.userFirstName = userFirstName;
-		this.about = about;
-		this.userMiddleName = userMiddleName;
-		this.userLastName = userLastName;
-		this.birthDate = birthDate;
-		this.nationality = nationality;
-		this.gender = gender;
-		this.maritialStatus = maritialStatus;
-		this.emailId = emailId;
-		this.linkedinId = linkedinId;
-		this.skypeId = skypeId;
-		this.phoneNo = phoneNo;
-		this.currentAddress = currentAddress;
-		this.city = city;
-		this.country = country;
-
-		this.languageKnown = languageKnown;
-	}
-
-	public String getAbout() {
-		return about;
-	}
-
-	public void setAbout(String about) {
-		this.about = about;
-	}
-
-	public ExperienceDetailsEntity getExperienceDetail() {
-		return experienceDetail;
-	}
-
-	public void setExperienceDetail(ExperienceDetailsEntity experienceDetail) {
-		this.experienceDetail = experienceDetail;
-	}
-
-	public List<ReferenceDetailsEntity> getRefernceDetailsEntity() {
-		return refernceDetailsEntity;
-	}
-
-	public void setRefernceDetailsEntity(List<ReferenceDetailsEntity> refernceDetailsEntity) {
-		this.refernceDetailsEntity = refernceDetailsEntity;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getUserFirstName() {
-		return userFirstName;
-	}
-
-	public EducationalDetailsEntity getEducationalDetailsEntity() {
-		return educationalDetailsEntity;
-	}
-
-	public void setEducationalDetailsEntity(EducationalDetailsEntity educationalDetailsEntity) {
-		this.educationalDetailsEntity = educationalDetailsEntity;
-	}
-
-	public void setUserFirstName(String userFirstName) {
-		this.userFirstName = userFirstName;
-	}
-
-	public String getUserMiddleName() {
-		return userMiddleName;
-	}
-
-	public void setUserMiddleName(String userMiddleName) {
-		this.userMiddleName = userMiddleName;
-	}
-
-	public String getUserLastName() {
-		return userLastName;
-	}
-
-	public void setUserLastName(String userLastName) {
-		this.userLastName = userLastName;
-	}
-
-	public String getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
-	}
-
-	public String getNationality() {
-		return nationality;
-	}
-
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getMaritialStatus() {
-		return maritialStatus;
-	}
-
-	public void setMaritialStatus(String maritialStatus) {
-		this.maritialStatus = maritialStatus;
-	}
-
-	public String getEmailId() {
-		return emailId;
-	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-
-	public String getLinkedinId() {
-		return linkedinId;
-	}
-
-	public void setLinkedinId(String linkedinId) {
-		this.linkedinId = linkedinId;
-	}
-
-	public String getSkypeId() {
-		return skypeId;
-	}
-
-	public void setSkypeId(String skypeId) {
-		this.skypeId = skypeId;
-	}
-
-	public String getPhoneNo() {
-		return phoneNo;
-	}
-
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
-	}
-
-	public String getCurrentAddress() {
-		return currentAddress;
-	}
-
-	public void setCurrentAddress(String currentAddress) {
-		this.currentAddress = currentAddress;
-	}
-
-	public String getLanguageKnown() {
-		return languageKnown;
-	}
-
-	public void setLanguageKnown(String languageKnown) {
-		this.languageKnown = languageKnown;
-	}
-
-	@Override
-	public String toString() {
-		return "PersonalDetailsEntity [id=" + id + ", userFirstName=" + userFirstName + ", about=" + about
-				+ ", userMiddleName=" + userMiddleName + ", userLastName=" + userLastName + ", birthDate=" + birthDate
-				+ ", nationality=" + nationality + ", gender=" + gender + ", maritialStatus=" + maritialStatus
-				+ ", emailId=" + emailId + ", linkedinId=" + linkedinId + ", skypeId=" + skypeId + ", phoneNo="
-				+ phoneNo + ", currentAddress=" + currentAddress + ", city=" + city + ", country=" + country
-				+ ", languageKnown=" + languageKnown + "]";
-	}
 
 }

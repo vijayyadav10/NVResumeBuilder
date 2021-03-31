@@ -55,7 +55,7 @@ public class OrganizationalDetailsController
 			PersonalDetailsEntity personalDetails = personalDetailsServices.findById((Long) session.getAttribute("id"));
 			organizationDetails.setPersonalDetailsEntity(personalDetails);
 			organizationDetailServiceobj.addorganizationDetailsServices(organizationDetails);
-
+			session.setAttribute("message" , "You have Succesfully added Organizational details Info...");
 			model.addAttribute("orgDetails", organizationDetails);
 			return "redirect:/AchievementsForm";		
         }

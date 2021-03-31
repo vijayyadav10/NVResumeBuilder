@@ -25,13 +25,15 @@
 package com.nv.resumebuilder.controllers;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nv.resumebuilder.entity.PersonalDetailsEntity;
 import com.nv.resumebuilder.service.PersonalDetailsServices;
@@ -41,24 +43,33 @@ public class PersonalDetailsController {
 	@Autowired
 	private PersonalDetailsServices personalDetailsServices;// calling services to store data
 
-	@RequestMapping("/personalDetails")
-	public String personalDetailsForm() {
-
-		return "personalDetails";
-	}
-
 	public PersonalDetailsController(PersonalDetailsServices personalDetailsServices) {
-		super();
+
 		this.personalDetailsServices = personalDetailsServices;
 	}
 
-	@RequestMapping(path = "/PersonalDetailsProcessing", method = RequestMethod.POST) // processing the personal details
-				
-	public String personalDetailsProcessing(@ModelAttribute PersonalDetailsEntity personalDetails, Model model,HttpSession session) {
-		personalDetailsServices.savePersonalDetails(personalDetails);
-		model.addAttribute("personaldetails1", personalDetails);
-		System.out.println(personalDetails);
-		session.setAttribute("id", personalDetails.getId());
+	@RequestMapping("/personalDetails")
+	public String personalDetailsForm(Model model) {
+		model.addAttribute("personalDetailsInfo", new PersonalDetailsEntity());
+		return "personalDetail";
+	}
+
+	// Reference Details form Processing handler
+	@PostMapping(value = "/handlePersonaldetails")
+	public String personalDetailsProcess(
+			@Valid @ModelAttribute("personalDetailsInfo") PersonalDetailsEntity personalDetailsEntity,
+			BindingResult result, Model map, HttpSession session) {
+		if (result.hasErrors()) {
+			return "personalDetail";
+		}
+		map.addAttribute("personalDetailsInfo", personalDetailsEntity);
+		System.out.println(personalDetailsEntity);
+		
+		personalDetailsServices.savePersonalDetails(personalDetailsEntity);
+		session.setAttribute("id", personalDetailsEntity.getId());
+		
+		session.setAttribute("message" , "You have Succesfully added Personal details Info...");
 		return "redirect:/education";
 	}
+
 }

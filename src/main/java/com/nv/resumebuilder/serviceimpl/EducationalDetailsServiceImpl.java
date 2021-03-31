@@ -27,6 +27,7 @@ public class EducationalDetailsServiceImpl implements EducationalDetailsService 
 		Optional<EducationalDetailsEntity> result = Optional
 				.ofNullable(this.educationalDetailsRepository.findByPersonId(id));
 
+		//System.out.println(result);
 		/*
 		 * EducationalDetailsEntity educationalDetailsEntity = null;
 		 * 

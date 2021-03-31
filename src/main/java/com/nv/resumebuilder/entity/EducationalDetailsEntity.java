@@ -1,5 +1,4 @@
 package com.nv.resumebuilder.entity;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;

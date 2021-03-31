@@ -19,24 +19,22 @@ import com.nv.resumebuilder.service.PersonalDetailsServices;
 @Controller
 public class EducationalDetailsController {
 
-	
 	private EducationalDetailsService educationalDetailsService;
 	private PersonalDetailsServices personalDetailsService;
 
 	@Autowired
 
-	public EducationalDetailsController(EducationalDetailsService educationalDetailsService , PersonalDetailsServices personalDetailsService) {
-	this.educationalDetailsService = educationalDetailsService;
-	this.personalDetailsService = personalDetailsService;
-     }
-
-	
+	public EducationalDetailsController(EducationalDetailsService educationalDetailsService,
+			PersonalDetailsServices personalDetailsService) {
+		this.educationalDetailsService = educationalDetailsService;
+		this.personalDetailsService = personalDetailsService;
+	}
 
 	@RequestMapping("/education")
-	public String education(Model model) {	
+	public String education(Model model) {
 		model.addAttribute("EducationalDetailsEntity", new EducationalDetailsEntity());
 		return "educational";
-	}    
+	}
 
 	@RequestMapping(path = "/processform", method = RequestMethod.POST)
 	public String educationFormProcessing(
@@ -48,13 +46,12 @@ public class EducationalDetailsController {
 			return "educational";
 		}
 
-		PersonalDetailsEntity personalDetails = this.personalDetailsService
-				.findById((Long) session.getAttribute("id"));
+		PersonalDetailsEntity personalDetails = this.personalDetailsService.findById((Long) session.getAttribute("id"));
 		details.setPersonalDetailsEntity(personalDetails);
 
 		educationalDetailsService.educationalDetailsServices(details);
 		model.addAttribute("details1", details);
-		System.out.println(details);
+		session.setAttribute("message" , "You have Succesfully added Educational details Info...");
 		return "redirect:/experienceDetailForm";
 	}
 

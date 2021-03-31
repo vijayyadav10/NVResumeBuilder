@@ -1,4 +1,4 @@
-package com.nv.resumebuilder.dto;
+package com.nv.resumebuilder.model;
 
 import java.io.Serializable;
 
@@ -6,41 +6,43 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import lombok.NonNull;
 
 public class ReferenceDetailsDto implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@NotEmpty
-	@Size(min = 10, max = 30)
+	@NonNull
+	@Size(min = 10, max = 50, message = "Enter your full Details")
+	@Pattern(regexp = "^[a-zA-Z  ]+$", message = "numbers are not allowed ")
 	private String refernceName;
-
-	@NotEmpty
+	@NonNull
 	@Size(min = 2, max = 20, message = "Enter designation upto 20 characters!!")
+	@Pattern(regexp = "^[a-zA-Z  ]+$", message = "numbers are not allowed ")
 	private String designation;
-
-	@NotEmpty
+	@NonNull
 	@Email(message = "Please enter valid email")
 	private String emailId;
-
-	@Pattern(regexp = "^[7-9][0-9]{9}$")
+	@NonNull
+	@Pattern(regexp = "^[7-9][0-9]{9}$", message = "Enter valid phone number")
 	private String contactNo;
-
-	@NotEmpty
+	@NonNull
 	@Size(min = 10, max = 100, message = "Enter upto 100 characters")
 	private String address;
-
-	@NotEmpty
+	@NonNull
 	@Size(max = 40, message = "Enter upto 40 characters")
+	@Pattern(regexp = "^[a-zA-Z .,()]+$", message = "numbers are not allowed ")
 	private String organization;
 
 	public ReferenceDetailsDto() {
