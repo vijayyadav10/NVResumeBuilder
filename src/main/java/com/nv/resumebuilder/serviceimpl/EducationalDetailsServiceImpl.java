@@ -19,7 +19,6 @@ public class EducationalDetailsServiceImpl implements EducationalDetailsService 
 	public EducationalDetailsEntity educationalDetailsServices(EducationalDetailsEntity details) {
 		educationalDetailsRepository.save(details);
 		return details;
-
 	}
 
 	@Override
@@ -27,6 +26,7 @@ public class EducationalDetailsServiceImpl implements EducationalDetailsService 
 		Optional<EducationalDetailsEntity> result = Optional
 				.ofNullable(this.educationalDetailsRepository.findByPersonId(id));
 
+		//System.out.println(result);
 		/*
 		 * EducationalDetailsEntity educationalDetailsEntity = null;
 		 * 
@@ -36,5 +36,4 @@ public class EducationalDetailsServiceImpl implements EducationalDetailsService 
 
 		return result;
 	}
-
 }

@@ -44,6 +44,7 @@ public class ReferenceDetailsDto implements Serializable {
 	@Size(max = 40, message = "Enter upto 40 characters")
 	@Pattern(regexp = "^[a-zA-Z .,()]+$", message = "numbers are not allowed ")
 	private String organization;
+
 	public ReferenceDetailsDto() {
 
 	}
